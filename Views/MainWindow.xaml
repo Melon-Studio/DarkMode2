@@ -1,0 +1,59 @@
+﻿<ui:UiWindow 
+        x:Class="DarkMode_2.Views.MainWindow"
+        x:Name="UiWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+        xmlns:local="clr-namespace:DarkMode_2.Views"
+        mc:Ignorable="d"
+        d:DataContext="{d:DesignInstance local:MainWindow, IsDesignTimeCreatable=False}"
+        ShowInTaskbar="False"
+        WindowState="Minimized"
+        ExtendsContentIntoTitleBar="True"
+        Title="DarkMode 2" Height="150" Width="160" Icon="pack://application:,,,/Resources/logo.ico" Loaded="Window_Loaded" WindowStyle="SingleBorderWindow" Opacity="0">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="41*"/>
+            <ColumnDefinition Width="102*"/>
+            <ColumnDefinition Width="17*"/>
+        </Grid.ColumnDefinitions>
+        <ui:TitleBar x:Name="NotifyIcon"
+            Title="DarkMode"
+            Grid.Row="0"
+            ForceShutdown="False"
+            Icon="pack://application:,,,/Resources/logo.ico"
+            MinimizeToTray="False"
+            ShowHelp="False"
+            ShowMaximize="False"
+            ShowMinimize="True"
+            UseSnapLayout="True" Grid.ColumnSpan="3">
+            <!-- 
+             托盘图标及菜单
+            -->
+            <ui:TitleBar.Tray>
+                <ui:NotifyIcon
+                    FocusOnLeftClick="False"
+                    Icon="pack://application:,,,/Resources/logo.ico"
+                    MenuOnRightClick="True"
+                    TooltipText="DarkMode">
+                    <ui:NotifyIcon.Menu>
+                        <ContextMenu>
+                            <ui:MenuItem
+                                Click="Start_OnClick"
+                                Header="设置"
+                                SymbolIcon="Settings24"
+                                Tag="Settings" />
+                            <ui:MenuItem
+                                Click="Exit_OnClick"
+                                Header="退出"
+                                SymbolIcon="ArrowExit20"
+                                Tag="Exit" />
+                        </ContextMenu>
+                    </ui:NotifyIcon.Menu>
+                </ui:NotifyIcon>
+            </ui:TitleBar.Tray>
+        </ui:TitleBar>
+    </Grid>
+</ui:UiWindow>

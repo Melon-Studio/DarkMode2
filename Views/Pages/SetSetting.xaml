@@ -1,0 +1,166 @@
+﻿ <ui:UiPage 
+    x:Class="DarkMode_2.Views.Pages.SetSetting"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:DarkMode_2.Views.Pages"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+    xmlns:viewModels="clr-namespace:DarkMode_2.ViewModels"
+    d:DataContext="{d:DesignInstance local:SetSetting,
+                                     IsDesignTimeCreatable=False}"
+    d:DesignHeight="800" 
+    d:DesignWidth="800"
+    Title="SetSetting"
+    Scrollable="True"
+    mc:Ignorable="d">
+
+    <VirtualizingStackPanel
+        x:Name="RootPanel"
+        Margin="18,0,18,18"
+        IsVirtualizing="True"
+        VirtualizationMode="Recycling">
+
+        <ui:CardControl Margin="0,8,0,0" Icon="ArrowCounterclockwise24">
+            <ui:CardControl.Header>
+                <StackPanel Grid.Column="0" VerticalAlignment="Center">
+                    <TextBlock
+                        FontSize="13"
+                        FontWeight="Medium"
+                        Text="开机自启" />
+                    <TextBlock
+                        FontSize="12"
+                        Foreground="{DynamicResource TextFillColorSecondaryBrush}"
+                        Text="开启后软件将在下次启动电脑时自动运行" />
+                </StackPanel>
+            </ui:CardControl.Header>
+            <ui:ToggleSwitch x:Name="Autostart" Click="Autostart_OnClick" Focusable ="false"/>
+        </ui:CardControl>
+
+        <ui:CardControl Margin="0,8,0,0" Icon="CloudArrowUp24">
+            <ui:CardControl.Header>
+                <StackPanel Grid.Column="0" VerticalAlignment="Center">
+                    <TextBlock
+                        FontSize="13"
+                        FontWeight="Medium"
+                        Text="自动更新" />
+                    <TextBlock
+                        FontSize="12"
+                        Foreground="{DynamicResource TextFillColorSecondaryBrush}"
+                        Text="开启后软件将自动检测更新" />
+                </StackPanel>
+            </ui:CardControl.Header>
+            <ui:ToggleSwitch x:Name="AutoUpdate" Click="AutoUpdate_onClick" Focusable ="false"/>
+        </ui:CardControl>
+
+        <ui:CardControl Margin="0,8,0,0" Icon="Megaphone24">
+            <ui:CardControl.Header>
+                <StackPanel Grid.Column="0" VerticalAlignment="Center">
+                    <TextBlock
+                        FontSize="13"
+                        FontWeight="Medium"
+                        Text="消息通知" />
+                    <TextBlock
+                        FontSize="12"
+                        Foreground="{DynamicResource TextFillColorSecondaryBrush}"
+                        Text="开启后软件启动时将发送一条通知" />
+                </StackPanel>
+            </ui:CardControl.Header>
+            <ui:ToggleSwitch x:Name="Notification" Click="Notification_OnClick" Focusable ="false"/>
+        </ui:CardControl>
+
+        <ui:CardControl Margin="0,8,0,0" Icon="WindowApps24">
+            <ui:CardControl.Header>
+                <StackPanel Grid.Column="0" VerticalAlignment="Center">
+                    <TextBlock
+                        FontSize="13"
+                        FontWeight="Medium"
+                        Text="托盘栏图标" />
+                    <TextBlock
+                        FontSize="12"
+                        Foreground="{DynamicResource TextFillColorSecondaryBrush}"
+                        Text="开启后软件启动时在托盘栏区域创建软件图标(建议开启)" />
+                </StackPanel>
+            </ui:CardControl.Header>
+            <ui:ToggleSwitch x:Name="TrayBar" Click="TrayBar_OnClick" Focusable ="false"/>
+        </ui:CardControl>
+
+        <ui:CardControl Margin="0,8,0,0" Icon="DualScreenUpdate24">
+            <ui:CardControl.Header>
+                <StackPanel Grid.Column="0" VerticalAlignment="Center">
+                    <TextBlock
+                        FontSize="13"
+                        FontWeight="Medium"
+                        Text="更新渠道" />
+                    <TextBlock
+                        FontSize="12"
+                        Foreground="{DynamicResource TextFillColorSecondaryBrush}"
+                        Text="设置检查更新或自动更新的渠道" />
+                </StackPanel>
+            </ui:CardControl.Header>
+            <ComboBox 
+                x:Name="UpdateCombo"
+                Width="180"
+                DisplayMemberPath="Value"
+                SelectedValuePath="Key" SelectionChanged="UpdateCombo_SelectionChanged"/>
+        </ui:CardControl>
+        
+        <ui:CardControl Margin="0,8,0,0" Icon="Color24">
+            <ui:CardControl.Header>
+                <StackPanel Grid.Column="0" VerticalAlignment="Center">
+                    <TextBlock
+                        FontSize="13"
+                        FontWeight="Medium"
+                        Text="主题色" />
+                    <TextBlock
+                        FontSize="12"
+                        Foreground="{DynamicResource TextFillColorSecondaryBrush}"
+                        Text="切换软件的主题色" />
+                </StackPanel>
+            </ui:CardControl.Header>
+            <ComboBox 
+                x:Name="ColorCombo"
+                Width="180"
+                DisplayMemberPath="Value"
+                SelectedValuePath="Key" SelectionChanged="ColorCombo_SelectionChanged"/>
+        </ui:CardControl>
+
+        <ui:CardControl Margin="0,8,0,0" Icon="LocalLanguage24">
+            <ui:CardControl.Header>
+                <StackPanel Grid.Column="0" VerticalAlignment="Center">
+                    <TextBlock
+                        FontSize="13"
+                        FontWeight="Medium"
+                        Text="语言" />
+                    <TextBlock
+                        FontSize="12"
+                        Foreground="{DynamicResource TextFillColorSecondaryBrush}"
+                        Text="切换软件显示的语言" />
+                </StackPanel>
+            </ui:CardControl.Header>
+            <ComboBox 
+                x:Name="languageCombo"
+                Width="180"
+                DisplayMemberPath="Value"
+                SelectedValuePath="Key"/>
+        </ui:CardControl>
+
+        <ui:CardAction
+                Margin="0,8,0,0"
+                Icon="DeveloperBoard24"
+            Click="DeveloperMode_Click"
+                Tag="snackbar">
+            <StackPanel>
+                <TextBlock
+                        FontSize="13"
+                        FontWeight="Medium"
+                        Text="开发者模式" />
+                <TextBlock
+                        FontSize="12"
+                        Foreground="{DynamicResource TextFillColorSecondaryBrush}"
+                        Text="开发者模式，非开发人员请勿进入" />
+            </StackPanel>
+        </ui:CardAction>
+        <ui:Hyperlink Margin="0,10,0,0" Click="Reset_Click" Icon="ArrowCounterclockwise24" Content="重置用户配置"/>
+    </VirtualizingStackPanel>
+</ui:UiPage>

@@ -1,8 +1,10 @@
-﻿using DarkMode_2.ViewModels;
+﻿using DarkMode_2.Models;
+using DarkMode_2.ViewModels;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using System.Windows;
 using Wpf.Ui.Common;
 using Wpf.Ui.Controls.Interfaces;
@@ -15,8 +17,7 @@ namespace DarkMode_2.Views.Pages;
 /// </summary>
 public partial class SetTimes
 {
-    public static int stute = 0;
-    public static int stute1 = 0;
+    DevicePositioning p = new DevicePositioning();
 
     private readonly ISnackbarService _snackbarService;
 
@@ -25,14 +26,6 @@ public partial class SetTimes
     public SetTimes(ISnackbarService snackbarService, IDialogService dialogService, SetTimesViewModel viewModel)
     {
         InitializeComponent();
-
-        var timerGetTime = new System.Windows.Forms.Timer();
-        //设置定时器属性
-        timerGetTime.Tick += new EventHandler(HandleTime);
-        timerGetTime.Interval = 100;
-        timerGetTime.Enabled = true;
-        //开启定时器
-        timerGetTime.Start();
 
         _snackbarService = snackbarService;
         _dialogControl = dialogService.GetDialogControl();
@@ -60,26 +53,15 @@ public partial class SetTimes
         if (key.GetValue("SunRiseSet").ToString() == "true")
         {
             SunRiseSet.IsChecked = true;
-        }
-        key.Close();
-    }
-
-    public void HandleTime(Object myObject, EventArgs myEventArgs)
-    {
-        if (stute == 0)
-        {
-            SunRiseSet.IsChecked = false;
-        }else if(stute == 1)
-        {
-            SunRiseSet.IsChecked = true;
-        }
-        if(stute == 0)
-        {
-            SunRiseSwitch.IsExpanded = false;
-        }else if(stute == 1)
-        {
+            p.Positioning();
             SunRiseSwitch.IsExpanded = true;
         }
+        else
+        {
+            SunRiseSet.IsChecked = false;
+            SunRiseSwitch.IsExpanded = false;
+        }
+        key.Close();
     }
 
     private void BingData()
@@ -195,22 +177,29 @@ public partial class SetTimes
     }
     private void SunRiseSet_OnClick(object sender, RoutedEventArgs e)
     {
-        RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\DarkMode2", true);
-        string state = key.GetValue("SunRiseSet").ToString();
-        if (state == "false")
+        if(SunRiseSet.IsChecked== true)
         {
-            OpenDialog("是否允许 DarkMode 访问你的精确位置", "\nDarkMode 使用 Windows 位置服务获取设备所在地的地理位置，并计算出日出日落时间。");
-            key.Close();
-            SunRiseSwitch.IsExpanded = true;
+            RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\DarkMode2", true);
+            string state = key.GetValue("SunRiseSet").ToString();
+            if(state == "false")
+            {
+                OpenDialog("是否允许 DarkMode 访问你的精确位置", "\nDarkMode 使用 Windows 位置服务获取设备所在地的地理位置，并计算出日出日落时间。");
+                key.Close();
+            }
+            else if(state == "true")
+            {
+                p.Positioning();
+                SunRiseSwitch.IsExpanded = true;
+            }
         }
-        else if(state == "true")
+        else
         {
-            stute = 0;
-            stute1 = 0;
-            SunRiseSet.IsChecked = false;
-            key.SetValue("SunRiseSet", "false");
-            key.Close();
+            lat.Text = "";
+            lng.Text = "";
+            location.Text = "";
         }
+        
+        
     }
 
     private void OpenSnackbar(string title, string connect)
@@ -222,21 +211,23 @@ public partial class SetTimes
         var result = await _dialogControl.ShowAndWaitAsync(title, connect);
     }
 
-    private static void DialogControlOnButtonRightClick(object sender, RoutedEventArgs e)
-    {
-        var dialogControl = (IDialogControl)sender;
-        dialogControl.Hide();
-    }
 
-    private static void DialogControlOnButtonLeftClick(object sender, RoutedEventArgs e)
+    private void DialogControlOnButtonLeftClick(object sender, RoutedEventArgs e)
     {
         var dialogControl = (IDialogControl)sender;
         RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\DarkMode2", true);
         key.SetValue("SunRiseSet", "true");
         key.Close();
-        stute1 = 1;
-        stute = 1;
+        p.Positioning();
         dialogControl.Hide();
+        SunRiseSwitch.IsExpanded = true;
+    }
+
+    private void DialogControlOnButtonRightClick(object sender, RoutedEventArgs e)
+    {
+        var dialogControl = (IDialogControl)sender;
+        dialogControl.Hide();
+        SunRiseSet.IsChecked= false;
     }
 
     private void Button_Click(object sender, RoutedEventArgs e)
@@ -256,5 +247,20 @@ public partial class SetTimes
         key.SetValue("startTime", startTime);
         key.SetValue("endTime", endTime);
         key.Close();
+    }
+
+    private void UiPage_Loaded(object sender, RoutedEventArgs e)
+    {
+        p.OnAddressResolvered += p_OnAddressResolvered;
+    }
+
+    void p_OnAddressResolvered(object sender, AddressResolverEventArgs e)
+    {
+        Dispatcher.BeginInvoke(new Action(delegate
+        {
+            lat.Text = e.Latitude.ToString();
+            lng.Text = e.Longitude.ToString();
+            location.Text = e.Address3;
+        }));
     }
 }

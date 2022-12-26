@@ -10,7 +10,7 @@
       d:DataContext="{d:DesignInstance local:SetTimes,
                                      IsDesignTimeCreatable=False}"
       Title="SetTimes"
-      Scrollable="True">
+      Scrollable="True" Loaded="UiPage_Loaded">
 
     <VirtualizingStackPanel
         x:Name="RootPanel"
@@ -192,7 +192,8 @@
                         Margin="0,0,16,0"
                         Padding="30,6"
                         Click="SunRiseSet_OnClick"
-                        VerticalAlignment="Center"/>
+                        VerticalAlignment="Center"
+                        />
                 </Grid>
             </ui:CardExpander.Header>
             <Grid 
@@ -224,10 +225,12 @@
                     Margin="10"/>
 
                 <TextBlock
-                    x:Name="longitude"
+                    x:Name="lat"
                     Grid.Column="1"
                     Grid.Row="0"
-                    Margin="0,8,0,0" 
+                    FontSize="13"
+                    FontWeight="Medium"
+                    Margin="10" 
                     HorizontalAlignment="Left" 
                     VerticalAlignment="Center" />
 
@@ -242,10 +245,12 @@
                     Margin="10"/>
 
                 <TextBlock 
-                    x:Name="latitude"
+                    x:Name="lng"
                     Grid.Column="1"
                     Grid.Row="1"
-                    Margin="0,8,0,0"
+                    FontSize="13"
+                    FontWeight="Medium"
+                    Margin="10" 
                     HorizontalAlignment="Left" 
                     VerticalAlignment="Center"
                     />
@@ -264,7 +269,9 @@
                     x:Name="location"
                     Grid.Column="1"
                     Grid.Row="2"
-                    Margin="0,8,0,0"
+                    FontSize="13"
+                    FontWeight="Medium"
+                    Margin="10" 
                     HorizontalAlignment="Left" 
                     VerticalAlignment="Center" />
             </Grid>

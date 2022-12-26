@@ -15,39 +15,57 @@ public class SwitchMode
         //切换主题色
         if(mode == "light" && DetermineSystemColorMode.GetSysState() == "dark")
         {
+            //Colors mode
             sysKey.SetValue("SystemUsesLightTheme", Convert.ToInt32("1", 16));
             sysKey.SetValue("AppsUseLightTheme", Convert.ToInt32("1", 16));
-            Console.WriteLine(RedRawWindow.ChangeColorMode());
+            RedRawWindow.ChangeColorMode();
+            //wallpaper
             if (key.GetValue("NativeDark").ToString() != "")
             {
                 string path = key.GetValue("NativeDark").ToString();
-                ChangeNativeWallpaper(path);
+                ReplaceWallpaper.ChangeNativeWallpaper(path);
             }
-        }else if (mode == "dark" && DetermineSystemColorMode.GetSysState() == "light")
+            //wallpaper engine
+            if (key.GetValue("WeDark").ToString() != "")
+            {
+                if (key.GetValue("WeInstallPath").ToString() != "")
+                {
+                    CommandLine.CallCommandLine(key.GetValue("WeInstallPath").ToString(), key.GetValue("WeDark").ToString(), "WeDark");
+
+                }
+                else
+                {
+                    MessageBox.OpenMessageBox("错误", "未找到Wallpaper Engine路径。");
+                }
+            }
+        }
+        else if (mode == "dark" && DetermineSystemColorMode.GetSysState() == "light")
         {
+            //color mode
             sysKey.SetValue("SystemUsesLightTheme", Convert.ToInt32("0", 16));
             sysKey.SetValue("AppsUseLightTheme", Convert.ToInt32("0", 16));
-            Console.WriteLine(RedRawWindow.ChangeColorMode().ToString());
+            RedRawWindow.ChangeColorMode().ToString();
+            //wallpaper
             if (key.GetValue("NativeLight").ToString() != "")
             {
                 string path = (string)key.GetValue("NativeLight");
-                ChangeNativeWallpaper(path);
+                ReplaceWallpaper.ChangeNativeWallpaper(path);
+            }
+            //wallpaper engine
+            if (key.GetValue("WeLight").ToString() != "")
+            {
+                if (key.GetValue("WeInstallPath").ToString() != "")
+                {
+                    CommandLine.CallCommandLine(key.GetValue("WeInstallPath").ToString(), key.GetValue("WeLight").ToString(), "WeLight");
+                }
+                else
+                {
+                    MessageBox.OpenMessageBox("错误", "未找到Wallpaper Engine路径。");
+                }
             }
         }
         key.Close();
         sysKey.Close();
     }
 
-    //切换原生壁纸
-    [DllImport("user32.dll", EntryPoint = "SystemParametersInfo")]
-    public static extern int SystemParametersInfo(int uAction, int uParam, string lpvParam, int fuWinIni);
-    public static void ChangeNativeWallpaper(string FilePath)
-    {
-        string filePath = Path.GetFullPath(FilePath);
-        SystemParametersInfo(20, 1, FilePath, 0x1 | 0x2);
-    }
-    //切换WE壁纸
-
-
-    
 }

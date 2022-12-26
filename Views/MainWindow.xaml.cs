@@ -149,13 +149,13 @@ public partial class MainWindow : INavigationWindow
         {
             //在时间段内
             SwitchMode.switchMode("light");
-            Console.WriteLine("切换为浅色");
+            //Console.WriteLine("切换为浅色");
         }
         else
         {
             //不在时间段内
             SwitchMode.switchMode("dark");
-            Console.WriteLine("切换为深色");
+            //Console.WriteLine("切换为深色");
         }
         
     }

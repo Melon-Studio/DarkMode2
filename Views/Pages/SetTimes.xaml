@@ -10,7 +10,7 @@
       d:DataContext="{d:DesignInstance local:SetTimes,
                                      IsDesignTimeCreatable=False}"
       Title="SetTimes"
-      Scrollable="True" Loaded="UiPage_Loaded">
+      Scrollable="True">
 
     <VirtualizingStackPanel
         x:Name="RootPanel"
@@ -39,7 +39,7 @@
                         <TextBlock
                             FontSize="12"
                             Foreground="{DynamicResource TextFillColorSecondaryBrush}"
-                            Text="手动设置浅色模式开始的时间" />
+                            Text="手动设置颜色模式开始的时间" />
                     </StackPanel>
                 </Grid>
             </ui:CardExpander.Header>
@@ -65,7 +65,7 @@
                     Grid.Row="0"
                     FontSize="13"
                     FontWeight="Medium"
-                    Text="开始时间：" 
+                    Text="浅色模式：" 
                     HorizontalAlignment="Center" 
                     VerticalAlignment="Center" />
 
@@ -108,7 +108,7 @@
                     Grid.Row="1"
                     FontSize="13"
                     FontWeight="Medium"
-                    Text="结束时间：" 
+                    Text="深色模式：" 
                     HorizontalAlignment="Center" 
                     VerticalAlignment="Center" />
 

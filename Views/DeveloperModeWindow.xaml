@@ -28,6 +28,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <ui:CardAction
                 Grid.Column="0"
@@ -106,6 +107,24 @@
                 Grid.Row="1"
                 Content="测试消息"
                 Click="Button_Click"
+                />
+            <ui:Button 
+                Grid.Column="0"
+                Grid.Row="2"
+                Content="安装服务"
+                Click="InstallService_Click"
+                />
+            <ui:Button 
+                Grid.Column="1"
+                Grid.Row="2"
+                Content="卸载服务"
+                Click="UnInstallService_Click"
+                />
+            <ui:Button 
+                Grid.Column="2"
+                Grid.Row="2"
+                Content="启动服务"
+                Click="StartService_Click"
                 />
         </Grid>
     </VirtualizingStackPanel>

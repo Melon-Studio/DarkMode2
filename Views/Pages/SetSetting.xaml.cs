@@ -55,6 +55,15 @@ public partial class SetSetting
         {
             AutoUpdate.IsChecked = true;
         }
+        //自动更新日出日落时间
+        if (appkey.GetValue("SunRiseSet").ToString() == "false")
+        {
+            AutoUpdateTime.IsEnabled = false;
+        }
+        if (appkey.GetValue("AutoUpdateTime").ToString() == "true")
+        {
+            AutoUpdateTime.IsChecked = true;
+        }
         //托盘栏图标
         if (appkey.GetValue("TrayBar").ToString() == "true")
         {
@@ -126,11 +135,8 @@ public partial class SetSetting
             try
             {
                 string path = Process.GetCurrentProcess().MainModule.FileName;
-                RegistryKey syskey = Registry.CurrentUser.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Run", true);
                 RegistryKey appkey = Registry.CurrentUser.OpenSubKey(@"Software\DarkMode2",true);
-                syskey.SetValue("DarkMode2", path);
                 appkey.SetValue("DarkMode2", "true");
-                syskey.Close();
                 appkey.Close();
             }
             catch (Exception ex)
@@ -142,11 +148,8 @@ public partial class SetSetting
         {
             try
             {
-                RegistryKey syskey = Registry.CurrentUser.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Run", true);
                 RegistryKey appkey = Registry.CurrentUser.OpenSubKey(@"Software\DarkMode2", true);
-                syskey.DeleteValue("DarkMode2", false);
                 appkey.SetValue("DarkMode2", "false");
-                syskey.Close();
                 appkey.Close();
             }
             catch (Exception ex)
@@ -174,7 +177,37 @@ public partial class SetSetting
         AutoUpdate.IsChecked = false;
 
     }
-
+    //自动更新日出日落时间
+    private void AutoUpdateTime_OnClick(object sender, RoutedEventArgs e)
+    {
+        RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\DarkMode2", false);
+        string state = key.GetValue("AutoUpdateTime").ToString();
+        if (state == "true")
+        {
+            Notification.IsChecked = false;
+            try
+            {
+                key.SetValue("AutoUpdateTime", "false");
+                key.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.OpenMessageBox("错误发生", ex.ToString());
+            }
+        }
+        else if (state == "false")
+        {
+            try
+            {
+                key.SetValue("AutoUpdateTime", "true");
+                key.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.OpenMessageBox("错误发生", ex.ToString());
+            }
+        }
+    }
     //消息通知
     private void Notification_OnClick(object sender, RoutedEventArgs e)
     {
@@ -327,6 +360,8 @@ public partial class SetSetting
             pan = Registry.CurrentUser.OpenSubKey(@"Software\DarkMode2");
             key = Registry.CurrentUser.CreateSubKey(@"Software\DarkMode2");
             key = Registry.CurrentUser.OpenSubKey(@"Software\DarkMode2", true);
+            //软件安装路径
+            key.SetValue("DarkModeInstallPath", System.Windows.Forms.Application.ExecutablePath);
             //开机自启
             key.SetValue("DarkMode2", "false");
             //浅色模式开始时间
@@ -337,6 +372,8 @@ public partial class SetSetting
             key.SetValue("Language", "zh-CN");
             //日出日落模式
             key.SetValue("SunRiseSet", "false");
+            //自动更新日出日落时间
+            key.SetValue("AutoUpdateTime", "false");
             //消息通知
             key.SetValue("Notification", "true");
             //托盘栏图标

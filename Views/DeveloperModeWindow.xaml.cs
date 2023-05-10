@@ -3,9 +3,13 @@ using DarkMode_2.ViewModels;
 using LibreHardwareMonitor.Hardware;
 //using OpenHardwareMonitor.Hardware;
 using System;
+using System.Collections;
+using System.Configuration.Install;
 using System.Linq;
 using System.Runtime.InteropServices;
+using System.ServiceProcess;
 using System.Windows;
+using MessageBox = DarkMode_2.Models.MessageBox;
 
 namespace DarkMode_2.Views;
 
@@ -14,6 +18,8 @@ namespace DarkMode_2.Views;
 /// </summary>
 public partial class DeveloperModeWindow
 {
+    string serviceFilePath = "E:\\Project\\C#\\DarkModeService\\bin\\Debug\\DarkModeService.exe";
+    string serviceName = "DarkMode Service";
     public DeveloperModeViewModel ViewModel
     {
         get;
@@ -103,6 +109,39 @@ public partial class DeveloperModeWindow
     private void Button_Click(object sender, RoutedEventArgs e)
     {
         SendMsgToTaskbar();
+    }
+    private void InstallService_Click(object sender, RoutedEventArgs e)
+    {
+        using (AssemblyInstaller installer = new AssemblyInstaller())
+        {
+            installer.UseNewContext = true;
+            installer.Path = serviceFilePath;
+            IDictionary savedState = new Hashtable();
+            installer.Install(savedState);
+            installer.Commit(savedState);
+            MessageBox.OpenMessageBox("提示","服务安装成功。");
+        }
+    }
+    private void UnInstallService_Click(object sender, RoutedEventArgs e)
+    {
+        using (AssemblyInstaller installer = new AssemblyInstaller())
+        {
+            installer.UseNewContext = true;
+            installer.Path = serviceFilePath;
+            installer.Uninstall(null);
+            MessageBox.OpenMessageBox("提示", "服务卸载成功。");
+        }
+    }
+    private void StartService_Click(object sender, RoutedEventArgs e)
+    {
+        using (ServiceController control = new ServiceController(serviceName))
+        {
+            if (control.Status == ServiceControllerStatus.Stopped)
+            {
+                control.Start();
+                MessageBox.OpenMessageBox("提示", "服务启动成功。");
+            }
+        }
     }
 }
 

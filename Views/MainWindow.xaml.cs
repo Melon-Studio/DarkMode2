@@ -70,6 +70,8 @@ public partial class MainWindow : INavigationWindow
             {
                 key = Registry.CurrentUser.CreateSubKey(@"Software\DarkMode2");
                 key = Registry.CurrentUser.OpenSubKey(@"Software\DarkMode2", true);
+                //软件安装路径
+                key.SetValue("DarkModeInstallPath", System.Windows.Forms.Application.ExecutablePath);
                 //开机自启
                 key.SetValue("DarkMode2", "false");
                 //系统颜色初始化
@@ -82,6 +84,8 @@ public partial class MainWindow : INavigationWindow
                 key.SetValue("Language", "zh-CN");
                 //日出日落模式
                 key.SetValue("SunRiseSet", "false");
+                //自动更新日出日落时间
+                key.SetValue("AutoUpdateTime", "false");
                 //消息通知
                 key.SetValue("Notification", "true");
                 //托盘栏图标

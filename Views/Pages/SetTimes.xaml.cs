@@ -6,9 +6,12 @@ using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Input;
+using Windows.Devices.Geolocation;
 using Wpf.Ui.Common;
 using Wpf.Ui.Controls.Interfaces;
 using Wpf.Ui.Mvvm.Contracts;
+using static log4net.Appender.RollingFileAppender;
 
 namespace DarkMode_2.Views.Pages;
 
@@ -17,7 +20,6 @@ namespace DarkMode_2.Views.Pages;
 /// </summary>
 public partial class SetTimes
 {
-    DevicePositioning p = new DevicePositioning();
 
     private readonly ISnackbarService _snackbarService;
 
@@ -35,26 +37,19 @@ public partial class SetTimes
         //设置初始化
         RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\DarkMode2", true);
         //设置时间
-        string _startHours = Regex.Match(key.GetValue("startTime").ToString(),@"\w*(?=:)").ToString();
-        string _startMinutes = Regex.Match(key.GetValue("startTime").ToString(), @"\d{2}(?=[\d\D]{0}$)").ToString();
-        string _endHours = Regex.Match(key.GetValue("endTime").ToString(), @"\w*(?=:)").ToString();
-        string _endMinutes = Regex.Match(key.GetValue("endTime").ToString(), @"\d{2}(?=[\d\D]{0}$)").ToString();
-
-        int _startHours1 = int.Parse(_startHours);
-        int _startMinutes1 = int.Parse(_startMinutes);
-        int _endHours1 = int.Parse(_endHours);
-        int _endMinutes1 = int.Parse(_endMinutes);
-
-        startTimeHours.SelectedIndex = _startHours1;
-        endTimeHours.SelectedIndex = _endHours1;
-        startTimeMinutes.SelectedIndex = _startMinutes1;
-        endTimeMinutes.SelectedIndex = _endMinutes1;
+        UpdateTime();
         //设置日出日落模式
         if (key.GetValue("SunRiseSet").ToString() == "true")
         {
             SunRiseSet.IsChecked = true;
-            p.Positioning();
+
+            setSunRise();
+
             SunRiseSwitch.IsExpanded = true;
+            startTimeHours.IsEnabled = false;
+            startTimeMinutes.IsEnabled = false;
+            endTimeHours.IsEnabled = false;
+            endTimeMinutes.IsEnabled = false;
         }
         else
         {
@@ -175,37 +170,57 @@ public partial class SetTimes
         _dialogControl.ButtonRightClick -= DialogControlOnButtonRightClick;
         _dialogControl.ButtonLeftClick -= DialogControlOnButtonLeftClick;
     }
+
     private void SunRiseSet_OnClick(object sender, RoutedEventArgs e)
     {
-        if(SunRiseSet.IsChecked== true)
+        RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\DarkMode2", true);
+        string state = key.GetValue("SunRiseSet").ToString();
+        
+        if(state == "false" && SunRiseSet.IsChecked == true) 
         {
-            RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\DarkMode2", true);
-            string state = key.GetValue("SunRiseSet").ToString();
-            if(state == "false")
-            {
-                OpenDialog("是否允许 DarkMode 访问你的精确位置", "\nDarkMode 使用 Windows 位置服务获取设备所在地的地理位置，并计算出日出日落时间。");
-                key.Close();
-            }
-            else if(state == "true")
-            {
-                p.Positioning();
-                SunRiseSwitch.IsExpanded = true;
-            }
+            OpenDialog("是否允许 DarkMode 访问你的精确位置", "\nDarkMode 使用 Windows 位置服务获取设备所在地的地理位置，并计算出日出日落时间。");
         }
-        else
+        if(SunRiseSet.IsChecked == false)
         {
+            key.SetValue("SunRiseSet", "false");
+            location.Text = "";
             lat.Text = "";
             lng.Text = "";
-            location.Text = "";
+            SunRiseSwitch.IsExpanded = false;
+            startTimeHours.IsEnabled= true;
+            endTimeHours.IsEnabled= true;
+            startTimeMinutes.IsEnabled= true;
+            endTimeMinutes.IsEnabled= true;
         }
-        
-        
+        key.Close();
+
     }
 
     private void OpenSnackbar(string title, string connect)
     {
         _snackbarService.Show(title, connect, SymbolRegular.FoodCake24);
     }
+
+    private void UpdateTime()
+    {
+        RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\DarkMode2", true);
+        string _startHours = Regex.Match(key.GetValue("startTime").ToString(), @"\w*(?=:)").ToString();
+        string _startMinutes = Regex.Match(key.GetValue("startTime").ToString(), @"\d{2}(?=[\d\D]{0}$)").ToString();
+        string _endHours = Regex.Match(key.GetValue("endTime").ToString(), @"\w*(?=:)").ToString();
+        string _endMinutes = Regex.Match(key.GetValue("endTime").ToString(), @"\d{2}(?=[\d\D]{0}$)").ToString();
+
+        int _startHours1 = int.Parse(_startHours);
+        int _startMinutes1 = int.Parse(_startMinutes);
+        int _endHours1 = int.Parse(_endHours);
+        int _endMinutes1 = int.Parse(_endMinutes);
+
+        startTimeHours.SelectedIndex = _startHours1;
+        endTimeHours.SelectedIndex = _endHours1;
+        startTimeMinutes.SelectedIndex = _startMinutes1;
+        endTimeMinutes.SelectedIndex = _endMinutes1;
+        key.Close();
+    }
+
     private async void OpenDialog(string title, string connect)
     {
         var result = await _dialogControl.ShowAndWaitAsync(title, connect);
@@ -218,9 +233,8 @@ public partial class SetTimes
         RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\DarkMode2", true);
         key.SetValue("SunRiseSet", "true");
         key.Close();
-        p.Positioning();
+        setSunRise();
         dialogControl.Hide();
-        SunRiseSwitch.IsExpanded = true;
     }
 
     private void DialogControlOnButtonRightClick(object sender, RoutedEventArgs e)
@@ -249,18 +263,36 @@ public partial class SetTimes
         key.Close();
     }
 
-    private void UiPage_Loaded(object sender, RoutedEventArgs e)
+    private async void setSunRise()
     {
-        p.OnAddressResolvered += p_OnAddressResolvered;
+        LocationService locationService = new LocationService();
+        var geoLocator = new Geolocator();
+        var geoPosition = await geoLocator.GetGeopositionAsync();
+        var latitude = geoPosition.Coordinate.Point.Position.Latitude;
+        var longitude = geoPosition.Coordinate.Point.Position.Longitude;
+        var locationName = await locationService.GetLocationName(latitude, longitude);
+
+        lat.Text = longitude.ToString();
+        lng.Text = latitude.ToString();
+        location.Text = locationName;
+
+        SunTimeResult result = TimeConverter.GetSunTime(DateTime.Now, longitude, latitude);
+        DateTime date = DateTime.Now;
+        string sunriseTime = result.SunriseTime.ToString("HH:mm");
+        string sunsetTime = result.SunsetTime.ToString("HH:mm");
+
+        RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\DarkMode2", true);
+        key.SetValue("startTime", sunriseTime);
+        key.SetValue("endTime", sunsetTime);
+        key.Close();
+
+        UpdateTime();
+
+        SunRiseSwitch.IsExpanded = true;
+        startTimeHours.IsEnabled = false;
+        endTimeHours.IsEnabled = false;
+        startTimeMinutes.IsEnabled = false;
+        endTimeMinutes.IsEnabled = false;
     }
 
-    void p_OnAddressResolvered(object sender, AddressResolverEventArgs e)
-    {
-        Dispatcher.BeginInvoke(new Action(delegate
-        {
-            lat.Text = e.Latitude.ToString();
-            lng.Text = e.Longitude.ToString();
-            location.Text = e.Address3;
-        }));
-    }
 }

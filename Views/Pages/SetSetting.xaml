@@ -53,6 +53,22 @@
             <ui:ToggleSwitch x:Name="AutoUpdate" Click="AutoUpdate_onClick" Focusable ="false"/>
         </ui:CardControl>
 
+        <ui:CardControl Margin="0,8,0,0" Icon="WeatherMoon24">
+            <ui:CardControl.Header>
+                <StackPanel Grid.Column="0" VerticalAlignment="Center">
+                    <TextBlock
+                        FontSize="13"
+                        FontWeight="Medium"
+                        Text="自动更新日出日落时间" />
+                    <TextBlock
+                        FontSize="12"
+                        Foreground="{DynamicResource TextFillColorSecondaryBrush}"
+                        Text="开启后软件将每次启动软件时自动更新一次日出日落时间" />
+                </StackPanel>
+            </ui:CardControl.Header>
+            <ui:ToggleSwitch x:Name="AutoUpdateTime" Click="AutoUpdateTime_OnClick" Focusable ="false"/>
+        </ui:CardControl>
+        
         <ui:CardControl Margin="0,8,0,0" Icon="Megaphone24">
             <ui:CardControl.Header>
                 <StackPanel Grid.Column="0" VerticalAlignment="Center">

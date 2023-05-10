@@ -77,16 +77,18 @@
     <TargetZone>LocalIntranet</TargetZone>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration.Install" />
     <Reference Include="System.Data" />
     <Reference Include="System.Device" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Numerics" />
+    <Reference Include="System.ServiceProcess" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -111,19 +113,16 @@
     <Compile Include="Models\CommandLine.cs" />
     <Compile Include="Models\DarkModeException.cs" />
     <Compile Include="Models\DetermineSystemColorMode.cs" />
-    <Compile Include="Models\DeviceDelegates.cs" />
-    <Compile Include="Models\DeviceOperationEventArgs.cs" />
-    <Compile Include="Models\DevicePositioning.cs" />
     <Compile Include="Models\GetGPULoad.cs" />
     <Compile Include="Models\JsonSerialization.cs" />
+    <Compile Include="Models\LocationService.cs" />
     <Compile Include="Models\MessageBox.cs" />
-    <Compile Include="Models\PositionChangedEventArgs.cs" />
     <Compile Include="Models\RedRawWindow.cs" />
     <Compile Include="Models\ReplaceWallpaper.cs" />
     <Compile Include="Models\StartUrl.cs" />
-    <Compile Include="Models\SunriseSunsetMode.cs" />
     <Compile Include="Models\SwitchMode.cs" />
     <Compile Include="Models\SystemHotKey.cs" />
+    <Compile Include="Models\TimeConverter.cs" />
     <Compile Include="Models\Update.cs" />
     <Compile Include="Models\VersionControl.cs" />
     <Compile Include="Services\ApplicationHostService.cs" />
@@ -241,6 +240,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="app.manifest" />
     <None Include="DarkMode_2_TemporaryKey.pfx" />
     <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">

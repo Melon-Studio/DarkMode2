@@ -26,6 +26,11 @@ public partial class SetWallpaper
         DarkBox2.Text = key.GetValue("WeDark").ToString();
         WePath.Text = key.GetValue("WeInstallPath").ToString();
         key.Close();
+        if(WePath.Text == "")
+        {
+            BroLight.IsEnabled= false;
+            BroDark.IsEnabled= false;
+        }
     }
 
     private void BrowseButton1_Click(object sender, System.Windows.RoutedEventArgs e)

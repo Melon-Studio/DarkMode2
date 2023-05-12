@@ -15,22 +15,8 @@
         IsVirtualizing="True"
         VirtualizationMode="Recycling">
 
-
-        <ui:CardControl Margin="0,8,0,0" Icon="Earth24">
-            <ui:CardControl.Header>
-                <StackPanel Grid.Column="0" VerticalAlignment="Center">
-                    <TextBlock
-                        FontSize="13"
-                        FontWeight="Medium"
-                        Text="Google Chrome 主题色(实验性功能)" />
-                    <TextBlock
-                        FontSize="12"
-                        Foreground="{DynamicResource TextFillColorSecondaryBrush}"
-                        Text="开启后软件在切换主题色时会同时切换 Google Chrome 浏览网页的主题色" />
-                </StackPanel>
-            </ui:CardControl.Header>
-            <ui:ToggleSwitch x:Name="chrome" Focusable ="false" Click="Chrome_OnClick"/>
-        </ui:CardControl>
+        <ui:InfoBar Title="实验性功能将在测试成功后在自定义组中上线，随时存在删除的可能性。"
+                    IsOpen="True" />
 
         <ui:CardExpander
             Margin="0,8,0,0"

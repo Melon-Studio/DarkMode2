@@ -1,14 +1,22 @@
 ﻿using DarkMode_2.Models;
 using DarkMode_2.ViewModels;
 using LibreHardwareMonitor.Hardware;
+using Microsoft.Win32;
 //using OpenHardwareMonitor.Hardware;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Configuration.Install;
+using System.IO;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Runtime.InteropServices;
 using System.ServiceProcess;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Input;
 using MessageBox = DarkMode_2.Models.MessageBox;
 
 namespace DarkMode_2.Views;
@@ -86,30 +94,16 @@ public partial class DeveloperModeWindow
     public const int CUSTOM_MESSAGE = 0X000F;//自定义消息
 
 
-    //向窗体发送消息的函数
-    public static void SendMsgToTaskbar()
-    {
-        IntPtr WINDOW_HANDLER = FindWindow(null, "explorer");
-        if (WINDOW_HANDLER == IntPtr.Zero)
-        {
-            throw new Exception("Could not find explorer!");
-        }
-        else
-        {
-            SendMessage(WINDOW_HANDLER, CUSTOM_MESSAGE, new IntPtr(14), IntPtr.Zero).ToInt64();
-            //IntPtr WINDOW_TASKBAR = FindWindowEx(WINDOW_HANDLER, IntPtr.Zero, null, "DesktopWindowXamlSource");
-            //if (WINDOW_TASKBAR == IntPtr.Zero)
-            //{
-            //    throw new Exception("Could not find Taskbar!");
-            //}
-        }
-        //SendMessage(WINDOW_HANDLER, CUSTOM_MESSAGE, new IntPtr(14), IntPtr.Zero).ToInt64();
-    }
+    
 
     private void Button_Click(object sender, RoutedEventArgs e)
     {
-        SendMsgToTaskbar();
+        // TUDO:TEST
+        RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\DarkMode2", true);
+        WallpaperChanger wallpaperChanger = new(key.GetValue("WeInstallPath").ToString(), key.GetValue("WeDark").ToString());
+        wallpaperChanger.openWallpaper();
     }
+    
     private void InstallService_Click(object sender, RoutedEventArgs e)
     {
         using (AssemblyInstaller installer = new AssemblyInstaller())

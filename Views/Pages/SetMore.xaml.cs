@@ -16,26 +16,6 @@ public partial class SetMore
         InitializeComponent();
     }
 
-    private void Chrome_OnClick(object sender, System.Windows.RoutedEventArgs e)
-    {
-        if (System.Diagnostics.Process.GetProcessesByName("chrome").ToList().Count > 0)
-        {
-            KillProcess("chrome");
-        }
-        
-        try
-        {
-            RegistryKey key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\chrome.exe", false);
-            string chromePath = key.GetValue("").ToString();
-            StartProcess(chromePath, "--enable-features=WebContentsForceDark");
-        }catch(Exception ex)
-        {
-            chrome.IsChecked= false;
-            MessageBox.OpenMessageBox("错误", "没有检测到安装Google Chrome");
-        }
-        
-    }
-
     public bool StartProcess(string filename, string args)
     {
         try
@@ -66,7 +46,7 @@ public partial class SetMore
         }
         catch (Exception e)
         { 
-            
+            Console.Error.WriteLine(e.ToString());
         }
     }
 }

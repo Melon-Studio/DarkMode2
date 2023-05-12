@@ -34,6 +34,7 @@ public partial class SetAbout
     {
         Update update = new Update();
         ProgressRing.Visibility = System.Windows.Visibility.Visible;
+        checkUpdateBtn.IsEnabled= false;
         _ = Task.Run(() =>
         {
             string x = update.CheckUpdate();
@@ -42,6 +43,7 @@ public partial class SetAbout
                 {
                     OpenSnackbar(x);
                     ProgressRing.Visibility = System.Windows.Visibility.Hidden;
+                    checkUpdateBtn.IsEnabled = true;
                 })
             );
         });
@@ -57,30 +59,5 @@ public partial class SetAbout
     {
         PlaySound(@"C:\Windows\Media\Windows Notify System Generic.wav", 0, 1);
         _snackbarService.Show("提示", connect, SymbolRegular.Alert24);
-    }
-
-    private void TextBlock_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
-    {
-        StartUrl.StartUrlLink("https://licenses.nuget.org/Apache-2.0");
-    }
-
-    private void TextBlock_MouseDown_1(object sender, System.Windows.Input.MouseButtonEventArgs e)
-    {
-        StartUrl.StartUrlLink("https://licenses.nuget.org/MIT");
-    }
-
-    private void TextBlock_MouseDown_2(object sender, System.Windows.Input.MouseButtonEventArgs e)
-    {
-        StartUrl.StartUrlLink("https://licenses.nuget.org/MPL-2.0");
-    }
-
-    private void TextBlock_MouseDown_3(object sender, System.Windows.Input.MouseButtonEventArgs e)
-    {
-        StartUrl.StartUrlLink("https://licenses.nuget.org/Apache-2.0");
-    }
-
-    private void TextBlock_MouseDown_4(object sender, System.Windows.Input.MouseButtonEventArgs e)
-    {
-        StartUrl.StartUrlLink("https://licenses.nuget.org/MIT");
     }
 }

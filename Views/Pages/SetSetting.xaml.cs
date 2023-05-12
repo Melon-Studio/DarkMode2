@@ -25,6 +25,7 @@ public partial class SetSetting
     private readonly IThemeService _themeService;
 
     private readonly ISnackbarService _snackbarService;
+    private string ExceptionContent;
 
     [DllImport("winmm.dll")]
     public static extern bool PlaySound(String Filename, int Mod, int Flags);
@@ -130,32 +131,17 @@ public partial class SetSetting
     {
         RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\DarkMode2", true);
         string state = key.GetValue("DarkMode2").ToString();
-        if (state == "false")
+        if (StartupHelper.IsEnabled())
         {
-            try
-            {
-                string path = Process.GetCurrentProcess().MainModule.FileName;
-                RegistryKey appkey = Registry.CurrentUser.OpenSubKey(@"Software\DarkMode2",true);
-                appkey.SetValue("DarkMode2", "true");
-                appkey.Close();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.OpenMessageBox("错误发生", ex.ToString());
-            }
+            // 如果已经启用了开机自启，则禁用它
+            StartupHelper.Disable();
+            key.SetValue("DarkMode2", "false");
         }
-        else if (state == "true")
+        else
         {
-            try
-            {
-                RegistryKey appkey = Registry.CurrentUser.OpenSubKey(@"Software\DarkMode2", true);
-                appkey.SetValue("DarkMode2", "false");
-                appkey.Close();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.OpenMessageBox("错误发生", ex.ToString());
-            }
+            // 如果没有启用开机自启，则启用它
+            StartupHelper.Enable();
+            key.SetValue("DarkMode2", "true");
         }
     }
 
@@ -180,7 +166,7 @@ public partial class SetSetting
     //自动更新日出日落时间
     private void AutoUpdateTime_OnClick(object sender, RoutedEventArgs e)
     {
-        RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\DarkMode2", false);
+        RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\DarkMode2", true);
         string state = key.GetValue("AutoUpdateTime").ToString();
         if (state == "true")
         {
@@ -193,6 +179,7 @@ public partial class SetSetting
             catch (Exception ex)
             {
                 MessageBox.OpenMessageBox("错误发生", ex.ToString());
+                ExceptionContent = ex.ToString();
             }
         }
         else if (state == "false")
@@ -205,6 +192,7 @@ public partial class SetSetting
             catch (Exception ex)
             {
                 MessageBox.OpenMessageBox("错误发生", ex.ToString());
+                ExceptionContent = ex.ToString();
             }
         }
     }
@@ -224,6 +212,7 @@ public partial class SetSetting
             catch (Exception ex)
             {
                 MessageBox.OpenMessageBox("错误发生", ex.ToString());
+                ExceptionContent = ex.ToString();
             }
         }
         else if (state == "false")
@@ -236,6 +225,7 @@ public partial class SetSetting
             catch (Exception ex)
             {
                 MessageBox.OpenMessageBox("错误发生", ex.ToString());
+                ExceptionContent = ex.ToString();
             }
         }
     }
@@ -260,6 +250,7 @@ public partial class SetSetting
             catch (Exception ex)
             {
                 MessageBox.OpenMessageBox("错误发生", ex.ToString());
+                ExceptionContent = ex.ToString();
             }
         }
         else if (state == "false")
@@ -275,6 +266,7 @@ public partial class SetSetting
             catch (Exception ex)
             {
                 MessageBox.OpenMessageBox("错误发生", ex.ToString());
+                ExceptionContent = ex.ToString();
             }
         }
     }
@@ -409,6 +401,7 @@ public partial class SetSetting
         catch (Exception ex)
         {
             MessageBox.OpenMessageBox("错误发生", ex.ToString());
+            ExceptionContent = ex.ToString();
         }
     }
 }

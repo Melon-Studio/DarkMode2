@@ -103,9 +103,10 @@
                 Foreground="White" HorizontalAlignment="Left"
                 />
             <ui:Button 
+                x:Name="TestBtn"
                 Grid.Column="2"
                 Grid.Row="1"
-                Content="测试消息"
+                Content="测试"
                 Click="Button_Click"
                 />
             <ui:Button 

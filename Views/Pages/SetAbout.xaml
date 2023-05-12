@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:DarkMode_2.Views.Pages"
       xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
       mc:Ignorable="d" 
-      d:DesignHeight="1000" d:DesignWidth="800"
+      d:DesignHeight="1500" d:DesignWidth="800"
       Title="SetAbout"
       Scrollable="True">
 
@@ -50,6 +50,7 @@
                         Margin="0,0,16,0" Visibility="Hidden"
                         />
                     <ui:Button
+                        x:Name="checkUpdateBtn"
                         Click="CheckUpdate_onClick"
                         Grid.Column="1"
                         Margin="0,0,16,0"
@@ -280,11 +281,11 @@
             <Grid Width="Auto" HorizontalAlignment="Stretch">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
+                    <RowDefinition Height="90" />
+                    <RowDefinition Height="90" />
+                    <RowDefinition Height="90" />
+                    <RowDefinition Height="90" />
+                    <RowDefinition Height="90" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*" />
@@ -325,141 +326,141 @@
                     Grid.Row="1"
                     Text="NHotkey.Wpf"
                     FontSize="13"
-                    HorizontalAlignment="Center"
+                    HorizontalAlignment="Center" VerticalAlignment="Center"
                     />
                 <TextBlock
                     Grid.Column="1"
                     Grid.Row="1"
                     Text="Thomas Levesque"
                     FontSize="13"
-                    HorizontalAlignment="Center"
+                    HorizontalAlignment="Center" VerticalAlignment="Center"
                     />
                 <TextBlock
                     Grid.Column="2"
                     Grid.Row="1"
                     Text="Copyright © 2020&#x000A;Thomas Levesque&#x000A;Licensed under the&#x000A;Apache-2.0 License."
                     FontSize="13"
-                    HorizontalAlignment="Center"
+                    HorizontalAlignment="Center" VerticalAlignment="Center"
                     />
-                <TextBlock
+                <ui:Hyperlink
+                    Margin="0,0,0,0"
+                    Content="Apache-2.0"
                     Grid.Column="3"
                     Grid.Row="1"
-                    Text="Apache-2.0"
-                    FontSize="13"
-                    HorizontalAlignment="Center"
-                    />
+                    Icon="Link48"
+                    NavigateUri="https://licenses.nuget.org/Apache-2.0" HorizontalAlignment="Center" />
                 <TextBlock
                     Grid.Column="0"
                     Grid.Row="2"
                     Text="WPF-UI"
                     FontSize="13"
-                    HorizontalAlignment="Center"
+                    HorizontalAlignment="Center" VerticalAlignment="Center"
                     />
                 <TextBlock
                     Grid.Column="1"
                     Grid.Row="2"
                     Text="lepo.co"
                     FontSize="13"
-                    HorizontalAlignment="Center"
+                    HorizontalAlignment="Center" VerticalAlignment="Center"
                     />
                 <TextBlock
                     Grid.Column="2"
                     Grid.Row="2"
                     Text="Copyright © 2022&#x000A;lepo.co&#x000A;Licensed under the&#x000A;MIT License."
                     FontSize="13"
-                    HorizontalAlignment="Center"
+                    HorizontalAlignment="Center" VerticalAlignment="Center"
                     />
-                <TextBlock
+                <ui:Hyperlink
+                    Margin="0,0,0,0"
+                    Content="MIT"
                     Grid.Column="3"
                     Grid.Row="2"
-                    Text="MIT"
-                    FontSize="13"
-                    HorizontalAlignment="Center"
-                    />
+                    Icon="Link48"
+                    NavigateUri="https://licenses.nuget.org/MPL-2.0" HorizontalAlignment="Center" />
                 <TextBlock
                     Grid.Column="0"
                     Grid.Row="3"
                     Text="LibreHardwareMonitorLib"
                     FontSize="13"
-                    HorizontalAlignment="Center"
+                    HorizontalAlignment="Center" VerticalAlignment="Center"
                     />
                 <TextBlock
                     Grid.Column="1"
                     Grid.Row="3"
                     Text="LibreHardwareMonitorLib"
                     FontSize="13"
-                    HorizontalAlignment="Center"
+                    HorizontalAlignment="Center" VerticalAlignment="Center"
                     />
                 <TextBlock
                     Grid.Column="2"
                     Grid.Row="3"
                     Text="Copyright © 2022&#x000A;LibreHardwareMonitorLib&#x000A;Licensed under the&#x000A;MPL-2.0 License."
                     FontSize="13"
-                    HorizontalAlignment="Center"
+                    HorizontalAlignment="Center" VerticalAlignment="Center"
                     />
-                <TextBlock
+                <ui:Hyperlink
+                    Margin="0,0,0,0"
+                    Content="MPL-2.0"
                     Grid.Column="3"
                     Grid.Row="3"
-                    Text="MPL-2.0"
-                    FontSize="13"
-                    HorizontalAlignment="Center"
-                    />
+                    Icon="Link48"
+                    NavigateUri="https://licenses.nuget.org/MPL-2.0" HorizontalAlignment="Center" />
                 <TextBlock
                     Grid.Column="0"
                     Grid.Row="4"
                     Text="Log4net"
                     FontSize="13"
-                    HorizontalAlignment="Center"
+                    HorizontalAlignment="Center" VerticalAlignment="Center"
                     />
                 <TextBlock
                     Grid.Column="1"
                     Grid.Row="4"
                     Text="Apache"
                     FontSize="13"
-                    HorizontalAlignment="Center"
+                    HorizontalAlignment="Center" VerticalAlignment="Center"
                     />
                 <TextBlock
                     Grid.Column="2"
                     Grid.Row="4"
                     Text="Copyright © 2022&#x000A;Apache&#x000A;Licensed under the&#x000A;Apache-2.0 License."
                     FontSize="13"
-                    HorizontalAlignment="Center"
+                    HorizontalAlignment="Center" VerticalAlignment="Center"
                     />
-                <TextBlock
+                <ui:Hyperlink
+                    Margin="0,0,0,0"
+                    Content="Apache-2.0"
                     Grid.Column="3"
                     Grid.Row="4"
-                    Text="Apache-2.0"
-                    FontSize="13"
-                    HorizontalAlignment="Center"
-                    />
+                    Icon="Link48"
+                    NavigateUri="https://licenses.nuget.org/Apache-2.0" HorizontalAlignment="Center" />
                 <TextBlock
                     Grid.Column="0"
                     Grid.Row="5"
                     Text="Newtonsoft.Json"
                     FontSize="13"
-                    HorizontalAlignment="Center"
+                    HorizontalAlignment="Center" VerticalAlignment="Center"
                     />
                 <TextBlock
                     Grid.Column="1"
                     Grid.Row="5"
                     Text="James Newton-King"
                     FontSize="13"
-                    HorizontalAlignment="Center"
+                    HorizontalAlignment="Center" VerticalAlignment="Center"
                     />
                 <TextBlock
                     Grid.Column="2"
                     Grid.Row="5"
                     Text="Copyright © 2021&#x000A;James Newton-King&#x000A;Licensed under the&#x000A;MIT License."
                     FontSize="13"
-                    HorizontalAlignment="Center"
+                    HorizontalAlignment="Center" VerticalAlignment="Center"
                     />
-                <TextBlock
+                <ui:Hyperlink
+                    Margin="0,0,0,0"
+                    Content="MIT"
                     Grid.Column="3"
                     Grid.Row="5"
-                    Text="MIT"
-                    FontSize="13"
-                    HorizontalAlignment="Center" MouseDown="TextBlock_MouseDown_4"
-                    />
+                    Icon="Link48"
+                    NavigateUri="https://licenses.nuget.org/MIT" HorizontalAlignment="Center" />
             </Grid>
         </ui:CardExpander>
 

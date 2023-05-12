@@ -26,11 +26,7 @@ public partial class SetWallpaper
         DarkBox2.Text = key.GetValue("WeDark").ToString();
         WePath.Text = key.GetValue("WeInstallPath").ToString();
         key.Close();
-        if(WePath.Text == "")
-        {
-            BroLight.IsEnabled= false;
-            BroDark.IsEnabled= false;
-        }
+        
     }
 
     private void BrowseButton1_Click(object sender, System.Windows.RoutedEventArgs e)
@@ -92,9 +88,9 @@ public partial class SetWallpaper
     private void Save2_Click(object sender, System.Windows.RoutedEventArgs e)
     {
         RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\DarkMode2", true);
-        key.SetValue("WeLight", LightBox2.Text);
-        key.SetValue("WeDark", DarkBox2.Text);
-        key.SetValue("WeInstallPath", WePath.Text);
+        key.SetValue("WeLight", "\""+LightBox2.Text+ "\"");
+        key.SetValue("WeDark", "\""+DarkBox2.Text+ "\"");
+        key.SetValue("WeInstallPath", "\""+WePath.Text+ "\"");
         key.Close();
     }
 

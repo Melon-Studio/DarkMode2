@@ -119,12 +119,15 @@
     <Compile Include="Models\MessageBox.cs" />
     <Compile Include="Models\RedRawWindow.cs" />
     <Compile Include="Models\ReplaceWallpaper.cs" />
+    <Compile Include="Models\StartupHelper.cs" />
     <Compile Include="Models\StartUrl.cs" />
     <Compile Include="Models\SwitchMode.cs" />
     <Compile Include="Models\SystemHotKey.cs" />
     <Compile Include="Models\TimeConverter.cs" />
     <Compile Include="Models\Update.cs" />
     <Compile Include="Models\VersionControl.cs" />
+    <Compile Include="Models\WallpaperChanger.cs" />
+    <Compile Include="Models\WindowsVersionHelper.cs" />
     <Compile Include="Services\ApplicationHostService.cs" />
     <Compile Include="Services\Contracts\ITestWindowService.cs" />
     <Compile Include="Services\PageService.cs" />
@@ -282,6 +285,9 @@
     </PackageReference>
     <PackageReference Include="OpenHardwareMonitor">
       <Version>0.9.6</Version>
+    </PackageReference>
+    <PackageReference Include="TaskScheduler">
+      <Version>2.10.1</Version>
     </PackageReference>
     <PackageReference Include="WPF-UI">
       <Version>2.0.3</Version>

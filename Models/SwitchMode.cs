@@ -30,12 +30,9 @@ public class SwitchMode
             {
                 if (key.GetValue("WeInstallPath").ToString() != "")
                 {
-                    CommandLine.CallCommandLine(key.GetValue("WeInstallPath").ToString(), key.GetValue("WeDark").ToString(), "WeDark");
+                    WallpaperChanger wallpaperChanger = new(key.GetValue("WeInstallPath").ToString(), key.GetValue("WeDark").ToString());
+                    wallpaperChanger.openWallpaper();
 
-                }
-                else
-                {
-                    MessageBox.OpenMessageBox("错误", "未找到Wallpaper Engine路径。");
                 }
             }
         }
@@ -56,11 +53,8 @@ public class SwitchMode
             {
                 if (key.GetValue("WeInstallPath").ToString() != "")
                 {
-                    CommandLine.CallCommandLine(key.GetValue("WeInstallPath").ToString(), key.GetValue("WeLight").ToString(), "WeLight");
-                }
-                else
-                {
-                    MessageBox.OpenMessageBox("错误", "未找到Wallpaper Engine路径。");
+                    WallpaperChanger wallpaperChanger = new(key.GetValue("WeInstallPath").ToString(), key.GetValue("WeLight").ToString());
+                    wallpaperChanger.openWallpaper();
                 }
             }
         }

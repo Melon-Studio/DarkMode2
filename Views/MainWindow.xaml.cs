@@ -18,6 +18,9 @@ using Wpf.Ui.Appearance;
 using Wpf.Ui.Mvvm.Services;
 using System.Diagnostics;
 using DarkMode_2.Models;
+using System.IO;
+using System.Net;
+using System.Text;
 
 namespace DarkMode_2.Views;
 
@@ -48,6 +51,13 @@ public partial class MainWindow : INavigationWindow
         _testWindowService = testWindowService;
         _themeService = themeServices;
         InitializeComponent();
+        // 判断是否为支持的操作系统
+        string WinVersion = WindowsVersionHelper.GetWindowsEdition();
+        if(WinVersion != "Windows 10" && WinVersion != "Windows 11")
+        {
+            MessageBox2.Show($"抱歉，本程序仅支持Windows10/11的操作系统。\n你的操作系统版本是：{WinVersion}", "无法提供服务");
+            Application.Current.Shutdown();
+        }
         try
         {
             HotkeyManager.Current.AddOrReplace("Start", Key.D, ModifierKeys.Control | ModifierKeys.Alt, OnStart);
@@ -56,7 +66,7 @@ public partial class MainWindow : INavigationWindow
         {
             MessageBox.OpenMessageBox("DarkMode 错误：快捷键被占用", "Ctrl+Alt+D 快捷键被占用，将无法通过快捷键打开设置，请勿在设置中关闭托盘栏图标，如果意外关闭，请进入 DarkMode 的 GitHub 仓库的 Discussions 页面查看帮助。");
         }
-        
+
         SetPageService(pageService);
 
         //注册表初始化
@@ -115,6 +125,17 @@ public partial class MainWindow : INavigationWindow
 
                 key.Close();
                 pan.Close();
+
+                // 收集信息
+                string url = "https://api.dooper.top/darkmode/API/UsersCollect.php";
+                string windowsEdtion = WindowsVersionHelper.GetWindowsEdition();
+                string windowsVersion = WindowsVersionHelper.GetWindowsVersion().ToString();
+                string channel = VersionControl.Channel();
+                string version = VersionControl.Version();
+                string date = DateTime.Now.ToString("yyyy-MM-dd");
+                string data = $"WindowsEdition={windowsEdtion}&WindowsVersion={windowsVersion}&Channel={channel}&Version={version}&Date={date}"; // 拼接成x-www-form-urlencoded格式的字符串
+                string result = SendPostRequest(url, data);
+                Console.WriteLine(result);
             }
         }
         catch (Exception ex)
@@ -138,6 +159,35 @@ public partial class MainWindow : INavigationWindow
         timerGetTime.Start();
     }
 
+    public static string SendPostRequest(string url, string data)
+    {
+        // 创建一个请求对象
+        HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+        request.Method = "POST";
+        request.ContentType = "application/x-www-form-urlencoded";
+        request.Timeout = 3000;
+
+        // 将要发送的数据转换为字节数组
+        byte[] byteData = Encoding.UTF8.GetBytes(data);
+
+        // 设置请求的内容长度
+        request.ContentLength = byteData.Length;
+
+        // 获取请求的输出流对象，可以向这个流对象写入请求的数据
+        Stream outputStream = request.GetRequestStream();
+        outputStream.Write(byteData, 0, byteData.Length);
+        outputStream.Close();
+
+        // 发送请求并获取响应
+        HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+        Stream responseStream = response.GetResponseStream();
+        StreamReader reader = new StreamReader(responseStream, Encoding.UTF8);
+        string result = reader.ReadToEnd();
+        reader.Close();
+        responseStream.Close();
+
+        return result;
+    }
     public void SwitchService(Object myObject, EventArgs myEventArgs)
     {
         RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\DarkMode2", true);
@@ -161,7 +211,7 @@ public partial class MainWindow : INavigationWindow
             SwitchMode.switchMode("dark");
             //Console.WriteLine("切换为深色");
         }
-        
+
     }
 
     private void OnStart(object sender, HotkeyEventArgs e)
@@ -209,7 +259,7 @@ public partial class MainWindow : INavigationWindow
         this.Hide();
         //消息通知
         RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\DarkMode2", false);
-        if(key.GetValue("Notification").ToString() == "true")
+        if (key.GetValue("Notification").ToString() == "true")
         {
             new ToastContentBuilder()
                 .AddArgument("action", "viewConversation")
@@ -245,4 +295,3 @@ public partial class MainWindow : INavigationWindow
         Application.Current.Shutdown();
     }
 }
-

@@ -71,8 +71,8 @@
                         PageTag="DIY"
                         PageType="{x:Type pages:SetDIY}" />
                     <ui:NavigationItem
-                        Content="其他"
-                        Icon="MoreHorizontal24"
+                        Content="实验室"
+                        Icon="BrainCircuit24"
                         PageTag="More"
                         PageType="{x:Type pages:SetMore}"/>
                 </ui:NavigationStore.Items>

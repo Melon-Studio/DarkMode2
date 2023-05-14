@@ -64,7 +64,7 @@ public partial class MainWindow : INavigationWindow
         }
         catch
         {
-            MessageBox.OpenMessageBox("DarkMode 错误：快捷键被占用", "Ctrl+Alt+D 快捷键被占用，将无法通过快捷键打开设置，请勿在设置中关闭托盘栏图标，如果意外关闭，请进入 DarkMode 的 GitHub 仓库的 Discussions 页面查看帮助。");
+            MessageBox2.Show( "Ctrl+Alt+D 快捷键被占用，将无法通过快捷键打开设置，请勿在设置中关闭托盘栏图标，如果意外关闭，请进入 DarkMode 的 GitHub 仓库的 Discussions 页面查看帮助。", "DarkMode 错误：快捷键被占用");
         }
 
         SetPageService(pageService);
@@ -124,7 +124,6 @@ public partial class MainWindow : INavigationWindow
                 key.SetValue("WeInstallPath", "");
 
                 key.Close();
-                pan.Close();
 
                 // 收集信息
                 string url = "https://api.dooper.top/darkmode/API/UsersCollect.php";

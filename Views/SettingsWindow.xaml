@@ -143,7 +143,7 @@
         <ui:TitleBar
             Title="DarkMode 设置中心"
             ForceShutdown="False"
-            Icon="pack://application:,,,/Resources/logo.ico"
+            Icon="pack://application:,,,/Resources/logo-new.ico"
             MinimizeToTray="False"
             ShowHelp="False"
             ShowMaximize="False"

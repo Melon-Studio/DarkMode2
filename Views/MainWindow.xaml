@@ -12,7 +12,7 @@
         ShowInTaskbar="False"
         WindowState="Minimized"
         ExtendsContentIntoTitleBar="True"
-        Title="DarkMode 2" Height="150" Width="160" Icon="pack://application:,,,/Resources/logo.ico" Loaded="Window_Loaded" WindowStyle="SingleBorderWindow" Opacity="0">
+        Title="DarkMode 2" Height="150" Width="160" Icon="pack://application:,,,/Resources/logo-new.ico" Loaded="Window_Loaded" WindowStyle="SingleBorderWindow" Opacity="0">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="41*"/>
@@ -23,7 +23,7 @@
             Title="DarkMode"
             Grid.Row="0"
             ForceShutdown="False"
-            Icon="pack://application:,,,/Resources/logo.ico"
+            Icon="pack://application:,,,/Resources/logo-new.ico"
             MinimizeToTray="False"
             ShowHelp="False"
             ShowMaximize="False"
@@ -35,7 +35,7 @@
             <ui:TitleBar.Tray>
                 <ui:NotifyIcon
                     FocusOnLeftClick="False"
-                    Icon="pack://application:,,,/Resources/logo.ico"
+                    Icon="pack://application:,,,/Resources/logo-new.ico"
                     MenuOnRightClick="True"
                     TooltipText="DarkMode">
                     <ui:NotifyIcon.Menu>

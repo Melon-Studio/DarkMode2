@@ -56,7 +56,7 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>dark.ico</ApplicationIcon>
+    <ApplicationIcon>Resources\logo-new.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
     <StartupObject />
@@ -310,16 +310,13 @@
     <Resource Include="Resources\office%28dark%29.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\chrome%28dark%29.png" />
-    <Resource Include="Resources\chrome%28light%29.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\we%28dark%29.png" />
     <Resource Include="Resources\we%28light%29.png" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
     <Content Include="OpenHardwareMonitorLib.dll" />
+    <Resource Include="Resources\logo-new.ico" />
     <Resource Include="Resources\MouseDark.png" />
     <Resource Include="Resources\MouseLight.png" />
   </ItemGroup>

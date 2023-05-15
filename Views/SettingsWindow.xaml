@@ -18,7 +18,7 @@
         MinWidth="980"
         WindowBackdropType="Mica"
         WindowCornerPreference="Round"
-        WindowStartupLocation="CenterScreen" Loaded="UiWindow_Loaded" ResizeMode="NoResize" Icon="/Resources/logo.ico">
+        WindowStartupLocation="CenterScreen" Loaded="UiWindow_Loaded" ResizeMode="NoResize" Icon="/Resources/logo-new.ico">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>

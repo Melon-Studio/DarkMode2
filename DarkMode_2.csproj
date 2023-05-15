@@ -256,9 +256,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\logo.ico" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="dark.ico" />
   </ItemGroup>
   <ItemGroup>

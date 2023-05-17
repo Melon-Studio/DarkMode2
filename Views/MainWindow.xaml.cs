@@ -1,26 +1,21 @@
-﻿using DarkMode_2.ViewModels;
+﻿using DarkMode_2.Models;
+using DarkMode_2.ViewModels;
 using DarkMOde_2.Services.Contracts;
 using Microsoft.Toolkit.Uwp.Notifications;
 using Microsoft.Win32;
+using NHotkey;
+using NHotkey.Wpf;
 using System;
+using System.IO;
+using System.Net;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using Wpf.Ui.Controls.Interfaces;
 using Wpf.Ui.Mvvm.Contracts;
 using MessageBox = DarkMode_2.Models.MessageBox;
 using MessageBox2 = System.Windows.Forms.MessageBox;
-using System.Windows.Input;
-using NHotkey.Wpf;
-using NHotkey;
-using System.Linq;
-using System.Threading;
-using Wpf.Ui.Appearance;
-using Wpf.Ui.Mvvm.Services;
-using System.Diagnostics;
-using DarkMode_2.Models;
-using System.IO;
-using System.Net;
-using System.Text;
 
 namespace DarkMode_2.Views;
 
@@ -122,8 +117,11 @@ public partial class MainWindow : INavigationWindow
                 key.SetValue("GameMode", "false");
                 //Wallpaper Engine安装路径
                 key.SetValue("WeInstallPath", "");
+                //程序退出
+                key.SetValue("ProgramExit", "false");
 
                 key.Close();
+                pan.Close();
 
                 // 收集信息
                 string url = "https://api.dooper.top/darkmode/API/UsersCollect.php";
@@ -141,12 +139,14 @@ public partial class MainWindow : INavigationWindow
         {
             MessageBox.OpenMessageBox("错误发生", ex.ToString());
         }
-        RegistryKey appkey = Registry.CurrentUser.OpenSubKey(@"Software\DarkMode2", false);
+        RegistryKey appkey = Registry.CurrentUser.OpenSubKey(@"Software\DarkMode2", true);
         //设置初始化
         if (appkey.GetValue("TrayBar").ToString() == "false")
         {
             HideTrayBarIcon();
         }
+        //初始化启动环境
+        appkey.SetValue("ProgramExit", "false");
         appkey.Close();
         //主题跟随系统定时器
         var timerGetTime = new System.Windows.Forms.Timer();
@@ -291,6 +291,9 @@ public partial class MainWindow : INavigationWindow
     private void Exit_OnClick(object sender, RoutedEventArgs e)
     {
         //退出程序
+        RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\DarkMode2", true);
+        key.SetValue("ProgramExit", "true");
+        key.Close();
         Application.Current.Shutdown();
     }
 }

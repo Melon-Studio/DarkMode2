@@ -392,6 +392,8 @@ public partial class SetSetting
             key.SetValue("GameMode", "false");
             //Wallpaper Engine安装路径
             key.SetValue("WeInstallPath", "");
+            //程序退出
+            key.SetValue("ProgramExit", "false");
 
             key.Close();
             pan.Close();

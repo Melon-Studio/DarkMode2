@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:DarkMode_2.Views.Pages"
       mc:Ignorable="d" 
       xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="750" d:DesignWidth="800"
       d:DataContext="{d:DesignInstance local:SetTimes,
                                      IsDesignTimeCreatable=False}"
       Title="SetTimes"
@@ -276,5 +276,21 @@
                     VerticalAlignment="Center" />
             </Grid>
         </ui:CardExpander>
+
+        <ui:CardControl Margin="0,8,0,0" Icon="LightbulbFilament24">
+            <ui:CardControl.Header>
+                <StackPanel Grid.Column="0" VerticalAlignment="Center">
+                    <TextBlock
+                        FontSize="13"
+                        FontWeight="Medium"
+                        Text="感光模式" />
+                    <TextBlock
+                        FontSize="12"
+                        Foreground="{DynamicResource TextFillColorSecondaryBrush}"
+                        Text="通过感光元件自动调整颜色模式" />
+                </StackPanel>
+            </ui:CardControl.Header>
+            <ui:ToggleSwitch x:Name="Autostart" Focusable ="false"/>
+        </ui:CardControl>
     </VirtualizingStackPanel>
 </ui:UiPage>

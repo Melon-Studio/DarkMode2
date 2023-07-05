@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Windows;
+using System.Windows.Input;
 using Wpf.Ui.Appearance;
 using Wpf.Ui.Common;
 using Wpf.Ui.Mvvm.Contracts;
@@ -42,7 +43,7 @@ public partial class SetSetting
         //设置初始化
         RegistryKey appkey = Registry.CurrentUser.OpenSubKey(@"Software\DarkMode2", true);
         //开机自启
-        if (appkey.GetValue("DarkMode2").ToString() == "true")
+        if (AutoStartManager.IsAutoStartEnabled())
         {
             Autostart.IsChecked = true;
         }
@@ -130,19 +131,19 @@ public partial class SetSetting
     private void Autostart_OnClick(object sender, RoutedEventArgs e)
     {
         RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\DarkMode2", true);
-        string state = key.GetValue("DarkMode2").ToString();
-        if (StartupHelper.IsEnabled())
+        if (AutoStartManager.IsAutoStartEnabled())
         {
             // 如果已经启用了开机自启，则禁用它
-            StartupHelper.Disable();
+            AutoStartManager.DisableAutoStart();
             key.SetValue("DarkMode2", "false");
         }
         else
         {
             // 如果没有启用开机自启，则启用它
-            StartupHelper.Enable();
+            AutoStartManager.EnableAutoStart();
             key.SetValue("DarkMode2", "true");
         }
+        key.Close();
     }
 
     //自动更新

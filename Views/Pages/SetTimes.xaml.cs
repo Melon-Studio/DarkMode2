@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Forms;
 using System.Windows.Input;
 using Windows.Devices.Geolocation;
 using Wpf.Ui.Common;
@@ -265,34 +266,55 @@ public partial class SetTimes
 
     private async void setSunRise()
     {
-        LocationService locationService = new LocationService();
-        var geoLocator = new Geolocator();
-        var geoPosition = await geoLocator.GetGeopositionAsync();
-        var latitude = geoPosition.Coordinate.Point.Position.Latitude;
-        var longitude = geoPosition.Coordinate.Point.Position.Longitude;
-        var locationName = await locationService.GetLocationName(latitude, longitude);
+        try
+        {
+            LocationService locationService = new LocationService();
+            var geoLocator = new Geolocator();
+            var geoPosition = await geoLocator.GetGeopositionAsync();
+            var latitude = geoPosition.Coordinate.Point.Position.Latitude;
+            var longitude = geoPosition.Coordinate.Point.Position.Longitude;
+            var locationName = await locationService.GetLocationName(latitude, longitude);
 
-        lat.Text = longitude.ToString();
-        lng.Text = latitude.ToString();
-        location.Text = locationName;
+            lat.Text = longitude.ToString();
+            lng.Text = latitude.ToString();
+            location.Text = locationName;
 
-        SunTimeResult result = TimeConverter.GetSunTime(DateTime.Now, longitude, latitude);
-        DateTime date = DateTime.Now;
-        string sunriseTime = result.SunriseTime.ToString("HH:mm");
-        string sunsetTime = result.SunsetTime.ToString("HH:mm");
+            SunTimeResult result = TimeConverter.GetSunTime(DateTime.Now, longitude, latitude);
+            DateTime date = DateTime.Now;
+            string sunriseTime = result.SunriseTime.ToString("HH:mm");
+            string sunsetTime = result.SunsetTime.ToString("HH:mm");
 
-        RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\DarkMode2", true);
-        key.SetValue("startTime", sunriseTime);
-        key.SetValue("endTime", sunsetTime);
-        key.Close();
+            RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\DarkMode2", true);
+            key.SetValue("startTime", sunriseTime);
+            key.SetValue("endTime", sunsetTime);
+            key.Close();
 
-        UpdateTime();
+            UpdateTime();
 
-        SunRiseSwitch.IsExpanded = true;
-        startTimeHours.IsEnabled = false;
-        endTimeHours.IsEnabled = false;
-        startTimeMinutes.IsEnabled = false;
-        endTimeMinutes.IsEnabled = false;
+            SunRiseSwitch.IsExpanded = true;
+            startTimeHours.IsEnabled = false;
+            endTimeHours.IsEnabled = false;
+            startTimeMinutes.IsEnabled = false;
+            endTimeMinutes.IsEnabled = false;
+        }catch(Exception ex)
+        {
+            OpenSnackbar("无法完成此操作", "系统定位服务功能未开启，本功能无法使用。");
+            RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\DarkMode2", true);
+            key.SetValue("SunRiseSet", "false");
+            location.Text = "";
+            lat.Text = "";
+            lng.Text = "";
+            SunRiseSwitch.IsExpanded = false;
+            startTimeHours.IsEnabled = true;
+            endTimeHours.IsEnabled = true;
+            startTimeMinutes.IsEnabled = true;
+            endTimeMinutes.IsEnabled = true;
+        }
+        
     }
 
+    private void Autostart_Click(object sender, RoutedEventArgs e)
+    {
+        OpenSnackbar("严重错误(bushi", "还用不了，下个版本就能用了");
+    }
 }

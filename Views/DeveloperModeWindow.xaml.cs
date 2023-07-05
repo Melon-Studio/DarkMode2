@@ -1,22 +1,15 @@
 ﻿using DarkMode_2.Models;
 using DarkMode_2.ViewModels;
-using LibreHardwareMonitor.Hardware;
 using Microsoft.Win32;
 //using OpenHardwareMonitor.Hardware;
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.Configuration.Install;
-using System.IO;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Runtime.InteropServices;
 using System.ServiceProcess;
-using System.Text;
-using System.Threading.Tasks;
+using System.Timers;
 using System.Windows;
-using System.Windows.Input;
+using Windows.Devices.Sensors;
 using MessageBox = DarkMode_2.Models.MessageBox;
 
 namespace DarkMode_2.Views;
@@ -32,12 +25,33 @@ public partial class DeveloperModeWindow
     {
         get;
     }
+
+    private LightSensor _lightSensor;
+    private Timer _timer;
     public DeveloperModeWindow(DeveloperModeViewModel viewModel)
     {
         ViewModel = viewModel;
         InitializeComponent();
 
+        _lightSensor = LightSensor.GetDefault();
+        if (_lightSensor != null)
+        {
+            _timer = new Timer(1000);
+            _timer.Elapsed += OnTimerElapsed;
+            _timer.Start();
+        }
+        else
+        {
+            Console.WriteLine("你的设备不存在感光元件，无法使用此功能。");
+        }
+
         //GPUload.Text = GetGPULoad.GetUsage().ToString();
+    }
+
+    private void OnTimerElapsed(object sender, ElapsedEventArgs e)
+    {
+        var lightReading = _lightSensor.GetCurrentReading();
+        Console.WriteLine("感光度: {0} lux", lightReading.IlluminanceInLux);
     }
     private void UiWindow_Loaded(object sender, RoutedEventArgs e)
     {

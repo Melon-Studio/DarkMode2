@@ -100,7 +100,7 @@
                 FontSize="13"
                 FontWeight="Medium"
                 Text="123" 
-                Foreground="White" HorizontalAlignment="Left"
+                Foreground="Black" HorizontalAlignment="Left"
                 />
             <ui:Button 
                 x:Name="TestBtn"

@@ -8,7 +8,7 @@ using System.Windows;
 // 控制。更改这些特性值可修改
 // 与程序集关联的信息。
 [assembly: AssemblyTitle("DarkMode2")]
-[assembly: AssemblyDescription("当前程序为未公开的内部测试版本，请勿外传。")]
+[assembly: AssemblyDescription("当前程序为内部测试版本。")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Melon Studio")]
 [assembly: AssemblyProduct("DarkMode2")]
@@ -52,5 +52,5 @@ using System.Windows;
 //通过使用 "*"，如下所示:
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("2.0.8.0")]
-[assembly: AssemblyFileVersion("2.0.8.0")]
+[assembly: AssemblyFileVersion("2.0.9.0")]
 [assembly: NeutralResourcesLanguage("zh-CN")]

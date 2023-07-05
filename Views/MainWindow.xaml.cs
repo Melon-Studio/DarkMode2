@@ -59,7 +59,7 @@ public partial class MainWindow : INavigationWindow
         }
         catch
         {
-            MessageBox2.Show( "Ctrl+Alt+D 快捷键被占用，将无法通过快捷键打开设置，请勿在设置中关闭托盘栏图标，如果意外关闭，请进入 DarkMode 的 GitHub 仓库的 Discussions 页面查看帮助。", "DarkMode 错误：快捷键被占用");
+            MessageBox2.Show( "Ctrl+Alt+D 快捷键被占用，将无法通过快捷键打开设置，请勿在设置中关闭托盘栏图标，如果意外关闭，请进入 DarkMode 的 GitHub 仓库的 Discussions 页面查看帮助。", "DarkMode：快捷键被占用");
         }
 
         SetPageService(pageService);
@@ -76,7 +76,7 @@ public partial class MainWindow : INavigationWindow
                 key = Registry.CurrentUser.CreateSubKey(@"Software\DarkMode2");
                 key = Registry.CurrentUser.OpenSubKey(@"Software\DarkMode2", true);
                 //软件安装路径
-                key.SetValue("DarkModeInstallPath", System.Windows.Forms.Application.ExecutablePath);
+                key.SetValue("DarkModeInstallPath", this.GetType().Assembly.Location);
                 //开机自启
                 key.SetValue("DarkMode2", "false");
                 //系统颜色初始化
@@ -120,8 +120,11 @@ public partial class MainWindow : INavigationWindow
                 //程序退出
                 key.SetValue("ProgramExit", "false");
 
+                key.SetValue("test", "");
+
                 key.Close();
-                pan.Close();
+
+                // 安装服务
 
                 // 收集信息
                 string url = "https://api.dooper.top/darkmode/API/UsersCollect.php";
@@ -137,7 +140,7 @@ public partial class MainWindow : INavigationWindow
         }
         catch (Exception ex)
         {
-            MessageBox.OpenMessageBox("错误发生", ex.ToString());
+            MessageBox2.Show(ex.ToString(), "初始化注册表时发生了不可逆的错误。");
         }
         RegistryKey appkey = Registry.CurrentUser.OpenSubKey(@"Software\DarkMode2", true);
         //设置初始化

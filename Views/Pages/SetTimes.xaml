@@ -290,7 +290,7 @@
                         Text="通过感光元件自动调整颜色模式" />
                 </StackPanel>
             </ui:CardControl.Header>
-            <ui:ToggleSwitch x:Name="Autostart" Focusable ="false"/>
+            <ui:ToggleSwitch x:Name="Autostart" Focusable ="false" Click="Autostart_Click"/>
         </ui:CardControl>
     </VirtualizingStackPanel>
 </ui:UiPage>

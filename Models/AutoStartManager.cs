@@ -4,12 +4,12 @@ namespace DarkMode_2.Models
 {
     public class AutoStartManager
     {
-        private const string RunRegistryPath = "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run";
-        private const string RunRegistryKeyName = "DarkMode2";
+        private const string RunRegistryPath = "SOFTWARE\\WOW6432Node\\Microsoft\\Windows\\CurrentVersion\\Run";
+        private const string RunRegistryKeyName = "DarkMode 2";
 
         public static bool IsAutoStartEnabled()
         {
-            using (var key = Registry.CurrentUser.OpenSubKey(RunRegistryPath, false))
+            using (var key = Registry.LocalMachine.OpenSubKey(RunRegistryPath, false))
             {
                 return (key.GetValue(RunRegistryKeyName) != null);
             }
@@ -17,7 +17,7 @@ namespace DarkMode_2.Models
 
         public static void EnableAutoStart()
         {
-            using (var key = Registry.CurrentUser.OpenSubKey(RunRegistryPath, true))
+            using (var key = Registry.LocalMachine.OpenSubKey(RunRegistryPath, true))
             {
                 key.SetValue(RunRegistryKeyName, "\"" + System.Reflection.Assembly.GetEntryAssembly().Location + "\"");
             }
@@ -25,7 +25,7 @@ namespace DarkMode_2.Models
 
         public static void DisableAutoStart()
         {
-            using (var key = Registry.CurrentUser.OpenSubKey(RunRegistryPath, true))
+            using (var key = Registry.LocalMachine.OpenSubKey(RunRegistryPath, true))
             {
                 key.DeleteValue(RunRegistryKeyName, false);
             }

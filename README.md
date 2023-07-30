@@ -37,7 +37,7 @@ DarkMode2 是一个开源软件，用于自动切换 Windows 10/11 系统的颜�
 ## 🖱️安装与使用
 
 1. [点击此处或者右侧Release](https://github.com/Melon-Studio/DarkMode2/releases)下载最新版本：
-2. 在本地文件夹中，双击运行 DarkMode_2.exe。
+2. 在本地文件夹中，双击运行 DarkMode 2.exe。
 3. 根据需要进行配置，并保存设置。
 4. DarkMode2 会在后台运行，并根据您的设置自动切换颜色模式。
 
@@ -79,6 +79,8 @@ DarkMode2 特别感谢 [Microsoft Visual Studio](https://visualstudio.microsoft.
 感谢每一位愿意赞助我们的用户，无论您的赞助数额大小，您的支持都将激励我继续努力并改进软件的品质。您的赞助也将成为我们前进的动力和持续发展的保障。
 
 赞助渠道：https://afdian.net/a/DarkMode2
+
+---
 
 ## 🎉贡献
 

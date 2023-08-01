@@ -29,7 +29,6 @@ namespace DarkMode_2.Views;
 public partial class MainWindow : INavigationWindow
 {
     private LightSensor _lightSensor;
-    private Timer _timer;
 
     private readonly ITestWindowService _testWindowService;
 
@@ -152,7 +151,7 @@ public partial class MainWindow : INavigationWindow
         var timerGetTime = new System.Windows.Forms.Timer();
         //设置定时器属性
         timerGetTime.Tick += new EventHandler(SwitchService);
-        timerGetTime.Interval = 100;
+        timerGetTime.Interval = 500;
         timerGetTime.Enabled = true;
         //开启定时器
         timerGetTime.Start();
@@ -227,7 +226,7 @@ public partial class MainWindow : INavigationWindow
 
         return result;
     }
-    public async void SwitchService(Object myObject, EventArgs myEventArgs)
+    public void SwitchService(Object myObject, EventArgs myEventArgs)
     {
         RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\DarkMode2", true);
         //判断是否在浅色时间段内
@@ -237,8 +236,7 @@ public partial class MainWindow : INavigationWindow
         TimeSpan _endLightTime = DateTime.Parse(endLightTime).TimeOfDay;
         DateTime dateTime = Convert.ToDateTime(DateTime.Now.ToString("t"));
         TimeSpan dspNow = dateTime.TimeOfDay;
-        await Task.Run(() =>
-        {
+        
             if (key.GetValue("PhotosensitiveMode").ToString() == "false")
             {
                 if (dspNow > _startLightTime && dspNow < _endLightTime)
@@ -256,28 +254,16 @@ public partial class MainWindow : INavigationWindow
             }
             else
             {
-                _lightSensor = LightSensor.GetDefault();
-                if (_lightSensor != null)
+                var lightReading = _lightSensor.GetCurrentReading();
+                Console.WriteLine("感光度: {0} lux", lightReading.IlluminanceInLux);
+                if (lightReading.IlluminanceInLux < 150.0)
                 {
-                    _timer = new Timer(1000);
-                    _timer.Elapsed += OnTimerElapsed;
-                    _timer.Start();
+                    SwitchMode.switchMode("dark");
                 }
-            }
-        });
-    }
-
-    private void OnTimerElapsed(object sender, ElapsedEventArgs e)
-    {
-        var lightReading = _lightSensor.GetCurrentReading();
-        Console.WriteLine("感光度: {0} lux", lightReading.IlluminanceInLux);
-        if (lightReading.IlluminanceInLux < 150.0)
-        {
-            SwitchMode.switchMode("dark");
-        }
-        else
-        {
-            SwitchMode.switchMode("light");
+                else
+                {
+                    SwitchMode.switchMode("light");
+                }
         }
     }
 

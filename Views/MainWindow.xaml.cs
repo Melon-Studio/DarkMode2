@@ -9,9 +9,13 @@ using System;
 using System.IO;
 using System.Net;
 using System.Text;
+using System.Threading.Tasks;
+using System.Timers;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using Windows.Devices.Geolocation;
+using Windows.Devices.Sensors;
 using Wpf.Ui.Controls.Interfaces;
 using Wpf.Ui.Mvvm.Contracts;
 using MessageBox = DarkMode_2.Models.MessageBox;
@@ -24,6 +28,8 @@ namespace DarkMode_2.Views;
 /// </summary>
 public partial class MainWindow : INavigationWindow
 {
+    private LightSensor _lightSensor;
+    private Timer _timer;
 
     private readonly ITestWindowService _testWindowService;
 
@@ -89,6 +95,8 @@ public partial class MainWindow : INavigationWindow
                 key.SetValue("Language", "zh-CN");
                 //日出日落模式
                 key.SetValue("SunRiseSet", "false");
+                //感光模式
+                key.SetValue("PhotosensitiveMode", "false");
                 //自动更新日出日落时间
                 key.SetValue("AutoUpdateTime", "false");
                 //消息通知
@@ -117,15 +125,7 @@ public partial class MainWindow : INavigationWindow
                 key.SetValue("GameMode", "false");
                 //Wallpaper Engine安装路径
                 key.SetValue("WeInstallPath", "");
-                //程序退出
-                key.SetValue("ProgramExit", "false");
-
-                key.SetValue("test", "");
-
                 key.Close();
-
-                // 安装服务
-
                 // 收集信息
                 string url = "https://api.dooper.top/darkmode/API/UsersCollect.php";
                 string windowsEdtion = WindowsVersionHelper.GetWindowsEdition();
@@ -148,9 +148,6 @@ public partial class MainWindow : INavigationWindow
         {
             HideTrayBarIcon();
         }
-        //初始化启动环境
-        appkey.SetValue("ProgramExit", "false");
-        appkey.Close();
         //主题跟随系统定时器
         var timerGetTime = new System.Windows.Forms.Timer();
         //设置定时器属性
@@ -159,6 +156,46 @@ public partial class MainWindow : INavigationWindow
         timerGetTime.Enabled = true;
         //开启定时器
         timerGetTime.Start();
+        //自动更新日出日落时间
+        if(appkey.GetValue("AutoUpdateTime").ToString() != "false")
+        {
+            AutoUpdataTime();
+        }
+        appkey.Close(); 
+    }
+
+    //自动更新日出日落时间
+    private async void AutoUpdataTime()
+    {
+        await Task.Run(async () => 
+        {
+            try
+            {
+                LocationService locationService = new LocationService();
+                var geoLocator = new Geolocator();
+                var geoPosition = await geoLocator.GetGeopositionAsync();
+                var latitude = geoPosition.Coordinate.Point.Position.Latitude;
+                var longitude = geoPosition.Coordinate.Point.Position.Longitude;
+                var locationName = await locationService.GetLocationName(latitude, longitude);
+                SunTimeResult result = TimeConverter.GetSunTime(DateTime.Now, longitude, latitude);
+                DateTime date = DateTime.Now;
+                string sunriseTime = result.SunriseTime.ToString("HH:mm");
+                string sunsetTime = result.SunsetTime.ToString("HH:mm");
+
+                RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\DarkMode2", true);
+                key.SetValue("startTime", sunriseTime);
+                key.SetValue("endTime", sunsetTime);
+                key.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox2.Show("无法完成的操作", "系统定位服务功能未开启，自动更新日出日落时间功能无法使用。");
+                RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\DarkMode2", true);
+                key.SetValue("SunRiseSet", "false");
+                key.SetValue("AutoUpdateTime", "false");
+                key.Close();
+            }
+        });
     }
 
     public static string SendPostRequest(string url, string data)
@@ -198,22 +235,47 @@ public partial class MainWindow : INavigationWindow
         string endLightTime = key.GetValue("endTime").ToString();
         TimeSpan _startLightTime = DateTime.Parse(startLightTime).TimeOfDay;
         TimeSpan _endLightTime = DateTime.Parse(endLightTime).TimeOfDay;
-
         DateTime dateTime = Convert.ToDateTime(DateTime.Now.ToString("t"));
         TimeSpan dspNow = dateTime.TimeOfDay;
-        if (dspNow > _startLightTime && dspNow < _endLightTime)
+        if(key.GetValue("PhotosensitiveMode").ToString() == "false")
         {
-            //在时间段内
-            SwitchMode.switchMode("light");
-            //Console.WriteLine("切换为浅色");
+            if (dspNow > _startLightTime && dspNow < _endLightTime)
+            {
+                //在时间段内
+                SwitchMode.switchMode("light");
+                //Console.WriteLine("切换为浅色");
+            }
+            else
+            {
+                //不在时间段内
+                SwitchMode.switchMode("dark");
+                //Console.WriteLine("切换为深色");
+            }
         }
         else
         {
-            //不在时间段内
-            SwitchMode.switchMode("dark");
-            //Console.WriteLine("切换为深色");
+            _lightSensor = LightSensor.GetDefault();
+            if (_lightSensor != null)
+            {
+                _timer = new Timer(1000);
+                _timer.Elapsed += OnTimerElapsed;
+                _timer.Start();
+            }
         }
+    }
 
+    private void OnTimerElapsed(object sender, ElapsedEventArgs e)
+    {
+        var lightReading = _lightSensor.GetCurrentReading();
+        Console.WriteLine("感光度: {0} lux", lightReading.IlluminanceInLux);
+        if (lightReading.IlluminanceInLux < 300.0)
+        {
+            SwitchMode.switchMode("dark");
+        }
+        else
+        {
+            SwitchMode.switchMode("light");
+        }
     }
 
     private void OnStart(object sender, HotkeyEventArgs e)

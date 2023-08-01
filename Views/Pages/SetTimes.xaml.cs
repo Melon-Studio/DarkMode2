@@ -4,15 +4,15 @@ using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
+using System.Timers;
 using System.Windows;
-using System.Windows.Forms;
-using System.Windows.Input;
 using Windows.Devices.Geolocation;
+using Windows.Devices.Sensors;
 using Wpf.Ui.Common;
 using Wpf.Ui.Controls.Interfaces;
 using Wpf.Ui.Mvvm.Contracts;
-using static log4net.Appender.RollingFileAppender;
+using System.Runtime.InteropServices;
+
 
 namespace DarkMode_2.Views.Pages;
 
@@ -21,10 +21,19 @@ namespace DarkMode_2.Views.Pages;
 /// </summary>
 public partial class SetTimes
 {
-
     private readonly ISnackbarService _snackbarService;
 
     private readonly IDialogControl _dialogControl;
+
+    private const int MonitorBrightness = 0x0000000A;
+    private const int BrightnessMinimum = 0;
+    private const int BrightnessMaximum = 100;
+
+    [DllImport("user32.dll")]
+    private static extern bool GetMonitorBrightness(IntPtr hMonitor, out uint pdwMinimumBrightness, out uint pdwCurrentBrightness, out uint pdwMaximumBrightness);
+
+    [DllImport("user32.dll")]
+    private static extern IntPtr MonitorFromWindow(IntPtr hwnd, uint dwFlags);
 
     public SetTimes(ISnackbarService snackbarService, IDialogService dialogService, SetTimesViewModel viewModel)
     {
@@ -56,6 +65,11 @@ public partial class SetTimes
         {
             SunRiseSet.IsChecked = false;
             SunRiseSwitch.IsExpanded = false;
+        }
+        // 感光模式
+        if(key.GetValue("PhotosensitiveMode").ToString() == "true")
+        {
+            Autostart.IsChecked = true;
         }
         key.Close();
     }
@@ -199,7 +213,7 @@ public partial class SetTimes
 
     private void OpenSnackbar(string title, string connect)
     {
-        _snackbarService.Show(title, connect, SymbolRegular.FoodCake24);
+        _snackbarService.Show(title, connect, SymbolRegular.Warning24);
     }
 
     private void UpdateTime()
@@ -298,9 +312,10 @@ public partial class SetTimes
             endTimeMinutes.IsEnabled = false;
         }catch(Exception ex)
         {
-            OpenSnackbar("无法完成此操作", "系统定位服务功能未开启，本功能无法使用。");
+            OpenSnackbar("无法完成的操作", "系统定位服务功能未开启，本功能无法使用。");
             RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\DarkMode2", true);
             key.SetValue("SunRiseSet", "false");
+            key.Close();
             location.Text = "";
             lat.Text = "";
             lng.Text = "";
@@ -313,8 +328,39 @@ public partial class SetTimes
         
     }
 
+    private LightSensor _lightSensor;
+
+    // 感光模式
     private void Autostart_Click(object sender, RoutedEventArgs e)
     {
-        OpenSnackbar("严重错误(bushi", "还用不了，下个版本就能用了");
+        _lightSensor = LightSensor.GetDefault();
+        if (_lightSensor != null)
+        {
+            RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\DarkMode2", true);
+            key.SetValue("PhotosensitiveMode", "true");
+            key.Close();
+        }
+        else
+        {
+            RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\DarkMode2", true);
+            key.SetValue("PhotosensitiveMode", "false");
+            key.Close();
+            OpenSnackbar("提示", "你的设备不存在感光元件，无法使用此功能。");
+            Autostart.IsChecked = false;
+        }
+        
+    }
+    public static int GetBrightness()
+    {
+        IntPtr primaryMonitorHandle = MonitorFromWindow(IntPtr.Zero, MonitorBrightness);
+        if (GetMonitorBrightness(primaryMonitorHandle, out uint minBrightness, out uint currentBrightness, out uint maxBrightness))
+        {
+            int brightnessPercentage = (int)(((double)currentBrightness - minBrightness) / (maxBrightness - minBrightness) * 100);
+            return brightnessPercentage;
+        }
+        else
+        {
+            return -1;
+        }
     }
 }

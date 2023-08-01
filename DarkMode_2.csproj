@@ -274,9 +274,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="dark.ico" />
-  </ItemGroup>
-  <ItemGroup>
     <PackageReference Include="log4net">
       <Version>2.0.15</Version>
     </PackageReference>
@@ -327,7 +324,6 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <Content Include="OpenHardwareMonitorLib.dll" />
     <Resource Include="Resources\logo-new.ico" />
     <Resource Include="Resources\MouseDark.png" />
     <Resource Include="Resources\MouseLight.png" />

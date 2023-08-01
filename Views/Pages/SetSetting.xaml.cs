@@ -171,7 +171,6 @@ public partial class SetSetting
         string state = key.GetValue("AutoUpdateTime").ToString();
         if (state == "true")
         {
-            Notification.IsChecked = false;
             try
             {
                 key.SetValue("AutoUpdateTime", "false");

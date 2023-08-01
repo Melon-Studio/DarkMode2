@@ -9,12 +9,12 @@ public class VersionControl
     }
     public static string Version()
     {
-        string version = "2.0.9.1";
+        string version = "2.1.0";
         return version;
     }
     public static string InternalVersion()
     {
-        string internalVersion = "20230727";
+        string internalVersion = "20230802";
         return internalVersion;
     }
 }

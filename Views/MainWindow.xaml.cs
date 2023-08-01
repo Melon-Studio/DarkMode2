@@ -14,8 +14,10 @@ using System.Timers;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Threading;
 using Windows.Devices.Geolocation;
 using Windows.Devices.Sensors;
+using Windows.UI.Core;
 using Wpf.Ui.Controls.Interfaces;
 using Wpf.Ui.Mvvm.Contracts;
 using MessageBox = DarkMode_2.Models.MessageBox;
@@ -28,7 +30,11 @@ namespace DarkMode_2.Views;
 /// </summary>
 public partial class MainWindow : INavigationWindow
 {
-    private LightSensor _lightSensor;
+    private LightSensor _lightsensor;
+
+    private double _luxValue;
+
+    private DispatcherTimer _timer;
 
     private readonly ITestWindowService _testWindowService;
 
@@ -160,7 +166,27 @@ public partial class MainWindow : INavigationWindow
         {
             AutoUpdataTime();
         }
+        //光感模式
+        if(appkey.GetValue("PhotosensitiveMode").ToString() == "true")
+        {
+            _lightsensor = LightSensor.GetDefault();
+            _timer = new DispatcherTimer();
+            _timer.Interval = TimeSpan.FromSeconds(1);
+            _timer.Tick += Timer_Tick;
+            _timer.Start();
+        }
         appkey.Close(); 
+        
+    }
+
+    private void Timer_Tick(object sender, EventArgs e)
+    {
+        _luxValue = GetLightIntensityValue();
+    }
+
+    private double GetLightIntensityValue()
+    {
+        return _lightsensor.GetCurrentReading().IlluminanceInLux;
     }
 
     //自动更新日出日落时间
@@ -254,18 +280,19 @@ public partial class MainWindow : INavigationWindow
             }
             else
             {
-                var lightReading = _lightSensor.GetCurrentReading();
-                Console.WriteLine("感光度: {0} lux", lightReading.IlluminanceInLux);
-                if (lightReading.IlluminanceInLux < 150.0)
-                {
-                    SwitchMode.switchMode("dark");
-                }
-                else
+                double luxValue = _luxValue;
+                Console.WriteLine(luxValue.ToString());
+                if (luxValue > 17.0)
                 {
                     SwitchMode.switchMode("light");
                 }
-        }
+                else
+                {
+                    SwitchMode.switchMode("dark");
+                }
+            }
     }
+
 
     private void OnStart(object sender, HotkeyEventArgs e)
     {

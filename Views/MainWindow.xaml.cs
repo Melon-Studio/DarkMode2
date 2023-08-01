@@ -271,7 +271,7 @@ public partial class MainWindow : INavigationWindow
     {
         var lightReading = _lightSensor.GetCurrentReading();
         Console.WriteLine("感光度: {0} lux", lightReading.IlluminanceInLux);
-        if (lightReading.IlluminanceInLux < 300.0)
+        if (lightReading.IlluminanceInLux < 150.0)
         {
             SwitchMode.switchMode("dark");
         }

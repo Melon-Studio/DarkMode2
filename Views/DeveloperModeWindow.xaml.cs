@@ -25,34 +25,14 @@ public partial class DeveloperModeWindow
     {
         get;
     }
-
-    private LightSensor _lightSensor;
-    private Timer _timer;
     public DeveloperModeWindow(DeveloperModeViewModel viewModel)
     {
         ViewModel = viewModel;
         InitializeComponent();
 
-        _lightSensor = LightSensor.GetDefault();
-        if (_lightSensor != null)
-        {
-            _timer = new Timer(1000);
-            _timer.Elapsed += OnTimerElapsed;
-            _timer.Start();
-        }
-        else
-        {
-            Console.WriteLine("你的设备不存在感光元件，无法使用此功能。");
-        }
-
         //GPUload.Text = GetGPULoad.GetUsage().ToString();
     }
 
-    private void OnTimerElapsed(object sender, ElapsedEventArgs e)
-    {
-        var lightReading = _lightSensor.GetCurrentReading();
-        Console.WriteLine("感光度: {0} lux", lightReading.IlluminanceInLux);
-    }
     private void UiWindow_Loaded(object sender, RoutedEventArgs e)
     {
         
@@ -114,8 +94,6 @@ public partial class DeveloperModeWindow
     {
         // TUDO:TEST
         RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\DarkMode2", true);
-        WallpaperChanger wallpaperChanger = new(key.GetValue("WeInstallPath").ToString(), key.GetValue("WeDark").ToString());
-        wallpaperChanger.openWallpaper();
     }
     
     private void InstallService_Click(object sender, RoutedEventArgs e)

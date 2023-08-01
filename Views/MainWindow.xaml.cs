@@ -125,7 +125,7 @@ public partial class MainWindow : INavigationWindow
                 key.SetValue("LightMouse", "Light");
                 key.SetValue("DarkMouse", "Light");
                 //触摸键盘主题
-                key.SetValue("KeyboardMode", "Light");
+                key.SetValue("KeyboardMode", "true");
                 //游戏模式
                 key.SetValue("GameMode", "false");
                 //Wallpaper Engine安装路径
@@ -162,7 +162,7 @@ public partial class MainWindow : INavigationWindow
         //开启定时器
         timerGetTime.Start();
         //自动更新日出日落时间
-        if(appkey.GetValue("AutoUpdateTime").ToString() != "false")
+        if(appkey.GetValue("AutoUpdateTime").ToString() != "false" && appkey.GetValue("SunRiseSet") != "false")
         {
             AutoUpdataTime();
         }

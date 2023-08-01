@@ -37,24 +37,36 @@ public partial class SetDIY
 
     private void LightMouse_white_Click(object sender, System.Windows.RoutedEventArgs e)
     {
+        RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\DarkMode2", true);
+        key.SetValue("LightMouse", "Light");
+        key.Close();
         LightMouse_white.IsChecked = true;
         LightMouse_black.IsChecked = false;
     }
 
     private void LightMouse_black_Click(object sender, System.Windows.RoutedEventArgs e)
     {
+        RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\DarkMode2", true);
+        key.SetValue("LightMouse", "Dark");
+        key.Close();
         LightMouse_black.IsChecked = true;
         LightMouse_white.IsChecked = false;
     }
 
     private void DarkMouse_white_Click(object sender, System.Windows.RoutedEventArgs e)
     {
+        RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\DarkMode2", true);
+        key.SetValue("DarkMouse", "Light");
+        key.Close();
         DarkMouse_white.IsChecked = true;
         DarkMouse_black.IsChecked = false;
     }
 
     private void DarkMouse_black_Click(object sender, System.Windows.RoutedEventArgs e)
     {
+        RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\DarkMode2", true);
+        key.SetValue("DarkMouse", "Dark");
+        key.Close();
         DarkMouse_black.IsChecked = true;
         DarkMouse_white.IsChecked = false;
     }

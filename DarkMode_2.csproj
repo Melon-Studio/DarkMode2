@@ -130,7 +130,6 @@
     <Compile Include="Models\AppConfig.cs" />
     <Compile Include="Models\AutoStartManager.cs" />
     <Compile Include="Models\Colors\Pa__one.cs" />
-    <Compile Include="Models\CommandLine.cs" />
     <Compile Include="Models\DarkModeException.cs" />
     <Compile Include="Models\DetermineSystemColorMode.cs" />
     <Compile Include="Models\JsonSerialization.cs" />

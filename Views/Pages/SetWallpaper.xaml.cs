@@ -88,9 +88,9 @@ public partial class SetWallpaper
     private void Save2_Click(object sender, System.Windows.RoutedEventArgs e)
     {
         RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\DarkMode2", true);
-        key.SetValue("WeLight", "\""+LightBox2.Text+ "\"");
-        key.SetValue("WeDark", "\""+DarkBox2.Text+ "\"");
-        key.SetValue("WeInstallPath", "\""+WePath.Text+ "\"");
+        key.SetValue("WeLight", LightBox2.Text);
+        key.SetValue("WeDark", DarkBox2.Text);
+        key.SetValue("WeInstallPath", WePath.Text);
         key.Close();
     }
 
@@ -103,7 +103,7 @@ public partial class SetWallpaper
             string installPath64;
             if(installPath32 != "")
             {
-                installPath64 = Regex.Match(installPath32, @"((?!\\wallpaper32.exe).)*").ToString() + @"\wallpaper64.exe";
+                installPath64 = Regex.Match(installPath32, @"((?!\\wallpaper32.exe).)*").ToString();
                 WePath.Text = installPath64;
             }
         }

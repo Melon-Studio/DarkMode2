@@ -1,32 +1,41 @@
 ﻿using System;
+using System.Diagnostics;
 
 namespace DarkMode_2.Models
 {
     public class WallpaperChanger
     {
-        private string _wallpaperEnginePath;
-        private string _wallpaperFilePath;
-
-        public WallpaperChanger(string wallpapernEginePath, string wallpaperFilePath)
+        public static string GetWallpaperPath(string appPath)
         {
-            _wallpaperEnginePath = wallpapernEginePath;
-            _wallpaperFilePath = wallpaperFilePath;
-        }
-        public void openWallpaper()
-        {
-            string command = $"{_wallpaperEnginePath} -control openWallpaper -file {_wallpaperFilePath}";
-            Console.WriteLine("小子看这里："+command);
-            CommandLine run = new CommandLine(command);
+            string command = $"\"{appPath}\" -control getWallpaper";
+            return ExecuteCommand(command);
         }
 
-        // Wallpaper Engine官方对于这个命令存在bug
-        public string getNowWallpaper()
+        public static void SetWallpaper(string appPath, string wallpaperPath)
         {
-            string command = $"{_wallpaperEnginePath} -control getWallpaper";
-            CommandLine run = new CommandLine(command);
-            return run.CommandOutput.Trim();
+            string command = $"\"{appPath}\" -control openWallpaper -file \"{wallpaperPath}\"";
+            ExecuteCommand(command);
         }
 
+        private static string ExecuteCommand(string command)
+        {
+            ProcessStartInfo processInfo = new ProcessStartInfo
+            {
+                FileName = "cmd.exe",
+                Arguments = $"/C \"{command}\"",
+                RedirectStandardOutput = true,
+                UseShellExecute = false,
+                CreateNoWindow = true
+            };
 
+            Process process = new Process();
+            process.StartInfo = processInfo;
+            process.Start();
+
+            string output = process.StandardOutput.ReadToEnd();
+            process.WaitForExit();
+
+            return output;
+        }
     }
 }

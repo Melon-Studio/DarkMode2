@@ -227,7 +227,7 @@ public partial class MainWindow : INavigationWindow
 
         return result;
     }
-    public void SwitchService(Object myObject, EventArgs myEventArgs)
+    public async void SwitchService(Object myObject, EventArgs myEventArgs)
     {
         RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\DarkMode2", true);
         //判断是否在浅色时间段内
@@ -237,31 +237,34 @@ public partial class MainWindow : INavigationWindow
         TimeSpan _endLightTime = DateTime.Parse(endLightTime).TimeOfDay;
         DateTime dateTime = Convert.ToDateTime(DateTime.Now.ToString("t"));
         TimeSpan dspNow = dateTime.TimeOfDay;
-        if(key.GetValue("PhotosensitiveMode").ToString() == "false")
+        await Task.Run(() =>
         {
-            if (dspNow > _startLightTime && dspNow < _endLightTime)
+            if (key.GetValue("PhotosensitiveMode").ToString() == "false")
             {
-                //在时间段内
-                SwitchMode.switchMode("light");
-                //Console.WriteLine("切换为浅色");
+                if (dspNow > _startLightTime && dspNow < _endLightTime)
+                {
+                    //在时间段内
+                    SwitchMode.switchMode("light");
+                    //Console.WriteLine("切换为浅色");
+                }
+                else
+                {
+                    //不在时间段内
+                    SwitchMode.switchMode("dark");
+                    //Console.WriteLine("切换为深色");
+                }
             }
             else
             {
-                //不在时间段内
-                SwitchMode.switchMode("dark");
-                //Console.WriteLine("切换为深色");
+                _lightSensor = LightSensor.GetDefault();
+                if (_lightSensor != null)
+                {
+                    _timer = new Timer(1000);
+                    _timer.Elapsed += OnTimerElapsed;
+                    _timer.Start();
+                }
             }
-        }
-        else
-        {
-            _lightSensor = LightSensor.GetDefault();
-            if (_lightSensor != null)
-            {
-                _timer = new Timer(1000);
-                _timer.Elapsed += OnTimerElapsed;
-                _timer.Start();
-            }
-        }
+        });
     }
 
     private void OnTimerElapsed(object sender, ElapsedEventArgs e)

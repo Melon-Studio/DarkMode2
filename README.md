@@ -81,7 +81,6 @@ DarkMode2 特别感谢 [Microsoft Visual Studio](https://visualstudio.microsoft.
 感谢每一位愿意赞助我们的用户，无论您的赞助数额大小，您的支持都将激励我继续努力并改进软件的品质。您的赞助也将成为我们前进的动力和持续发展的保障。
 
 赞助渠道：https://afdian.net/a/DarkMode2
-<iframe src="https://afdian.net/leaflet?slug=DarkMode2" width="640" scrolling="no" height="200" frameborder="0"></iframe><iframe src="https://afdian.net/leaflet?slug=DarkMode2" width="640" scrolling="no" height="200" frameborder="0"></iframe>
 
 ---
 

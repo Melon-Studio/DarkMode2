@@ -13,9 +13,9 @@ DarkMode2 是一个开源软件，用于自动切换 Windows 10/11 系统的颜�
 - **定时切换功能**：基于用户定义的时间表，自动切换系统的颜色模式。
 - **日出日落切换功能**：根据用户所在地的日出和日落时间，自动调整颜色模式。
 - **感光切换功能**：根据环境光线的变化，自动切换颜色模式。
-- **基于系统自带壁纸的切换功能**：根据系统自带壁纸的变化，自动调整颜色模式。
-- **基于 Wallpaper Engine 壁纸的切换功能**：根据 Wallpaper Engine 设置的壁纸的变化，自动调整颜色模式。
-- 更多功能正在开发中，欢迎提交 issues 开发者将视情况添加到软件的实验室中。
+- **系统原生壁纸切换功能**：根据颜色模式的变化，自动调整设置的系统原生壁纸。
+- **Wallpaper Engine 壁纸切换功能**：根据颜色模式的变化，自动调整设置的 Wallpaper Engine 壁纸。
+- 更多功能正在开发中，欢迎提交 issues 开发者将视功能需求度添加到实验室中。
 
 ---
 
@@ -27,12 +27,12 @@ DarkMode2 是一个开源软件，用于自动切换 Windows 10/11 系统的颜�
 
 如果系统没有框架，请[点此安装](https://dotnet.microsoft.com/en-us/download/dotnet-framework/thank-you/net472-web-installer)
 
-***注意**：在使用Beta版本时出现闪退等问题，请清除注册表键值，Beta版本处于快速迭代开发状态，很多功能都在变动。*
+***注意**：在使用Beta版本时出现闪退等异常问题，请清除注册表项，Beta版本处于快速迭代开发状态，很多功能都在变动。*
 
 *清除方式：*
 
-1. *在 Windows 搜索中搜索`注册表编辑器`，打开后在地址栏输入`计算机\HKEY_CURRENT_USER\Software\DarkMode2`，将这个`DarkMode2`项删除。*
-2. *在设置中心的设置中，点击最下方`重置用户配置`按钮；*
+1. *推荐：在 Windows 搜索中搜索`注册表编辑器`，打开后在地址栏输入`计算机\HKEY_CURRENT_USER\Software\DarkMode2`，将这个`DarkMode2`项删除。*
+2. *部分情况：在设置中心的设置中，点击最下方`重置用户配置`按钮；*
 
 ---
 
@@ -81,6 +81,7 @@ DarkMode2 特别感谢 [Microsoft Visual Studio](https://visualstudio.microsoft.
 感谢每一位愿意赞助我们的用户，无论您的赞助数额大小，您的支持都将激励我继续努力并改进软件的品质。您的赞助也将成为我们前进的动力和持续发展的保障。
 
 赞助渠道：https://afdian.net/a/DarkMode2
+<iframe src="https://afdian.net/leaflet?slug=DarkMode2" width="640" scrolling="no" height="200" frameborder="0"></iframe><iframe src="https://afdian.net/leaflet?slug=DarkMode2" width="640" scrolling="no" height="200" frameborder="0"></iframe>
 
 ---
 

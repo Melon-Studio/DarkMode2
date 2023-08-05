@@ -30,12 +30,12 @@ public class SwitchMode
                 ReplaceWallpaper.ChangeNativeWallpaper(path);
             }
             //wallpaper engine
-            if (key.GetValue("WeDark").ToString() != "")
+            if (key.GetValue("WeLight").ToString() != "")
             {
                 if (key.GetValue("WeInstallPath").ToString() != "")
                 {
                     Console.WriteLine("Wallpaper TEST: " + WallpaperChanger.GetWallpaperPath(WeInstallPath));
-                    WallpaperChanger.SetWallpaper(WeInstallPath, key.GetValue("WeDark").ToString());
+                    WallpaperChanger.SetWallpaper(WeInstallPath, key.GetValue("WeLight").ToString());
                 }
             }
             //Mouse Cursor
@@ -110,13 +110,13 @@ public class SwitchMode
                 ReplaceWallpaper.ChangeNativeWallpaper(path);
             }
             //wallpaper engine
-            if (key.GetValue("WeLight").ToString() != "")
+            if (key.GetValue("WeDark").ToString() != "")
             {
                 if (key.GetValue("WeInstallPath").ToString() != "")
                 {
 
                     Console.WriteLine("Wallpaper TEST: "+WallpaperChanger.GetWallpaperPath(WeInstallPath));
-                    WallpaperChanger.SetWallpaper(WeInstallPath, key.GetValue("WeLight").ToString());
+                    WallpaperChanger.SetWallpaper(WeInstallPath, key.GetValue("WeDark").ToString());
                 }
             }
             //Mouse Cursor

@@ -125,7 +125,7 @@ public partial class MainWindow : INavigationWindow
                 key.SetValue("LightMouse", "Light");
                 key.SetValue("DarkMouse", "Light");
                 //触摸键盘主题
-                key.SetValue("KeyboardMode", "true");
+                key.SetValue("KeyboardMode", "false");
                 //游戏模式
                 key.SetValue("GameMode", "false");
                 //Wallpaper Engine安装路径

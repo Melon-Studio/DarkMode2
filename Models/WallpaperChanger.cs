@@ -29,6 +29,7 @@ namespace DarkMode_2.Models
             };
 
             Process process = new Process();
+            Console.WriteLine(command);
             process.StartInfo = processInfo;
             process.Start();
 

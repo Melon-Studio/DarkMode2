@@ -104,7 +104,7 @@ public partial class SetWallpaper
             if(installPath32 != "")
             {
                 installPath64 = Regex.Match(installPath32, @"((?!\\wallpaper32.exe).)*").ToString();
-                WePath.Text = installPath64;
+                WePath.Text = installPath64 + "\\wallpaper64.exe";
             }
         }
         catch

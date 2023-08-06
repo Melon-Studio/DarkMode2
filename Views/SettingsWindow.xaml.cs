@@ -10,6 +10,7 @@ using Wpf.Ui.TaskBar;
 using Microsoft.Win32;
 using Wpf.Ui.Appearance;
 using DarkMode_2.Models;
+using log4net;
 
 namespace DarkMode_2.Views;
 
@@ -18,6 +19,7 @@ namespace DarkMode_2.Views;
 /// </summary>
 public partial class SettingsWindow : INavigationWindow
 {
+    private static readonly ILog log = LogManager.GetLogger(typeof(SettingsWindow));
     private bool _initialized = false;
 
     private readonly IThemeService _themeService;
@@ -31,6 +33,7 @@ public partial class SettingsWindow : INavigationWindow
     }
     public SettingsWindow(SettingsViewModel viewModel, IThemeService themeServices, INavigationService navigationService, IPageService pageService, IThemeService themeService, ITaskBarService taskBarService, ISnackbarService snackbarService, IDialogService dialogService)
     {
+        log.Info("DarkMode 正在运行");
         ViewModel = viewModel;
         DataContext = this;
         _themeService = themeServices;

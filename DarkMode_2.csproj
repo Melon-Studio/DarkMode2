@@ -156,6 +156,7 @@
     <Compile Include="Models\LocationService.cs" />
     <Compile Include="Models\MessageBox.cs" />
     <Compile Include="Models\RedRawWindow.cs" />
+    <Compile Include="Models\RegistryInit.cs" />
     <Compile Include="Models\ReplaceWallpaper.cs" />
     <Compile Include="Models\StartUrl.cs" />
     <Compile Include="Models\SwitchMode.cs" />

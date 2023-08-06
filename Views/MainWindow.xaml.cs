@@ -1,6 +1,7 @@
 ﻿using DarkMode_2.Models;
 using DarkMode_2.ViewModels;
 using DarkMOde_2.Services.Contracts;
+using log4net;
 using Microsoft.Toolkit.Uwp.Notifications;
 using Microsoft.Win32;
 using NHotkey;
@@ -30,6 +31,8 @@ namespace DarkMode_2.Views;
 /// </summary>
 public partial class MainWindow : INavigationWindow
 {
+    private static readonly ILog log = LogManager.GetLogger(typeof(MainWindow));
+
     private LightSensor _lightsensor;
 
     private double _luxValue;
@@ -56,6 +59,7 @@ public partial class MainWindow : INavigationWindow
         _taskBarService = taskBarService;
         _testWindowService = testWindowService;
         _themeService = themeServices;
+        log.Info("DarkMode GUI运行中");
         InitializeComponent();
         // 判断是否为支持的操作系统
         string WinVersion = WindowsVersionHelper.GetWindowsEdition();
@@ -63,6 +67,7 @@ public partial class MainWindow : INavigationWindow
         {
             MessageBox2.Show($"抱歉，本程序仅支持Windows10/11的操作系统。\n你的操作系统版本是：{WinVersion}", "无法提供服务");
             Application.Current.Shutdown();
+            log.Warn("不支持的操作系统");
         }
         try
         {
@@ -71,82 +76,14 @@ public partial class MainWindow : INavigationWindow
         catch
         {
             MessageBox2.Show( "Ctrl+Alt+D 快捷键被占用，将无法通过快捷键打开设置，请勿在设置中关闭托盘栏图标，如果意外关闭，请进入 DarkMode 的 GitHub 仓库的 Discussions 页面查看帮助。", "DarkMode：快捷键被占用");
+            log.Warn("快捷键被占用");
         }
 
         SetPageService(pageService);
 
         //注册表初始化
-        try
-        {
-            RegistryKey pan;
-            RegistryKey key;
-            pan = Registry.CurrentUser.OpenSubKey(@"Software\DarkMode2");
+        RegistryInit.RegistryInitialization();
 
-            if (pan == null)
-            {
-                key = Registry.CurrentUser.CreateSubKey(@"Software\DarkMode2");
-                key = Registry.CurrentUser.OpenSubKey(@"Software\DarkMode2", true);
-                //软件安装路径
-                key.SetValue("DarkModeInstallPath", this.GetType().Assembly.Location);
-                //开机自启
-                key.SetValue("DarkMode2", "false");
-                //系统颜色初始化
-                key.SetValue("IsLight", "false");
-                //浅色模式开始时间
-                key.SetValue("startTime", "08:00");
-                //浅色模式结束时间
-                key.SetValue("endTime", "19:00");
-                //软件语言
-                key.SetValue("Language", "zh-CN");
-                //日出日落模式
-                key.SetValue("SunRiseSet", "false");
-                //感光模式
-                key.SetValue("PhotosensitiveMode", "false");
-                //自动更新日出日落时间
-                key.SetValue("AutoUpdateTime", "false");
-                //消息通知
-                key.SetValue("Notification", "true");
-                //托盘栏图标
-                key.SetValue("TrayBar", "true");
-                //软件主题色
-                key.SetValue("ColorMode", "Auto");
-                //软件自动更新
-                key.SetValue("AutoUpdate", "false");
-                //原生壁纸
-                key.SetValue("NativeLight", "");
-                key.SetValue("NativeDark", "");
-                //Wallpaper Engine壁纸
-                key.SetValue("WeLight", "");
-                key.SetValue("WeDark", "");
-                //更新渠道
-                key.SetValue("UpdateChannels", "Auto");
-                //鼠标主题
-                key.SetValue("MouseMode", "Light");
-                key.SetValue("LightMouse", "Light");
-                key.SetValue("DarkMouse", "Light");
-                //触摸键盘主题
-                key.SetValue("KeyboardMode", "false");
-                //游戏模式
-                key.SetValue("GameMode", "false");
-                //Wallpaper Engine安装路径
-                key.SetValue("WeInstallPath", "");
-                key.Close();
-                // 收集信息
-                string url = "https://api.dooper.top/darkmode/API/UsersCollect.php";
-                string windowsEdtion = WindowsVersionHelper.GetWindowsEdition();
-                string windowsVersion = WindowsVersionHelper.GetWindowsVersion().ToString();
-                string channel = VersionControl.Channel();
-                string version = VersionControl.Version();
-                string date = DateTime.Now.ToString("yyyy-MM-dd");
-                string data = $"WindowsEdition={windowsEdtion}&WindowsVersion={windowsVersion}&Channel={channel}&Version={version}&Date={date}"; // 拼接成x-www-form-urlencoded格式的字符串
-                string result = SendPostRequest(url, data);
-                Console.WriteLine(result);
-            }
-        }
-        catch (Exception ex)
-        {
-            MessageBox2.Show(ex.ToString(), "初始化注册表时发生了不可逆的错误。");
-        }
         RegistryKey appkey = Registry.CurrentUser.OpenSubKey(@"Software\DarkMode2", true);
         //设置初始化
         if (appkey.GetValue("TrayBar").ToString() == "false")
@@ -215,6 +152,7 @@ public partial class MainWindow : INavigationWindow
             catch (Exception ex)
             {
                 MessageBox2.Show("无法完成的操作", "系统定位服务功能未开启，自动更新日出日落时间功能无法使用。");
+                log.Warn(ex.Message);
                 RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\DarkMode2", true);
                 key.SetValue("SunRiseSet", "false");
                 key.SetValue("AutoUpdateTime", "false");

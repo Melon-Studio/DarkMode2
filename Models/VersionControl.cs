@@ -4,17 +4,17 @@ public class VersionControl
 {
     public static string Channel()
     {
-        string channel = "Beta";
+        string channel = "Release";
         return channel;
     }
     public static string Version()
     {
-        string version = "2.1.0";
+        string version = "2.1.1";
         return version;
     }
     public static string InternalVersion()
     {
-        string internalVersion = "20230802";
+        string internalVersion = "20230806";
         return internalVersion;
     }
 }

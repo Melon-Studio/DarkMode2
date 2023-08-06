@@ -164,8 +164,9 @@
         <ui:CardAction
                 Margin="0,8,0,0"
                 Icon="DeveloperBoard24"
-            Click="DeveloperMode_Click"
-                Tag="snackbar">
+                Click="DeveloperMode_Click"
+                Tag="snackbar"
+                Visibility="Hidden">
             <StackPanel>
                 <TextBlock
                         FontSize="13"

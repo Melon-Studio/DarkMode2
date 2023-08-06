@@ -76,97 +76,23 @@ public partial class SetTimes
 
     private void BingData()
     {
-        Dictionary<int,string> keyValuePairs = new Dictionary<int,string>();
-        keyValuePairs.Add(1, "00");
-        keyValuePairs.Add(2, "01");
-        keyValuePairs.Add(3, "02");
-        keyValuePairs.Add(4, "03");
-        keyValuePairs.Add(5, "04");
-        keyValuePairs.Add(6, "05");
-        keyValuePairs.Add(7, "06");
-        keyValuePairs.Add(8, "07");
-        keyValuePairs.Add(9, "08");
-        keyValuePairs.Add(10, "09");
-        keyValuePairs.Add(11, "10");
-        keyValuePairs.Add(12, "11");
-        keyValuePairs.Add(13, "12");
-        keyValuePairs.Add(14, "13");
-        keyValuePairs.Add(15, "14");
-        keyValuePairs.Add(16, "15");
-        keyValuePairs.Add(17, "16");
-        keyValuePairs.Add(18, "17");
-        keyValuePairs.Add(19, "18");
-        keyValuePairs.Add(20, "19");
-        keyValuePairs.Add(21, "20");
-        keyValuePairs.Add(22, "21");
-        keyValuePairs.Add(23, "22");
-        keyValuePairs.Add(24, "23");
+        Dictionary<int, string> keyValuePairs = new Dictionary<int, string>();
+        for (int i = 0; i <= 24; i++)
+        {
+            keyValuePairs.Add(i, i.ToString("D2"));
+        }
+
         startTimeHours.ItemsSource = keyValuePairs;
         endTimeHours.ItemsSource = keyValuePairs;
         startTimeHours.SelectedIndex = 0;
         endTimeHours.SelectedIndex = 0;
 
         Dictionary<int, string> keyValuePairs1 = new Dictionary<int, string>();
-        keyValuePairs1.Add(0, "00");
-        keyValuePairs1.Add(2, "01");
-        keyValuePairs1.Add(3, "02");
-        keyValuePairs1.Add(4, "03");
-        keyValuePairs1.Add(5, "04");
-        keyValuePairs1.Add(6, "05");
-        keyValuePairs1.Add(7, "06");
-        keyValuePairs1.Add(8, "07");
-        keyValuePairs1.Add(9, "08");
-        keyValuePairs1.Add(10, "09");
-        keyValuePairs1.Add(11, "10");
-        keyValuePairs1.Add(12, "11");
-        keyValuePairs1.Add(13, "12");
-        keyValuePairs1.Add(14, "13");
-        keyValuePairs1.Add(15, "14");
-        keyValuePairs1.Add(16, "15");
-        keyValuePairs1.Add(17, "16");
-        keyValuePairs1.Add(18, "17");
-        keyValuePairs1.Add(19, "18");
-        keyValuePairs1.Add(20, "19");
-        keyValuePairs1.Add(21, "20");
-        keyValuePairs1.Add(22, "21");
-        keyValuePairs1.Add(23, "22");
-        keyValuePairs1.Add(24, "23");
-        keyValuePairs1.Add(25, "24");
-        keyValuePairs1.Add(26, "25");
-        keyValuePairs1.Add(27, "26");
-        keyValuePairs1.Add(28, "27");
-        keyValuePairs1.Add(29, "28");
-        keyValuePairs1.Add(30, "29");
-        keyValuePairs1.Add(31, "30");
-        keyValuePairs1.Add(32, "31");
-        keyValuePairs1.Add(33, "32");
-        keyValuePairs1.Add(34, "33");
-        keyValuePairs1.Add(35, "34");
-        keyValuePairs1.Add(36, "35");
-        keyValuePairs1.Add(37, "36");
-        keyValuePairs1.Add(38, "37");
-        keyValuePairs1.Add(39, "38");
-        keyValuePairs1.Add(40, "39");
-        keyValuePairs1.Add(41, "40");
-        keyValuePairs1.Add(42, "41");
-        keyValuePairs1.Add(43, "42");
-        keyValuePairs1.Add(44, "43");
-        keyValuePairs1.Add(45, "44");
-        keyValuePairs1.Add(46, "45");
-        keyValuePairs1.Add(47, "46");
-        keyValuePairs1.Add(48, "47");
-        keyValuePairs1.Add(49, "48");
-        keyValuePairs1.Add(50, "49");
-        keyValuePairs1.Add(51, "50");
-        keyValuePairs1.Add(52, "51");
-        keyValuePairs1.Add(53, "52");
-        keyValuePairs1.Add(54, "53");
-        keyValuePairs1.Add(55, "54");
-        keyValuePairs1.Add(56, "55");
-        keyValuePairs1.Add(57, "56");
-        keyValuePairs1.Add(58, "57");
-        keyValuePairs1.Add(59, "58");
-        keyValuePairs1.Add(60, "59");
+        for (int i = 0; i <= 60; i++)
+        {
+            keyValuePairs1.Add(i, i.ToString("D2"));
+        }
+
         startTimeMinutes.ItemsSource = keyValuePairs1;
         endTimeMinutes.ItemsSource = keyValuePairs1;
         startTimeMinutes.SelectedIndex = 0;
@@ -333,21 +259,29 @@ public partial class SetTimes
     // 感光模式
     private void Autostart_Click(object sender, RoutedEventArgs e)
     {
-        _lightSensor = LightSensor.GetDefault();
-        if (_lightSensor != null)
+        RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\DarkMode2", true);
+        string state = key.GetValue("PhotosensitiveMode").ToString();
+        if (state == "false" && SunRiseSet.IsChecked == true)
         {
-            RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\DarkMode2", true);
-            key.SetValue("PhotosensitiveMode", "true");
-            key.Close();
+            _lightSensor = LightSensor.GetDefault();
+            if (_lightSensor != null)
+            {
+                key.SetValue("PhotosensitiveMode", "true");
+            }
+            else
+            {
+                OpenSnackbar("提示", "你的设备不存在感光元件，无法使用此功能。");
+                Autostart.IsChecked = false;
+            }
         }
-        else
+        if (SunRiseSet.IsChecked == false)
         {
-            RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\DarkMode2", true);
             key.SetValue("PhotosensitiveMode", "false");
-            key.Close();
-            OpenSnackbar("提示", "你的设备不存在感光元件，无法使用此功能。");
-            Autostart.IsChecked = false;
         }
+        key.Close();
+
+
+        
         
     }
     public static int GetBrightness()

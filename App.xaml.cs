@@ -2,9 +2,11 @@
 using DarkMode_2.ViewModels;
 using DarkMOde_2.Services;
 using DarkMOde_2.Services.Contracts;
+using log4net.Config;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System;
 using System.IO;
 using System.Reflection;
 using System.Windows;
@@ -77,6 +79,14 @@ public partial class App
 
     private async void OnStartup(object sender, StartupEventArgs e)
     {
+        XmlConfigurator.Configure();
+        string logDirectory = Path.Combine(Path.GetTempPath(), "DarkMode2", "logs");
+
+        if (!Directory.Exists(logDirectory))
+        {
+            Directory.CreateDirectory(logDirectory);
+        }
+
         //启动程序入口
         await _host.StartAsync();
     }

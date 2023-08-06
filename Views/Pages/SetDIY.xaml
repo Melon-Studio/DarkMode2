@@ -29,7 +29,7 @@
                         Text="开启后触摸键盘将跟随系统主题色" />
                 </StackPanel>
             </ui:CardControl.Header>
-            <ui:ToggleSwitch Focusable ="false"/>
+            <ui:ToggleSwitch Focusable ="false" IsEnabled="False"/>
         </ui:CardControl>
 
         <ui:CardExpander

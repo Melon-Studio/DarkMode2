@@ -97,6 +97,7 @@ public partial class SetTimes
         endTimeMinutes.ItemsSource = keyValuePairs1;
         startTimeMinutes.SelectedIndex = 0;
         endTimeMinutes.SelectedIndex = 0;
+
     }
     private void OnLoaded(object sender, RoutedEventArgs e)
     {

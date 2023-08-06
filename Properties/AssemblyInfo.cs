@@ -8,7 +8,7 @@ using System.Windows;
 // 控制。更改这些特性值可修改
 // 与程序集关联的信息。
 [assembly: AssemblyTitle("DarkMode2")]
-[assembly: AssemblyDescription("当前程序为内部测试版本。")]
+[assembly: AssemblyDescription("Windows 10/11 颜色模式自动切换工具。")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Melon Studio")]
 [assembly: AssemblyProduct("DarkMode2")]
@@ -51,6 +51,6 @@ using System.Windows;
 //可以指定所有这些值，也可以使用“生成号”和“修订号”的默认值
 //通过使用 "*"，如下所示:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("2.1.0.0")]
-[assembly: AssemblyFileVersion("2.1.0.0")]
+[assembly: AssemblyVersion("2.1.1.0")]
+[assembly: AssemblyFileVersion("2.1.1.0")]
 [assembly: NeutralResourcesLanguage("zh-CN")]

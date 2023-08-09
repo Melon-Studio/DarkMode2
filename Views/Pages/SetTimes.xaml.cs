@@ -239,7 +239,7 @@ public partial class SetTimes
             endTimeMinutes.IsEnabled = false;
         }catch(Exception ex)
         {
-            OpenSnackbar("无法完成的操作", "系统定位服务功能未开启，本功能无法使用。");
+            OpenSnackbar("无法完成的操作", "获取设备定位异常，请检查系统定位服务是否开启，或者检查系统代理功能。");
             RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\DarkMode2", true);
             key.SetValue("SunRiseSet", "false");
             key.Close();

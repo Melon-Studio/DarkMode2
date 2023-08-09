@@ -85,6 +85,11 @@ public partial class MainWindow : INavigationWindow
         RegistryInit.RegistryInitialization();
 
         RegistryKey appkey = Registry.CurrentUser.OpenSubKey(@"Software\DarkMode2", true);
+        //新功能注册表异常排除
+        if(appkey.GetValue("SwitchMouse") == null)
+        {
+            RegistryInit.InsertRegistery("SwitchMouse", "false");
+        }
         //设置初始化
         if (appkey.GetValue("TrayBar").ToString() == "false")
         {
@@ -99,7 +104,7 @@ public partial class MainWindow : INavigationWindow
         //开启定时器
         timerGetTime.Start();
         //自动更新日出日落时间
-        if(appkey.GetValue("AutoUpdateTime").ToString() != "false" && appkey.GetValue("SunRiseSet") != "false")
+        if(appkey.GetValue("AutoUpdateTime").ToString() != "false" && appkey.GetValue("SunRiseSet").ToString() != "false")
         {
             AutoUpdataTime();
         }
@@ -151,7 +156,7 @@ public partial class MainWindow : INavigationWindow
             }
             catch (Exception ex)
             {
-                MessageBox2.Show("无法完成的操作", "系统定位服务功能未开启，自动更新日出日落时间功能无法使用。");
+                MessageBox2.Show("无法完成的操作", "获取设备定位异常，自动更新日出日落时间功能无法使用。");
                 log.Warn(ex.Message);
                 RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\DarkMode2", true);
                 key.SetValue("SunRiseSet", "false");

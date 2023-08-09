@@ -1,8 +1,6 @@
-﻿using DarkMode_2.Views;
-using log4net;
+﻿using log4net;
 using Microsoft.Win32;
 using System;
-using Wpf.Ui.Mvvm.Contracts;
 
 namespace DarkMode_2.Models
 {
@@ -56,6 +54,7 @@ namespace DarkMode_2.Models
                     //更新渠道
                     key.SetValue("UpdateChannels", "Auto");
                     //鼠标主题
+                    key.SetValue("SwitchMouse", "false");
                     key.SetValue("MouseMode", "Light");
                     key.SetValue("LightMouse", "Light");
                     key.SetValue("DarkMouse", "Light");
@@ -114,6 +113,7 @@ namespace DarkMode_2.Models
                 //更新渠道
                 key.SetValue("UpdateChannels", "Auto");
                 //鼠标主题
+                key.SetValue("SwitchMouse", "false");
                 key.SetValue("MouseMode", "Light");
                 key.SetValue("LightMouse", "Light");
                 key.SetValue("DarkMouse", "Light");
@@ -130,6 +130,21 @@ namespace DarkMode_2.Models
             {
                 log.Error("注册表重置失败：" + ex);
             }
+        }
+
+        public static void InsertRegistery(string key, string value)
+        {
+            try
+            {
+                RegistryKey appKey = Registry.CurrentUser.OpenSubKey(@"Software\DarkMode2", true);
+                appKey.SetValue(key, value);
+            }
+            catch(Exception ex)
+            {
+                log.Error("注册表操作失败(InsertRegistery)：" + ex);
+            }
+            
+
         }
     }
 }

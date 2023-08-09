@@ -54,7 +54,7 @@
                             Foreground="{DynamicResource TextFillColorSecondaryBrush}"
                             Text="设置后自动切换主题时，系统光标也会切换" />
                     </StackPanel>
-
+                    <ui:ToggleSwitch x:Name="MouseSwitch" Grid.Column="1" Focusable ="false" Margin="0,0,20,0" Click="MouseSwitch_Click"/>
                 </Grid>
             </ui:CardExpander.Header>
             <Grid Width="Auto" HorizontalAlignment="Stretch">
@@ -68,7 +68,7 @@
                     <ColumnDefinition Width="123*" />
                     <ColumnDefinition Width="611*" />
                 </Grid.ColumnDefinitions>
-
+                
                 <TextBlock 
                     Grid.Row="0"
                     Grid.Column="0"

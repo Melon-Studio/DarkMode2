@@ -37,7 +37,7 @@ using System.Windows;
                                      //或应用程序资源字典中找到时使用)
     ResourceDictionaryLocation.SourceAssembly //常规资源词典所处位置
                                               //(未在页面中找到资源时使用，
-                                              //、应用程序或任何主题专用资源字典中找到时使用)
+                                              //应用程序或任何主题专用资源字典中找到时使用)
 )]
 
 
@@ -51,6 +51,6 @@ using System.Windows;
 //可以指定所有这些值，也可以使用“生成号”和“修订号”的默认值
 //通过使用 "*"，如下所示:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("2.1.1.0")]
-[assembly: AssemblyFileVersion("2.1.1.0")]
+[assembly: AssemblyVersion("2.1.2.0")]
+[assembly: AssemblyFileVersion("2.1.2.0")]
 [assembly: NeutralResourcesLanguage("zh-CN")]

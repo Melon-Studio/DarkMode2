@@ -1,4 +1,5 @@
-﻿using Microsoft.Win32;
+﻿using DarkMode_2.Models;
+using Microsoft.Win32;
 
 namespace DarkMode_2.Views.Pages;
 
@@ -32,6 +33,12 @@ public partial class SetDIY
             DarkMouse_black.IsChecked = true;
             DarkMouse_white.IsChecked = false;
         }
+        if(key.GetValue("SwitchMouse").ToString() == "true")
+        {
+            MouseSwitch.IsChecked = true;
+        }
+        key.Close();
+        
         
     }
 
@@ -69,5 +76,22 @@ public partial class SetDIY
         key.Close();
         DarkMouse_black.IsChecked = true;
         DarkMouse_white.IsChecked = false;
+    }
+
+
+    private void MouseSwitch_Click(object sender, System.Windows.RoutedEventArgs e)
+    {
+        RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\DarkMode2", true);
+        if (key.GetValue("SwitchMouse").ToString() == "true")
+        {
+            MouseSwitch.IsChecked = false;
+            key.SetValue("SwitchMouse", "false");
+        }
+        else
+        {
+            MouseSwitch.IsChecked = true;
+            key.SetValue("SwitchMouse", "true");
+        }
+        key.Close();
     }
 }

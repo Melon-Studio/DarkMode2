@@ -1,4 +1,4 @@
-# ![Logo](./doc/ok.png)
+# ![Logo](./docs/ok.png)
 
 <p align="center"><i>Logo图标创意来源于Emoji表情合成器</i></p>
 
@@ -81,7 +81,7 @@ DarkMode2 是一个开源软件，用于自动切换 Windows 10/11 系统的颜�
 
 DarkMode2 特别感谢 [Microsoft Visual Studio](https://visualstudio.microsoft.com/) 提供强大的开发工具和支持。
 
-![IDE](./doc/IDE.svg)
+![IDE](./docs/IDE.svg)
 
 ---
 

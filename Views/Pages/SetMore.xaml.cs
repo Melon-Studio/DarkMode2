@@ -3,6 +3,8 @@ using MessageBox = DarkMode_2.Models.MessageBox;
 using System;
 using System.Diagnostics;
 using System.Linq;
+using log4net;
+using DarkMode_2.Models;
 
 namespace DarkMode_2.Views.Pages;
 
@@ -11,6 +13,7 @@ namespace DarkMode_2.Views.Pages;
 /// </summary>
 public partial class SetMore
 {
+    private static readonly ILog log = LogManager.GetLogger(typeof(SetMore));
     public SetMore()
     {
         InitializeComponent();
@@ -28,7 +31,8 @@ public partial class SetMore
         }
         catch (Exception ex)
         {
-            MessageBox.OpenMessageBox("错误发生", ex.ToString());
+            MessageBox.OpenMessageBox(LanguageHandler.GetLocalizedString("SetSettingPage_Tip8"), ex.ToString());
+            log.Error(ex.ToString());
         }
         return false;
     }
@@ -44,9 +48,10 @@ public partial class SetMore
                     myProcess.Kill();
             }
         }
-        catch (Exception e)
-        { 
-            Console.Error.WriteLine(e.ToString());
+        catch (Exception ex)
+        {
+            MessageBox.OpenMessageBox(LanguageHandler.GetLocalizedString("SetSettingPage_Tip8"), ex.ToString());
+            log.Error(ex);
         }
     }
 }

@@ -6,6 +6,10 @@
       xmlns:local="clr-namespace:DarkMode_2.Views.Pages"
       mc:Ignorable="d" 
       xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+      xmlns:lex="http://wpflocalizeextension.codeplex.com"
+      lex:LocalizeDictionary.DesignCulture=""
+      lex:ResxLocalizationProvider.DefaultAssembly="DarkMode 2"
+      lex:ResxLocalizationProvider.DefaultDictionary="Languages"
       d:DesignHeight="750" d:DesignWidth="800"
       d:DataContext="{d:DesignInstance local:SetTimes,
                                      IsDesignTimeCreatable=False}"
@@ -35,11 +39,11 @@
                         <TextBlock
                             FontSize="13"
                             FontWeight="Medium"
-                            Text="自定义时间" />
+                            Text="{lex:Loc TimePage_CustomTime}" />
                         <TextBlock
                             FontSize="12"
                             Foreground="{DynamicResource TextFillColorSecondaryBrush}"
-                            Text="手动设置颜色模式开始的时间" />
+                            Text="{lex:Loc TimePage_CustomTimeSubtitle}" />
                     </StackPanel>
                 </Grid>
             </ui:CardExpander.Header>
@@ -65,7 +69,7 @@
                     Grid.Row="0"
                     FontSize="13"
                     FontWeight="Medium"
-                    Text="浅色模式：" 
+                    Text="{lex:Loc TimePage_LightMode}" 
                     HorizontalAlignment="Center" 
                     VerticalAlignment="Center" />
 
@@ -82,7 +86,7 @@
                     Grid.Row="0"
                     FontSize="13"
                     FontWeight="Medium"
-                    Text="时" 
+                    Text="{lex:Loc TimePage_Hour}" 
                     HorizontalAlignment="Left" 
                     VerticalAlignment="Center" />
                 
@@ -99,7 +103,7 @@
                     Grid.Row="0"
                     FontSize="13"
                     FontWeight="Medium"
-                    Text="分" 
+                    Text="{lex:Loc TimePage_Minute}" 
                     HorizontalAlignment="Left" 
                     VerticalAlignment="Center" />
 
@@ -108,7 +112,7 @@
                     Grid.Row="1"
                     FontSize="13"
                     FontWeight="Medium"
-                    Text="深色模式：" 
+                    Text="{lex:Loc TimePage_DarkMode}" 
                     HorizontalAlignment="Center" 
                     VerticalAlignment="Center" />
 
@@ -126,7 +130,7 @@
                     Grid.Row="1"
                     FontSize="13"
                     FontWeight="Medium"
-                    Text="时" 
+                    Text="{lex:Loc TimePage_Hour}" 
                     HorizontalAlignment="Left" 
                     VerticalAlignment="Center" />
 
@@ -144,7 +148,7 @@
                     Grid.Row="1"
                     FontSize="13"
                     FontWeight="Medium"
-                    Text="分" 
+                    Text="{lex:Loc TimePage_Minute}" 
                     HorizontalAlignment="Left" 
                     VerticalAlignment="Center" />
 
@@ -156,7 +160,7 @@
                     Padding="30,6"
                     VerticalAlignment="Center"
                     Appearance="Secondary"
-                    Content="保存" HorizontalAlignment="Right" />
+                    Content="{lex:Loc TimePage_Save}" HorizontalAlignment="Right" />
 
             </Grid>
         </ui:CardExpander>
@@ -179,11 +183,11 @@
                         <TextBlock
                             FontSize="13"
                             FontWeight="Medium"
-                            Text="日出日落模式" />
+                            Text="{lex:Loc TimePage_SunriseSunsetMode}" />
                         <TextBlock
                             FontSize="12"
                             Foreground="{DynamicResource TextFillColorSecondaryBrush}"
-                            Text="使用 Windows 位置服务，获取设备所在位置的日出日落时间" />
+                            Text="{lex:Loc TimePage_SunriseSunsetModeSubtitle}" />
                     </StackPanel>
                     <ui:ToggleSwitch
                         Focusable ="false"
@@ -219,7 +223,7 @@
                     Grid.Row="0"
                     FontSize="13"
                     FontWeight="Medium"
-                    Text="经度：" 
+                    Text="{lex:Loc TimePage_Longitude}" 
                     HorizontalAlignment="Center" 
                     VerticalAlignment="Center"
                     Margin="10"/>
@@ -239,7 +243,7 @@
                     Grid.Row="1"
                     FontSize="13"
                     FontWeight="Medium"
-                    Text="纬度：" 
+                    Text="{lex:Loc TimePage_Latitude}" 
                     HorizontalAlignment="Center" 
                     VerticalAlignment="Center"
                     Margin="10"/>
@@ -260,7 +264,7 @@
                     Grid.Row="2"
                     FontSize="13"
                     FontWeight="Medium"
-                    Text="位置：" 
+                    Text="{lex:Loc TimePage_Position}" 
                     HorizontalAlignment="Center" 
                     VerticalAlignment="Center"
                     Margin="10"/>
@@ -283,11 +287,11 @@
                     <TextBlock
                         FontSize="13"
                         FontWeight="Medium"
-                        Text="感光模式" />
+                        Text="{lex:Loc TimePage_PhotosensitiveMode}" />
                     <TextBlock
                         FontSize="12"
                         Foreground="{DynamicResource TextFillColorSecondaryBrush}"
-                        Text="通过感光元件自动调整颜色模式" />
+                        Text="{lex:Loc TimePage_PhotosensitiveModeSubtitle}" />
                 </StackPanel>
             </ui:CardControl.Header>
             <ui:ToggleSwitch x:Name="Autostart" Focusable ="false" Click="Autostart_Click"/>

@@ -1,0 +1,519 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AboutPage_Author" xml:space="preserve">
+    <value>Author</value>
+  </data>
+  <data name="AboutPage_ChangeChannel" xml:space="preserve">
+    <value>Change Channel</value>
+  </data>
+  <data name="AboutPage_ChangeChannelSubtitle" xml:space="preserve">
+    <value>Get DarkMode from other channels</value>
+  </data>
+  <data name="AboutPage_Channel" xml:space="preserve">
+    <value>Channel</value>
+  </data>
+  <data name="AboutPage_CheckUpdate" xml:space="preserve">
+    <value>Check for Updates</value>
+  </data>
+  <data name="AboutPage_Contributor" xml:space="preserve">
+    <value>Contributor</value>
+  </data>
+  <data name="AboutPage_ContributorSubtitle" xml:space="preserve">
+    <value>GitHub users who contributed to DarkMode</value>
+  </data>
+  <data name="AboutPage_Copyright" xml:space="preserve">
+    <value>Copyright</value>
+  </data>
+  <data name="AboutPage_DarkModeInfo" xml:space="preserve">
+    <value>DarkMode Info</value>
+  </data>
+  <data name="AboutPage_DarkModeInfoSubtitle" xml:space="preserve">
+    <value>Contains version information, etc.</value>
+  </data>
+  <data name="AboutPage_Developer" xml:space="preserve">
+    <value>Developer</value>
+  </data>
+  <data name="AboutPage_Gitee" xml:space="preserve">
+    <value>Go to DarkMode's Gitee page</value>
+  </data>
+  <data name="AboutPage_Github" xml:space="preserve">
+    <value>Go to DarkMode's GitHub page</value>
+  </data>
+  <data name="AboutPage_HelpCenter" xml:space="preserve">
+    <value>Help Center</value>
+  </data>
+  <data name="AboutPage_HelpCenterSubtitle" xml:space="preserve">
+    <value>Click to enter DarkMode's discussion area for help</value>
+  </data>
+  <data name="AboutPage_License" xml:space="preserve">
+    <value>License</value>
+  </data>
+  <data name="AboutPage_Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="AboutPage_OpenSourceLicense" xml:space="preserve">
+    <value>Open Source Licenses</value>
+  </data>
+  <data name="AboutPage_OpenSourceLicenseSubtitle" xml:space="preserve">
+    <value>Third-party open-source libraries used by DarkMode</value>
+  </data>
+  <data name="AboutPage_PrivacyPolicy" xml:space="preserve">
+    <value>Privacy Policy</value>
+  </data>
+  <data name="AboutPage_PrivacyPolicyContent" xml:space="preserve">
+    <value>Thank you for using DarkMode. We take your privacy and data security seriously. To better protect your personal information, we have written the following Privacy Policy:&amp;#x000A; &amp;#x000A;     1. This software is committed to strictly complying with laws, regulations, and privacy protection principles and will not disclose user privacy data over the network.&amp;#x000A;     2. This software has administrator privileges but will not abuse this privilege to maliciously damage user data.&amp;#x000A;     3. Features like sunrise and sunset mode require internet access for location. Please make sure you have agreed and authorized this software to access your location information before using these features.&amp;#x000A;     4. This software also uses the internet to report version numbers and other information for data statistics (such as user numbers and channel distribution). We promise not to disclose users' personal information in any form.&amp;#x000A;     5. This software collects necessary user information, such as device information, network information, error logs, etc., to improve software performance and user experience. We promise not to use this information for illegal purposes or disclose it to third parties.&amp;#x000A;     6. Under specific circumstances, in order to protect users' rights and comply with laws and regulations, this software may disclose user information. For example, when requested by government agencies or judicial authorities, or to protect the interests of this software, other users, or public interests.&amp;#x000A;     7. Users have the right to contact the developer to delete their personal information at any time. If you have any questions, complaints, or concerns about the Privacy Policy, you can contact the developer through the contact information provided by us. We will do our best to solve problems and protect the security of your personal information.&amp;#x000A; &amp;#x000A;     Please read and understand the above Privacy Policy carefully and follow our commitment to user privacy. If you do not agree with any content of this Privacy Policy, you can choose to stop using this software. If you continue to use this software, it means you have understood and agreed to the above terms.</value>
+  </data>
+  <data name="AboutPage_PrivacyPolicySubtitle" xml:space="preserve">
+    <value>Explanations for some behaviors by DarkMode</value>
+  </data>
+  <data name="AboutPage_Thank" xml:space="preserve">
+    <value>Acknowledgements</value>
+  </data>
+  <data name="AboutPage_ThankSubtitle" xml:space="preserve">
+    <value>Users or groups who have made contributions to DarkMode</value>
+  </data>
+  <data name="AboutPage_Version" xml:space="preserve">
+    <value>Version</value>
+  </data>
+  <data name="App_Title" xml:space="preserve">
+    <value>DarkMode Settings</value>
+  </data>
+  <data name="Dialog_LeftButtonText" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="Dialog_RightButtonText" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="DIYPage_Dark" xml:space="preserve">
+    <value>Dark</value>
+  </data>
+  <data name="DIYPage_Light" xml:space="preserve">
+    <value>Light</value>
+  </data>
+  <data name="DIYPage_Scosor" xml:space="preserve">
+    <value>System Cursor</value>
+  </data>
+  <data name="DIYPage_ScosorSubtitle" xml:space="preserve">
+    <value>The system cursor will also change when the theme is switched automatically</value>
+  </data>
+  <data name="DIYPage_ScreenKeyboard" xml:space="preserve">
+    <value>Screen Keyboard Theme Color</value>
+  </data>
+  <data name="DIYPage_ScreenKeyboardSubtitle" xml:space="preserve">
+    <value>Enabling this option will make the touch keyboard follow the system theme color</value>
+  </data>
+  <data name="MainWindow_Tip1" xml:space="preserve">
+    <value>Sorry, this program only supports Windows 10/11 operating systems.\nYour operating system version is:</value>
+  </data>
+  <data name="MainWindow_Tip2" xml:space="preserve">
+    <value>Cannot provide service</value>
+  </data>
+  <data name="MainWindow_Tip3" xml:space="preserve">
+    <value>Ctrl+Alt+D shortcut key is occupied and cannot open the settings through the shortcut key. Do not close the tray icon in the settings. If you accidentally close it, please go to the Discussions page of DarkMode's GitHub repository for help.</value>
+  </data>
+  <data name="MainWindow_Tip4" xml:space="preserve">
+    <value>DarkMode: Shortcut key is occupied</value>
+  </data>
+  <data name="MainWindow_Tip5" xml:space="preserve">
+    <value>Operation cannot be completed</value>
+  </data>
+  <data name="MainWindow_Tip6" xml:space="preserve">
+    <value>Failed to get device location, automatic sunrise and sunset time update function cannot be used.</value>
+  </data>
+  <data name="MainWindow_Tip7" xml:space="preserve">
+    <value>DarkMode Notifications</value>
+  </data>
+  <data name="MainWindow_Tip8" xml:space="preserve">
+    <value>DarkMode is running. Click the DarkMode icon to configure</value>
+  </data>
+  <data name="MessageBox_Tip1" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="MessageBox_Tip2" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="MessageBox_Tip3" xml:space="preserve">
+    <value>Copy</value>
+  </data>
+  <data name="MorePage_GameMode" xml:space="preserve">
+    <value>Game Mode (Experimental Feature)</value>
+  </data>
+  <data name="MorePage_GameModeSubtitle" xml:space="preserve">
+    <value>When enabled, the software will not switch themes when playing games</value>
+  </data>
+  <data name="MorePage_GameModeTip" xml:space="preserve">
+    <value>Set the GPU utilization threshold to enable</value>
+  </data>
+  <data name="MorePage_Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="MorePage_Tips" xml:space="preserve">
+    <value>Experimental features will be launched in the custom group after successful testing, and may be deleted at any time.</value>
+  </data>
+  <data name="Navbar_About" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="Navbar_custom" xml:space="preserve">
+    <value>Custom</value>
+  </data>
+  <data name="Navbar_Laboratory" xml:space="preserve">
+    <value>Laboratory</value>
+  </data>
+  <data name="Navbar_Settings" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="Navbar_Time" xml:space="preserve">
+    <value>Time</value>
+  </data>
+  <data name="Navbar_Wallpaper" xml:space="preserve">
+    <value>Wallpaper</value>
+  </data>
+  <data name="NotifyMenu_Exit" xml:space="preserve">
+    <value>Exit</value>
+  </data>
+  <data name="NotifyMenu_Settings" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="SetAboutPage_Tip1" xml:space="preserve">
+    <value>This feature is not yet available</value>
+  </data>
+  <data name="SetAboutPage_Tip2" xml:space="preserve">
+    <value>Tip</value>
+  </data>
+  <data name="SetSettingPage_Tip1" xml:space="preserve">
+    <value>Follow system</value>
+  </data>
+  <data name="SetSettingPage_Tip10" xml:space="preserve">
+    <value>Take effect next time the software starts</value>
+  </data>
+  <data name="SetSettingPage_Tip11" xml:space="preserve">
+    <value>Tip</value>
+  </data>
+  <data name="SetSettingPage_Tip2" xml:space="preserve">
+    <value>Light</value>
+  </data>
+  <data name="SetSettingPage_Tip3" xml:space="preserve">
+    <value>Dark</value>
+  </data>
+  <data name="SetSettingPage_Tip4" xml:space="preserve">
+    <value>Auto</value>
+  </data>
+  <data name="SetSettingPage_Tip5" xml:space="preserve">
+    <value>GitHub Channel</value>
+  </data>
+  <data name="SetSettingPage_Tip6" xml:space="preserve">
+    <value>Gitee Channel</value>
+  </data>
+  <data name="SetSettingPage_Tip7" xml:space="preserve">
+    <value>This feature is not available</value>
+  </data>
+  <data name="SetSettingPage_Tip8" xml:space="preserve">
+    <value>Error occurred</value>
+  </data>
+  <data name="SetSettingPage_Tip9" xml:space="preserve">
+    <value>Take effect next time the software starts. If the tray icon is closed, you can use Ctrl+Alt+D to quickly open the settings center</value>
+  </data>
+  <data name="SetTimesPage_Tip1" xml:space="preserve">
+    <value>Allow DarkMode to access your precise location</value>
+  </data>
+  <data name="SetTimesPage_Tip2" xml:space="preserve">
+    <value>\nDarkMode uses Windows location services to get your device's geographic location and calculate sunrise and sunset times.</value>
+  </data>
+  <data name="SetTimesPage_Tip3" xml:space="preserve">
+    <value>Cannot complete the operation</value>
+  </data>
+  <data name="SetTimesPage_Tip4" xml:space="preserve">
+    <value>Failed to get device location. Please check if the system location service is turned on or if the system proxy function is enabled.</value>
+  </data>
+  <data name="SetTimesPage_Tip5" xml:space="preserve">
+    <value>Tip</value>
+  </data>
+  <data name="SetTimesPage_Tip6" xml:space="preserve">
+    <value>Your device does not have a photosensitive component, so this feature cannot be used.</value>
+  </data>
+  <data name="SettingPage_DeveloperMode" xml:space="preserve">
+    <value>Developer Mode</value>
+  </data>
+  <data name="SettingsPage_AutoSunRiseTime" xml:space="preserve">
+    <value>Automatically update sunrise and sunset times</value>
+  </data>
+  <data name="SettingsPage_AutoSunRiseTimeSubtitle" xml:space="preserve">
+    <value>When enabled, the software will automatically update sunrise and sunset times each time it starts</value>
+  </data>
+  <data name="SettingsPage_AutoUpdate" xml:space="preserve">
+    <value>Auto Update</value>
+  </data>
+  <data name="SettingsPage_AutoUpdateSubtitle" xml:space="preserve">
+    <value>When enabled, the software will automatically check for updates</value>
+  </data>
+  <data name="SettingsPage_Color" xml:space="preserve">
+    <value>Theme Color</value>
+  </data>
+  <data name="SettingsPage_ColorSubtitle" xml:space="preserve">
+    <value>Switch the software's theme color</value>
+  </data>
+  <data name="SettingsPage_DeveloperMode" xml:space="preserve">
+    <value>Developer Mode</value>
+  </data>
+  <data name="SettingsPage_DeveloperModeSubtitle" xml:space="preserve">
+    <value>Developer mode, do not enter if you are not a developer</value>
+  </data>
+  <data name="SettingsPage_Language" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="SettingsPage_LanguageSubtitle" xml:space="preserve">
+    <value>Switch the language displayed by the software</value>
+  </data>
+  <data name="SettingsPage_Notification" xml:space="preserve">
+    <value>Notifications</value>
+  </data>
+  <data name="SettingsPage_NotificationSubtitle" xml:space="preserve">
+    <value>When enabled, the software will send a notification when it starts</value>
+  </data>
+  <data name="SettingsPage_Reset" xml:space="preserve">
+    <value>Reset User Configuration</value>
+  </data>
+  <data name="SettingsPage_RunStartUp" xml:space="preserve">
+    <value>Run at Startup</value>
+  </data>
+  <data name="SettingsPage_RunStartUpSubtitle" xml:space="preserve">
+    <value>When enabled, the software will run automatically when the computer starts</value>
+  </data>
+  <data name="SettingsPage_TrayBarIcon" xml:space="preserve">
+    <value>System Tray Icon</value>
+  </data>
+  <data name="SettingsPage_TrayBarIconSubtitle" xml:space="preserve">
+    <value>When enabled, the software will create an icon in the system tray area when it starts (recommended)</value>
+  </data>
+  <data name="SettingsPage_UpdateChannel" xml:space="preserve">
+    <value>Update Channel</value>
+  </data>
+  <data name="SettingsPage_UpdateChannelSubtitle" xml:space="preserve">
+    <value>Set the update channel for checking or auto-updating</value>
+  </data>
+  <data name="SetWallpaperPage_Tip1" xml:space="preserve">
+    <value>Please select a wallpaper image</value>
+  </data>
+  <data name="SetWallpaperPage_Tip2" xml:space="preserve">
+    <value>Image File|*.jpg;*.jpeg;*.bmp;*.dib;*.png;*.jfif;*.jpe;*.gif;*.tif;*.tiff;*.wdp;*.heic;*.heif;*.heics;*.heifs;*.hif;*.avci;*.avcs;*.avif;*.avifs</value>
+  </data>
+  <data name="SetWallpaperPage_Tip3" xml:space="preserve">
+    <value>Please select a JSON file</value>
+  </data>
+  <data name="SetWallpaperPage_Tip4" xml:space="preserve">
+    <value>JSON File|*.json;</value>
+  </data>
+  <data name="SetWallpaperPage_Tip5" xml:space="preserve">
+    <value>Tip</value>
+  </data>
+  <data name="SetWallpaperPage_Tip6" xml:space="preserve">
+    <value>Automatic search path failed, please manually select</value>
+  </data>
+  <data name="SetWallpaperPage_Tip7" xml:space="preserve">
+    <value>Please select the wallpaper64.exe file</value>
+  </data>
+  <data name="SetWallpaperPage_Tip8" xml:space="preserve">
+    <value>Executable Files|wallpaper64.exe;</value>
+  </data>
+  <data name="TimePage_CustomTime" xml:space="preserve">
+    <value>Custom Time</value>
+  </data>
+  <data name="TimePage_CustomTimeSubtitle" xml:space="preserve">
+    <value>Manually set the time for color mode change</value>
+  </data>
+  <data name="TimePage_DarkMode" xml:space="preserve">
+    <value>Dark Mode:</value>
+  </data>
+  <data name="TimePage_Hour" xml:space="preserve">
+    <value>Hour</value>
+  </data>
+  <data name="TimePage_Latitude" xml:space="preserve">
+    <value>Latitude:</value>
+  </data>
+  <data name="TimePage_LightMode" xml:space="preserve">
+    <value>Light Mode:</value>
+  </data>
+  <data name="TimePage_Longitude" xml:space="preserve">
+    <value>Longitude:</value>
+  </data>
+  <data name="TimePage_Minute" xml:space="preserve">
+    <value>Minute</value>
+  </data>
+  <data name="TimePage_PhotosensitiveMode" xml:space="preserve">
+    <value>Photosensitive Mode</value>
+  </data>
+  <data name="TimePage_PhotosensitiveModeSubtitle" xml:space="preserve">
+    <value>Automatically adjust color mode using a photosensitive component</value>
+  </data>
+  <data name="TimePage_Position" xml:space="preserve">
+    <value>Position:</value>
+  </data>
+  <data name="TimePage_Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="TimePage_SunriseSunsetMode" xml:space="preserve">
+    <value>Sunrise and Sunset Mode</value>
+  </data>
+  <data name="TimePage_SunriseSunsetModeSubtitle" xml:space="preserve">
+    <value>Get sunrise and sunset times using Windows location services</value>
+  </data>
+  <data name="Update_Tip1" xml:space="preserve">
+    <value>Current version is up to date</value>
+  </data>
+  <data name="Update_Tip2" xml:space="preserve">
+    <value>New version found</value>
+  </data>
+  <data name="Update_Tip3" xml:space="preserve">
+    <value>Connection timed out, please check your network status</value>
+  </data>
+  <data name="WallpaperPage_AutoSearch" xml:space="preserve">
+    <value>Auto Search</value>
+  </data>
+  <data name="WallpaperPage_Browse" xml:space="preserve">
+    <value>Browse</value>
+  </data>
+  <data name="WallpaperPage_Dark" xml:space="preserve">
+    <value>Dark</value>
+  </data>
+  <data name="WallpaperPage_Light" xml:space="preserve">
+    <value>Light</value>
+  </data>
+  <data name="WallpaperPage_ManualSearch" xml:space="preserve">
+    <value>Manual Select</value>
+  </data>
+  <data name="WallpaperPage_NativeWallpaper" xml:space="preserve">
+    <value>Native Wallpaper</value>
+  </data>
+  <data name="WallpaperPage_NativeWallpaperSubtitle" xml:space="preserve">
+    <value>Native wallpaper will also change when the theme is switched automatically</value>
+  </data>
+  <data name="WallpaperPage_Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="WallpaperPage_WallpaperEngine" xml:space="preserve">
+    <value>Wallpaper Engine</value>
+  </data>
+  <data name="WallpaperPage_WallpaperEnginePath" xml:space="preserve">
+    <value>Set Wallpaper Engine Path</value>
+  </data>
+  <data name="WallpaperPage_WallpaperEngineSubtitle" xml:space="preserve">
+    <value>Wallpaper Engine will also change when the theme is switched automatically</value>
+  </data>
+</root>

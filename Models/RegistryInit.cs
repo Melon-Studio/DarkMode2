@@ -7,6 +7,8 @@ namespace DarkMode_2.Models
     public static class RegistryInit
     {
         private static readonly ILog log = LogManager.GetLogger(typeof(RegistryInit));
+        public const string RegistryKeyPath = @"Software\DarkMode2";
+        public const string LanguageValueName = "Language";
         public static void RegistryInitialization()
         {
             try
@@ -145,6 +147,22 @@ namespace DarkMode_2.Models
             }
             
 
+        }
+
+        public static string GetSavedLanguageCode()
+        {
+            using (RegistryKey key = Registry.CurrentUser.OpenSubKey(RegistryKeyPath))
+            {
+                return key?.GetValue(LanguageValueName) as string;
+            }
+        }
+
+        public static void SaveLanguageCode(string languageCode)
+        {
+            using (RegistryKey key = Registry.CurrentUser.CreateSubKey(RegistryKeyPath))
+            {
+                key?.SetValue(LanguageValueName, languageCode);
+            }
         }
     }
 }

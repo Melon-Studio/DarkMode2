@@ -1,10 +1,13 @@
 ﻿using DarkMode_2.Models;
 using DarkMode_2.ViewModels;
 using DarkMOde_2.Services.Contracts;
+using log4net;
 using Microsoft.Win32;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Input;
@@ -20,6 +23,7 @@ namespace DarkMode_2.Views.Pages;
 /// </summary>
 public partial class SetSetting 
 {
+    private static readonly ILog log = LogManager.GetLogger(typeof(SetSetting));
 
     private readonly ITestWindowService _testWindowService;
 
@@ -27,6 +31,10 @@ public partial class SetSetting
 
     private readonly ISnackbarService _snackbarService;
     private string ExceptionContent;
+
+    private LanguageSettings _settings;
+
+    private LanguageHandler _languageHandler;
 
     [DllImport("winmm.dll")]
     public static extern bool PlaySound(String Filename, int Mod, int Flags);
@@ -37,6 +45,7 @@ public partial class SetSetting
         _snackbarService = snackbarService;
         _testWindowService = testWindowService;
         _themeService = themeServices;
+        _languageHandler = new LanguageHandler(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "i18n"));
         BingData();
         
 
@@ -72,10 +81,16 @@ public partial class SetSetting
             TrayBar.IsChecked = true;
         }
         //语言
-        if (appkey.GetValue("Language").ToString() == "zh-CN")
+        string jsonFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "i18n", "languages_list.json");
+        string jsonContent = File.ReadAllText(jsonFilePath);
+        _settings = JsonConvert.DeserializeObject<LanguageSettings>(jsonContent);
+
+        foreach (var language in _settings.Languages)
         {
-            languageCombo.SelectedIndex = 0;
+            languageCombox.Items.Add(language.Name);
         }
+        string savedLanguageCode = RegistryInit.GetSavedLanguageCode();
+        languageCombox.SelectedItem = _settings.GetLanguageNameByCode(savedLanguageCode);
         //主题色
         if (appkey.GetValue("ColorMode").ToString() == "Auto")
         {
@@ -103,26 +118,27 @@ public partial class SetSetting
         
     }
 
+    //国际化语言
+
+    private void languageCombox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+    {
+        string selectedLanguageCode = _settings.GetLanguageCodeByName(languageCombox.SelectedItem.ToString());
+        RegistryInit.SaveLanguageCode(selectedLanguageCode);
+        _languageHandler.ChangeLanguage(RegistryInit.GetSavedLanguageCode());
+    }
+
     private void BingData()
     {
-        Dictionary<int,string> data = new Dictionary<int,string>();
-        data.Add(0, "简体中文(zh-CN)");
-        //data.Add(1, "繁體中文(zh-HK)");
-        //data.Add(2, "English(en-US)");
-        //data.Add(3, "Русский(ru-RU)");
-        //data.Add(4, "日本語(ja-JP)");
-
         Dictionary<int, string> data1 = new Dictionary<int, string>();
-        data1.Add(0, "跟随系统");
-        data1.Add(1, "浅色");
-        data1.Add(2, "深色");
+        data1.Add(0, LanguageHandler.GetLocalizedString("SetSettingPage_Tip1"));
+        data1.Add(1, LanguageHandler.GetLocalizedString("SetSettingPage_Tip2"));
+        data1.Add(2, LanguageHandler.GetLocalizedString("SetSettingPage_Tip3"));
 
         Dictionary<int, string> data2 = new Dictionary<int, string>();
-        data2.Add(0, "自动");
-        data2.Add(1, "GitHub渠道");
-        data2.Add(2, "Gitee渠道");
+        data2.Add(0, LanguageHandler.GetLocalizedString("SetSettingPage_Tip4"));
+        data2.Add(1, LanguageHandler.GetLocalizedString("SetSettingPage_Tip5"));
+        data2.Add(2, LanguageHandler.GetLocalizedString("SetSettingPage_Tip6"));
 
-        languageCombo.ItemsSource = data;
         ColorCombo.ItemsSource = data1;
         UpdateCombo.ItemsSource= data2;
         
@@ -160,7 +176,7 @@ public partial class SetSetting
         //    key.SetValue("AutoUpdate", "true");
         //    key.Close();
         //}
-        OpenSnackbar("该功能暂不可用");
+        OpenSnackbar(LanguageHandler.GetLocalizedString("SetSettingPage_Tip7"));
         AutoUpdate.IsChecked = false;
 
     }
@@ -178,7 +194,7 @@ public partial class SetSetting
             }
             catch (Exception ex)
             {
-                MessageBox.OpenMessageBox("错误发生", ex.ToString());
+                MessageBox.OpenMessageBox(LanguageHandler.GetLocalizedString("SetSettingPage_Tip8"), ex.ToString());
                 ExceptionContent = ex.ToString();
             }
         }
@@ -191,7 +207,7 @@ public partial class SetSetting
             }
             catch (Exception ex)
             {
-                MessageBox.OpenMessageBox("错误发生", ex.ToString());
+                MessageBox.OpenMessageBox(LanguageHandler.GetLocalizedString("SetSettingPage_Tip8"), ex.ToString());
                 ExceptionContent = ex.ToString();
             }
         }
@@ -211,7 +227,7 @@ public partial class SetSetting
             }
             catch (Exception ex)
             {
-                MessageBox.OpenMessageBox("错误发生", ex.ToString());
+                MessageBox.OpenMessageBox(LanguageHandler.GetLocalizedString("SetSettingPage_Tip8"), ex.ToString());
                 ExceptionContent = ex.ToString();
             }
         }
@@ -224,7 +240,7 @@ public partial class SetSetting
             }
             catch (Exception ex)
             {
-                MessageBox.OpenMessageBox("错误发生", ex.ToString());
+                MessageBox.OpenMessageBox(LanguageHandler.GetLocalizedString("SetSettingPage_Tip8"), ex.ToString());
                 ExceptionContent = ex.ToString();
             }
         }
@@ -245,11 +261,11 @@ public partial class SetSetting
                 key.SetValue("TrayBar", "false");
                 key.Close();
                 PlaySound(@"C:\Windows\Media\Windows Notify System Generic.wav", 0, 1);
-                OpenSnackbar("下次启动时生效，关闭托盘栏图标后可以使用 Ctrl+Alt+D 来快速打开设置中心");
+                OpenSnackbar(LanguageHandler.GetLocalizedString("SetSettingPage_Tip9"));
             }
             catch (Exception ex)
             {
-                MessageBox.OpenMessageBox("错误发生", ex.ToString());
+                MessageBox.OpenMessageBox(LanguageHandler.GetLocalizedString("SetSettingPage_Tip8"), ex.ToString());
                 ExceptionContent = ex.ToString();
             }
         }
@@ -261,11 +277,11 @@ public partial class SetSetting
                 key.SetValue("TrayBar", "true");
                 key.Close();
                 PlaySound(@"C:\Windows\Media\Windows Notify System Generic.wav", 0, 1);
-                OpenSnackbar("下次启动时生效");
+                OpenSnackbar(LanguageHandler.GetLocalizedString("SetSettingPage_Tip10"));
             }
             catch (Exception ex)
             {
-                MessageBox.OpenMessageBox("错误发生", ex.ToString());
+                MessageBox.OpenMessageBox(LanguageHandler.GetLocalizedString("SetSettingPage_Tip8"), ex.ToString());
                 ExceptionContent = ex.ToString();
             }
         }
@@ -274,7 +290,7 @@ public partial class SetSetting
     private void OpenSnackbar(string connect)
     {
         PlaySound(@"C:\Windows\Media\Windows Notify System Generic.wav", 0, 1);
-        _snackbarService.Show("提示", connect, SymbolRegular.Alert24);
+        _snackbarService.Show(LanguageHandler.GetLocalizedString("SetSettingPage_Tip11"), connect, SymbolRegular.Alert24);
     }
 
     [DllImport("kernel32.dll", CharSet = CharSet.Auto, CallingConvention = CallingConvention.StdCall)]
@@ -347,4 +363,6 @@ public partial class SetSetting
         //注册表重置
         RegistryInit.RegistryReset();
     }
+
+    
 }

@@ -52,12 +52,12 @@ public partial class SetAbout
 
     private void VersionChannel_Click(object sender, System.Windows.RoutedEventArgs e)
     {
-        OpenSnackbar("该功能暂未开放");
+        OpenSnackbar(LanguageHandler.GetLocalizedString("SetAboutPage_Tip1"));
     }
 
     private void OpenSnackbar(string connect)
     {
         PlaySound(@"C:\Windows\Media\Windows Notify System Generic.wav", 0, 1);
-        _snackbarService.Show("提示", connect, SymbolRegular.Alert24);
+        _snackbarService.Show(LanguageHandler.GetLocalizedString("SetAboutPage_Tip2"), connect, SymbolRegular.Alert24);
     }
 }

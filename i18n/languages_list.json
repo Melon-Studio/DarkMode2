@@ -1,0 +1,40 @@
+﻿/*
+  多语言国际化说明：
+  感谢各位支持软件国际化，本项目语言国际化采用资源字典的方式进行处理。
+  首先请先拷贝一份本JSON文件文件夹中你熟悉的语言，将它重命名为你想
+  国际化语言的国家代码+统一格式。languages.{国家代码(小写)}.resx
+  例如：languages.zh-cn.resx, languages.en-us.resx
+  然后打开代码编辑器(Visual Studio Code)，将键值内的文字翻译为
+  你想国际化的语言，翻译完成之后就到GitHub创建一个拉取请求，将你的
+  国际化文件pull到Forked仓库，等待审阅完毕后你将进入鸣谢列表。
+
+  Multi-Language Internationalization Instructions:
+  Thank you for supporting software internationalization. 
+  This project's language internationalization is managed
+  using a resource dictionary approach.
+  First, please make a copy of this JSON file in the folder
+  for the language you are familiar with. Rename it to the
+  desired internationalized language's country code +
+  standardized format. 
+  For example: languages.{country code (lowercase)}.resx,
+  such as languages.zh-cn.resx, languages.en-us.resx.
+  Then, open a code editor (Visual Studio Code) and tran-
+  slate the text within the key values to the language you
+  want to internationalize. After completing the translation,
+  proceed to create a pull request on GitHub. Pull your int-
+  ernationalization file into the Forked repository and wait 
+  for the review. Upon completion of the review, you will be 
+  added to the acknowledgment list.
+*/
+{
+  "Languages": [
+    {
+      "name": "简体中文",
+      "code": "zh-CN"
+    },
+    {
+      "name": "English",
+      "code": "en-US"
+    }
+  ]
+}

@@ -65,7 +65,7 @@ public partial class MainWindow : INavigationWindow
         string WinVersion = WindowsVersionHelper.GetWindowsEdition();
         if(WinVersion != "Windows 10" && WinVersion != "Windows 11")
         {
-            MessageBox2.Show($"抱歉，本程序仅支持Windows10/11的操作系统。\n你的操作系统版本是：{WinVersion}", "无法提供服务");
+            MessageBox2.Show(LanguageHandler.GetLocalizedString("MainWindow_Tip1")+$"{WinVersion}", LanguageHandler.GetLocalizedString("MainWindow_Tip2"));
             Application.Current.Shutdown();
             log.Warn("不支持的操作系统");
         }
@@ -75,7 +75,7 @@ public partial class MainWindow : INavigationWindow
         }
         catch
         {
-            MessageBox2.Show( "Ctrl+Alt+D 快捷键被占用，将无法通过快捷键打开设置，请勿在设置中关闭托盘栏图标，如果意外关闭，请进入 DarkMode 的 GitHub 仓库的 Discussions 页面查看帮助。", "DarkMode：快捷键被占用");
+            MessageBox2.Show( LanguageHandler.GetLocalizedString("MainWindow_Tip3"), LanguageHandler.GetLocalizedString("MainWindow_Tip4"));
             log.Warn("快捷键被占用");
         }
 
@@ -156,7 +156,7 @@ public partial class MainWindow : INavigationWindow
             }
             catch (Exception ex)
             {
-                MessageBox2.Show("无法完成的操作", "获取设备定位异常，自动更新日出日落时间功能无法使用。");
+                MessageBox2.Show(LanguageHandler.GetLocalizedString("MainWindow_Tip5"), LanguageHandler.GetLocalizedString("MainWindow_Tip6"));
                 log.Warn(ex.Message);
                 RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\DarkMode2", true);
                 key.SetValue("SunRiseSet", "false");
@@ -287,8 +287,10 @@ public partial class MainWindow : INavigationWindow
             new ToastContentBuilder()
                 .AddArgument("action", "viewConversation")
                 .AddArgument("conversationId", 9813)
-                .AddText("DarkMode 通知")
-                .AddText("DarkMode 运行中，配置请点击DarkMode图标")
+                //.AddText("DarkMode 通知")
+                .AddText(LanguageHandler.GetLocalizedString("MainWindow_Tip7"))
+                //.AddText("DarkMode 运行中，配置请点击DarkMode图标")
+                .AddText(LanguageHandler.GetLocalizedString("MainWindow_Tip8"))
                 .Show();
         }
         key.Close();

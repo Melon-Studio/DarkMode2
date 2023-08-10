@@ -59,12 +59,12 @@ public class Update
             if (oldVersion.CompareTo(newVersion) > 0)
             {
                 //最新版本
-                need = "当前版本为最新版本";
+                need = LanguageHandler.GetLocalizedString("Update_Tip1");
             }
             else
             {
                 //需要更新
-                need = "发现新版本 " + jsonSerialization.ParseJson(result).ToString();
+                need = LanguageHandler.GetLocalizedString("Update_Tip2") + jsonSerialization.ParseJson(result).ToString();
             }
         }else if(usestate == 1)//gitee
         {
@@ -77,16 +77,16 @@ public class Update
             if (oldVersion.CompareTo(newVersion) > 0)
             {
                 //最新版本
-                need = "当前版本为最新版本"; 
+                need = LanguageHandler.GetLocalizedString("Update_Tip1");
             }
             else
             {
                 //需要更新
-                need = "发现新版本 " + jsonSerialization.ParseJson(result).ToString();
+                need = LanguageHandler.GetLocalizedString("Update_Tip2") + jsonSerialization.ParseJson(result).ToString();
             }
         }else if(usestate == -1)//连接超时
         {
-            need = "连接超时，请检查网络状态";
+            need = LanguageHandler.GetLocalizedString("Update_Tip3");
         }
         return need;
     }

@@ -1,4 +1,5 @@
-﻿using Microsoft.Win32;
+﻿using DarkMode_2.Models;
+using Microsoft.Win32;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using Wpf.Ui.Common;
@@ -33,8 +34,8 @@ public partial class SetWallpaper
     {
         OpenFileDialog dialog = new();
         dialog.Multiselect = false;
-        dialog.Title = "请选择壁纸图片";
-        dialog.Filter = "图片文件|*.jpg;*.jpeg;*.bmp;*.dib;*.png;*.jfif;*.jpe;*.gif;*.tif;*.tiff;*.wdp;*.heic;*.heif;*.heics;*.heifs;*.hif;*.avci;*.avcs;*.avif;*.avifs";
+        dialog.Title = LanguageHandler.GetLocalizedString("SetWallpaperPage_Tip1");
+        dialog.Filter = LanguageHandler.GetLocalizedString("SetWallpaperPage_Tip2");
         if (dialog.ShowDialog() == DialogResult.OK)
         {
             LightBox1.Text = dialog.FileName;
@@ -45,8 +46,8 @@ public partial class SetWallpaper
     {
         OpenFileDialog dialog = new();
         dialog.Multiselect = false;
-        dialog.Title = "请选择壁纸图片";
-        dialog.Filter = "图片文件|*.jpg;*.jpeg;*.bmp;*.dib;*.png;*.jfif;*.jpe;*.gif;*.tif;*.tiff;*.wdp;*.heic;*.heif;*.heics;*.heifs;*.hif;*.avci;*.avcs;*.avif;*.avifs";
+        dialog.Title = LanguageHandler.GetLocalizedString("SetWallpaperPage_Tip1");
+        dialog.Filter = LanguageHandler.GetLocalizedString("SetWallpaperPage_Tip2");
         if (dialog.ShowDialog() == DialogResult.OK)
         {
             DarkBox1.Text = dialog.FileName;
@@ -65,8 +66,8 @@ public partial class SetWallpaper
     {
         OpenFileDialog dialog = new();
         dialog.Multiselect = false;
-        dialog.Title = "请选择JSON文件";
-        dialog.Filter = "json文件|*.json;";
+        dialog.Title = LanguageHandler.GetLocalizedString("SetWallpaperPage_Tip3");
+        dialog.Filter = LanguageHandler.GetLocalizedString("SetWallpaperPage_Tip4");
         if (dialog.ShowDialog() == DialogResult.OK)
         {
             LightBox2.Text = dialog.FileName;
@@ -77,8 +78,8 @@ public partial class SetWallpaper
     {
         OpenFileDialog dialog = new();
         dialog.Multiselect = false;
-        dialog.Title = "请选择JSON文件";
-        dialog.Filter = "json文件|*.json;";
+        dialog.Title = LanguageHandler.GetLocalizedString("SetWallpaperPage_Tip3");
+        dialog.Filter = LanguageHandler.GetLocalizedString("SetWallpaperPage_Tip4");
         if (dialog.ShowDialog() == DialogResult.OK)
         {
             DarkBox2.Text = dialog.FileName;
@@ -109,7 +110,7 @@ public partial class SetWallpaper
         }
         catch
         {
-            OpenSnackbar("提示","自动搜索路径失败，请手动选择。");
+            OpenSnackbar(LanguageHandler.GetLocalizedString("SetWallpaperPage_Tip5"), LanguageHandler.GetLocalizedString("SetWallpaperPage_Tip6"));
         }
     }
 
@@ -117,8 +118,8 @@ public partial class SetWallpaper
     {
         OpenFileDialog dialog = new();
         dialog.Multiselect = false;
-        dialog.Title = "请选择 wallpaper64.exe 文件";
-        dialog.Filter = "exe文件|wallpaper64.exe;";
+        dialog.Title = LanguageHandler.GetLocalizedString("SetWallpaperPage_Tip7");
+        dialog.Filter = LanguageHandler.GetLocalizedString("SetWallpaperPage_Tip8s");
         if (dialog.ShowDialog() == DialogResult.OK)
         {
             WePath.Text = dialog.FileName;

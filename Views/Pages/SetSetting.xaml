@@ -7,6 +7,10 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
     xmlns:viewModels="clr-namespace:DarkMode_2.ViewModels"
+     xmlns:lex="http://wpflocalizeextension.codeplex.com"
+      lex:LocalizeDictionary.DesignCulture=""
+      lex:ResxLocalizationProvider.DefaultAssembly="DarkMode 2"
+      lex:ResxLocalizationProvider.DefaultDictionary="Languages"
     d:DataContext="{d:DesignInstance local:SetSetting,
                                      IsDesignTimeCreatable=False}"
     d:DesignHeight="800" 
@@ -27,11 +31,11 @@
                     <TextBlock
                         FontSize="13"
                         FontWeight="Medium"
-                        Text="开机自启" />
+                        Text="{lex:Loc SettingsPage_RunStartUp}" />
                     <TextBlock
                         FontSize="12"
                         Foreground="{DynamicResource TextFillColorSecondaryBrush}"
-                        Text="开启后软件将在下次启动电脑时自动运行" />
+                        Text="{lex:Loc SettingsPage_RunStartUpSubtitle}" />
                 </StackPanel>
             </ui:CardControl.Header>
             <ui:ToggleSwitch x:Name="Autostart" Click="Autostart_OnClick" Focusable ="false"/>
@@ -43,11 +47,11 @@
                     <TextBlock
                         FontSize="13"
                         FontWeight="Medium"
-                        Text="自动更新" />
+                        Text="{lex:Loc SettingsPage_AutoUpdate}" />
                     <TextBlock
                         FontSize="12"
                         Foreground="{DynamicResource TextFillColorSecondaryBrush}"
-                        Text="开启后软件将自动检测更新" />
+                        Text="{lex:Loc SettingsPage_AutoUpdateSubtitle}" />
                 </StackPanel>
             </ui:CardControl.Header>
             <ui:ToggleSwitch x:Name="AutoUpdate" Click="AutoUpdate_onClick" Focusable ="false"/>
@@ -59,11 +63,11 @@
                     <TextBlock
                         FontSize="13"
                         FontWeight="Medium"
-                        Text="自动更新日出日落时间" />
+                        Text="{lex:Loc SettingsPage_AutoSunRiseTime}" />
                     <TextBlock
                         FontSize="12"
                         Foreground="{DynamicResource TextFillColorSecondaryBrush}"
-                        Text="开启后软件将每次启动软件时自动更新一次日出日落时间" />
+                        Text="{lex:Loc SettingsPage_AutoSunRiseTimeSubtitle}" />
                 </StackPanel>
             </ui:CardControl.Header>
             <ui:ToggleSwitch x:Name="AutoUpdateTime" Click="AutoUpdateTime_OnClick" Focusable ="false"/>
@@ -75,11 +79,11 @@
                     <TextBlock
                         FontSize="13"
                         FontWeight="Medium"
-                        Text="消息通知" />
+                        Text="{lex:Loc SettingsPage_Notification}" />
                     <TextBlock
                         FontSize="12"
                         Foreground="{DynamicResource TextFillColorSecondaryBrush}"
-                        Text="开启后软件启动时将发送一条通知" />
+                        Text="{lex:Loc SettingsPage_NotificationSubtitle}" />
                 </StackPanel>
             </ui:CardControl.Header>
             <ui:ToggleSwitch x:Name="Notification" Click="Notification_OnClick" Focusable ="false"/>
@@ -91,11 +95,11 @@
                     <TextBlock
                         FontSize="13"
                         FontWeight="Medium"
-                        Text="托盘栏图标" />
+                        Text="{lex:Loc SettingsPage_TrayBarIcon}" />
                     <TextBlock
                         FontSize="12"
                         Foreground="{DynamicResource TextFillColorSecondaryBrush}"
-                        Text="开启后软件启动时在托盘栏区域创建软件图标(建议开启)" />
+                        Text="{lex:Loc SettingsPage_TrayBarIconSubtitle}" />
                 </StackPanel>
             </ui:CardControl.Header>
             <ui:ToggleSwitch x:Name="TrayBar" Click="TrayBar_OnClick" Focusable ="false"/>
@@ -107,11 +111,11 @@
                     <TextBlock
                         FontSize="13"
                         FontWeight="Medium"
-                        Text="更新渠道" />
+                        Text="{lex:Loc SettingsPage_UpdateChannel}" />
                     <TextBlock
                         FontSize="12"
                         Foreground="{DynamicResource TextFillColorSecondaryBrush}"
-                        Text="设置检查更新或自动更新的渠道" />
+                        Text="{lex:Loc SettingsPage_UpdateChannelSubtitle}" />
                 </StackPanel>
             </ui:CardControl.Header>
             <ComboBox 
@@ -127,11 +131,11 @@
                     <TextBlock
                         FontSize="13"
                         FontWeight="Medium"
-                        Text="主题色" />
+                        Text="{lex:Loc SettingsPage_Color}" />
                     <TextBlock
                         FontSize="12"
                         Foreground="{DynamicResource TextFillColorSecondaryBrush}"
-                        Text="切换软件的主题色" />
+                        Text="{lex:Loc SettingsPage_ColorSubtitle}" />
                 </StackPanel>
             </ui:CardControl.Header>
             <ComboBox 
@@ -147,18 +151,18 @@
                     <TextBlock
                         FontSize="13"
                         FontWeight="Medium"
-                        Text="语言" />
+                        Text="{lex:Loc SettingsPage_Language}" />
                     <TextBlock
                         FontSize="12"
                         Foreground="{DynamicResource TextFillColorSecondaryBrush}"
-                        Text="切换软件显示的语言" />
+                        Text="{lex:Loc SettingsPage_LanguageSubtitle}" />
                 </StackPanel>
             </ui:CardControl.Header>
             <ComboBox 
-                x:Name="languageCombo"
+                x:Name="languageCombox"
+                ItemsSource="{Binding Languages}"
                 Width="180"
-                DisplayMemberPath="Value"
-                SelectedValuePath="Key"/>
+                SelectionChanged="languageCombox_SelectionChanged"/>
         </ui:CardControl>
 
         <ui:CardAction
@@ -171,13 +175,13 @@
                 <TextBlock
                         FontSize="13"
                         FontWeight="Medium"
-                        Text="开发者模式" />
+                        Text="{lex:Loc SettingsPage_DeveloperMode}" />
                 <TextBlock
                         FontSize="12"
                         Foreground="{DynamicResource TextFillColorSecondaryBrush}"
-                        Text="开发者模式，非开发人员请勿进入" />
+                        Text="{lex:Loc SettingsPage_DeveloperModeSubtitle}" />
             </StackPanel>
         </ui:CardAction>
-        <ui:Hyperlink Margin="0,10,0,0" Click="Reset_Click" Icon="ArrowCounterclockwise24" Content="重置用户配置"/>
+        <ui:Hyperlink Margin="0,10,0,0" Click="Reset_Click" Icon="ArrowCounterclockwise24" Content="{lex:Loc SettingsPage_Reset}"/>
     </VirtualizingStackPanel>
 </ui:UiPage>

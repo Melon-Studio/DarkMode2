@@ -11,6 +11,8 @@ using Microsoft.Win32;
 using Wpf.Ui.Appearance;
 using DarkMode_2.Models;
 using log4net;
+using System.Windows.Data;
+using System.Globalization;
 
 namespace DarkMode_2.Views;
 

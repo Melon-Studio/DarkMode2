@@ -5,6 +5,10 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:DarkMode_2.Views.Pages"
       xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+      xmlns:lex="http://wpflocalizeextension.codeplex.com"
+      lex:LocalizeDictionary.DesignCulture=""
+      lex:ResxLocalizationProvider.DefaultAssembly="DarkMode 2"
+      lex:ResxLocalizationProvider.DefaultDictionary="Languages"
       mc:Ignorable="d" 
       d:DesignHeight="1500" d:DesignWidth="800"
       Scrollable="True"
@@ -22,11 +26,11 @@
                     <TextBlock
                         FontSize="13"
                         FontWeight="Medium"
-                        Text="触摸键盘主题色" />
+                        Text="{lex:Loc DIYPage_ScreenKeyboard}" />
                     <TextBlock
                         FontSize="12"
                         Foreground="{DynamicResource TextFillColorSecondaryBrush}"
-                        Text="开启后触摸键盘将跟随系统主题色" />
+                        Text="{lex:Loc DIYPage_ScreenKeyboardSubtitle}" />
                 </StackPanel>
             </ui:CardControl.Header>
             <ui:ToggleSwitch Focusable ="false" IsEnabled="False"/>
@@ -48,11 +52,11 @@
                         <TextBlock
                             FontSize="13"
                             FontWeight="Medium"
-                            Text="系统光标" />
+                            Text="{lex:Loc DIYPage_Scosor}" />
                         <TextBlock
                             FontSize="12"
                             Foreground="{DynamicResource TextFillColorSecondaryBrush}"
-                            Text="设置后自动切换主题时，系统光标也会切换" />
+                            Text="{lex:Loc DIYPage_ScosorSubtitle}" />
                     </StackPanel>
                     <ui:ToggleSwitch x:Name="MouseSwitch" Grid.Column="1" Focusable ="false" Margin="0,0,20,0" Click="MouseSwitch_Click"/>
                 </Grid>
@@ -72,7 +76,7 @@
                 <TextBlock 
                     Grid.Row="0"
                     Grid.Column="0"
-                    Text="浅色时" Margin="0,0,0,10"/>
+                    Text="{lex:Loc DIYPage_Light}" Margin="0,0,0,10"/>
                 <ToggleButton 
                     x:Name="LightMouse_white"
                     Click="LightMouse_white_Click"
@@ -102,7 +106,7 @@
                 <TextBlock 
                     Grid.Row="2"
                     Grid.Column="0"
-                    Text="深色时" Margin="0,0,0,10"/>
+                    Text="{lex:Loc DIYPage_Dark}" Margin="0,0,0,10"/>
                 <ToggleButton 
                     x:Name="DarkMouse_white"
                     Click="DarkMouse_white_Click"

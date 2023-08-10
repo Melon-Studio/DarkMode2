@@ -9,16 +9,22 @@
         xmlns:local="clr-namespace:DarkMode_2.Views"
         xmlns:pages="clr-namespace:DarkMode_2.Views.Pages"
         mc:Ignorable="d"
-        Title="DarkMode 设置中心" Height="650" Width="980"
+        xmlns:lex="http://wpflocalizeextension.codeplex.com"
+        lex:LocalizeDictionary.DesignCulture=""
+        lex:ResxLocalizationProvider.DefaultAssembly="DarkMode 2"
+        lex:ResxLocalizationProvider.DefaultDictionary="Languages"
+        Title="{lex:Loc App_Title}" Height="650" Width="980"
         Background="{ui:ThemeResource ApplicationBackgroundBrush}"
         ExtendsContentIntoTitleBar="True"
         MaxHeight="650"
         MaxWidth="980"
         MinHeight="650"
         MinWidth="980"
+        x:Name="setting_window"
         WindowBackdropType="Mica"
         WindowCornerPreference="Round"
         WindowStartupLocation="CenterScreen" Loaded="UiWindow_Loaded" ResizeMode="NoResize" Icon="/Resources/logo-new.ico">
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -56,22 +62,22 @@
                 <ui:NavigationStore.Items>
                     <ui:NavigationItem
                         Cache="True"
-                        Content="时间"
+                        Content="{lex:Loc Navbar_Time}"
                         Icon="TimeAndWeather24"
                         PageTag="SetTime"
                         PageType="{x:Type pages:SetTimes}"/>
                     <ui:NavigationItem
-                        Content="壁纸"
+                        Content="{lex:Loc Navbar_Wallpaper}"
                         Icon="Wallpaper24"
                         PageTag="Wallpaper"
                         PageType="{x:Type pages:SetWallpaper}"/>
                     <ui:NavigationItem
-                        Content="自定义"
+                        Content="{lex:Loc Navbar_custom}"
                         Icon="Pen24"
                         PageTag="DIY"
                         PageType="{x:Type pages:SetDIY}" />
                     <ui:NavigationItem
-                        Content="实验室"
+                        Content="{lex:Loc Navbar_Laboratory}"
                         Icon="BrainCircuit24"
                         PageTag="More"
                         PageType="{x:Type pages:SetMore}"/>
@@ -81,12 +87,12 @@
                      底部按钮
                     -->
                     <ui:NavigationItem
-                        Content="关于"
+                        Content="{lex:Loc Navbar_About}"
                         Icon="Info24"
                         PageTag="About"
                         PageType="{x:Type pages:SetAbout}"/>
                     <ui:NavigationItem
-                        Content="设置"
+                        Content="{lex:Loc Navbar_Settings}"
                         Icon="Settings24"
                         PageTag="Setting"
                         PageType="{x:Type pages:SetSetting}"/>
@@ -135,13 +141,13 @@
             x:Name="RootDialog"
             Grid.Row="0"
             Grid.RowSpan="2"
-            ButtonLeftName="确定"
-            ButtonRightName="取消"/>
+            ButtonLeftName="{lex:Loc Dialog_LeftButtonText}"
+            ButtonRightName="{lex:Loc Dialog_RightButtonText}"/>
         <!--
             标题
         -->
         <ui:TitleBar
-            Title="DarkMode 设置中心"
+            Title="{lex:Loc App_Title}"
             ForceShutdown="False"
             Icon="pack://application:,,,/Resources/logo-new.ico"
             MinimizeToTray="False"

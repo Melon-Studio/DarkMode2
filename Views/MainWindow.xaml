@@ -7,6 +7,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
         xmlns:local="clr-namespace:DarkMode_2.Views"
+        xmlns:lex="http://wpflocalizeextension.codeplex.com"
+        lex:LocalizeDictionary.DesignCulture=""
+        lex:ResxLocalizationProvider.DefaultAssembly="DarkMode 2"
+        lex:ResxLocalizationProvider.DefaultDictionary="Languages"
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance local:MainWindow, IsDesignTimeCreatable=False}"
         ShowInTaskbar="False"
@@ -42,12 +46,12 @@
                         <ContextMenu>
                             <ui:MenuItem
                                 Click="Start_OnClick"
-                                Header="设置"
+                                Header="{lex:Loc NotifyMenu_Settings}"
                                 SymbolIcon="Settings24"
                                 Tag="Settings" />
                             <ui:MenuItem
                                 Click="Exit_OnClick"
-                                Header="退出"
+                                Header="{lex:Loc NotifyMenu_Exit}"
                                 SymbolIcon="ArrowExit20"
                                 Tag="Exit" />
                         </ContextMenu>

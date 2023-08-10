@@ -12,6 +12,8 @@ using System.Reflection;
 using System.Windows;
 using Wpf.Ui.Mvvm.Contracts;
 using Wpf.Ui.Mvvm.Services;
+using WPFLocalizeExtension.Engine;
+
 
 namespace DarkMode_2;
 
@@ -86,8 +88,9 @@ public partial class App
         {
             Directory.CreateDirectory(logDirectory);
         }
-
         //启动程序入口
+
         await _host.StartAsync();
+
     }
 }

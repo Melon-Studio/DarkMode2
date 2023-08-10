@@ -12,7 +12,7 @@ using Wpf.Ui.Common;
 using Wpf.Ui.Controls.Interfaces;
 using Wpf.Ui.Mvvm.Contracts;
 using System.Runtime.InteropServices;
-
+using log4net;
 
 namespace DarkMode_2.Views.Pages;
 
@@ -21,6 +21,8 @@ namespace DarkMode_2.Views.Pages;
 /// </summary>
 public partial class SetTimes
 {
+
+    private static readonly ILog log = LogManager.GetLogger(typeof(SetTimes));
     private readonly ISnackbarService _snackbarService;
 
     private readonly IDialogControl _dialogControl;
@@ -120,7 +122,7 @@ public partial class SetTimes
         
         if(state == "false" && SunRiseSet.IsChecked == true) 
         {
-            OpenDialog("是否允许 DarkMode 访问你的精确位置", "\nDarkMode 使用 Windows 位置服务获取设备所在地的地理位置，并计算出日出日落时间。");
+            OpenDialog(LanguageHandler.GetLocalizedString("SetTimesPage_Tip1"), LanguageHandler.GetLocalizedString("SetTimesPage_Tip2"));
         }
         if(SunRiseSet.IsChecked == false)
         {
@@ -239,7 +241,8 @@ public partial class SetTimes
             endTimeMinutes.IsEnabled = false;
         }catch(Exception ex)
         {
-            OpenSnackbar("无法完成的操作", "获取设备定位异常，请检查系统定位服务是否开启，或者检查系统代理功能。");
+            OpenSnackbar(LanguageHandler.GetLocalizedString("SetTimesPage_Tip3"), LanguageHandler.GetLocalizedString("SetTimesPage_Tip4"));
+            log.Warn(ex);
             RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\DarkMode2", true);
             key.SetValue("SunRiseSet", "false");
             key.Close();
@@ -271,7 +274,7 @@ public partial class SetTimes
             }
             else
             {
-                OpenSnackbar("提示", "你的设备不存在感光元件，无法使用此功能。");
+                OpenSnackbar(LanguageHandler.GetLocalizedString("SetTimesPage_Tip5"), LanguageHandler.GetLocalizedString("SetTimesPage_Tip6"));
                 Autostart.IsChecked = false;
             }
         }

@@ -5,6 +5,10 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:DarkMode_2.Views.Pages"
       xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+      xmlns:lex="http://wpflocalizeextension.codeplex.com"
+      lex:LocalizeDictionary.DesignCulture=""
+      lex:ResxLocalizationProvider.DefaultAssembly="DarkMode 2"
+      lex:ResxLocalizationProvider.DefaultDictionary="Languages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Scrollable="True"
@@ -33,11 +37,11 @@
                         <TextBlock
                             FontSize="13"
                             FontWeight="Medium"
-                            Text="原生壁纸" />
+                            Text="{lex:Loc WallpaperPage_NativeWallpaper}" />
                         <TextBlock
                             FontSize="12"
                             Foreground="{DynamicResource TextFillColorSecondaryBrush}"
-                            Text="设置后自动切换主题色时，原生壁纸也会随之切换" />
+                            Text="{lex:Loc WallpaperPage_NativeWallpaperSubtitle}" />
                     </StackPanel>
 
                 </Grid>
@@ -58,13 +62,13 @@
                 <TextBlock
                     Grid.Column="0"
                     Grid.Row="0"
-                    Text="浅色时"
+                    Text="{lex:Loc WallpaperPage_Light}"
                     FontSize="13" VerticalAlignment="Center" HorizontalAlignment="Center"
                     />
                 <TextBlock
                     Grid.Column="0"
                     Grid.Row="1"
-                    Text="深色时"
+                    Text="{lex:Loc WallpaperPage_Dark}"
                     FontSize="13" HorizontalAlignment="Center" VerticalAlignment="Center"
                     />
                 <TextBox
@@ -85,17 +89,17 @@
                     Click="BrowseButton1_Click"
                     Grid.Row="0"
                     Grid.Column="2"
-                    Content="浏览" HorizontalAlignment="Left" Margin="8,0,0,0"/>
+                    Content="{lex:Loc WallpaperPage_Browse}" HorizontalAlignment="Left" Margin="8,0,0,0"/>
                 <ui:Button 
                     Click="BrowseButton2_Click"
                     Grid.Row="1"
                     Grid.Column="2"
-                    Content="浏览" Margin="8,0,0,0"/>
+                    Content="{lex:Loc WallpaperPage_Browse}" Margin="8,0,0,0"/>
                 <ui:Button 
                     Click="Save1_Click"
                     Grid.Row="2"
                     Grid.Column="3"
-                    Content="保存" HorizontalAlignment="Right" Margin="0,0,20,0" Width="100"/>
+                    Content="{lex:Loc WallpaperPage_Save}" HorizontalAlignment="Right" Margin="0,0,20,0" Width="100"/>
             </Grid>
         </ui:CardExpander>
 
@@ -115,11 +119,11 @@
                         <TextBlock
                             FontSize="13"
                             FontWeight="Medium"
-                            Text="Wallpaper Engine 壁纸" />
+                            Text="{lex:Loc WallpaperPage_WallpaperEngine}" />
                         <TextBlock
                             FontSize="12"
                             Foreground="{DynamicResource TextFillColorSecondaryBrush}"
-                            Text="设置后自动切换主题色时，Wallpaper Engine 壁纸也会随之切换" />
+                            Text="{lex:Loc WallpaperPage_WallpaperEngineSubtitle}" />
                     </StackPanel>
 
                 </Grid>
@@ -144,7 +148,7 @@
                 <TextBlock
                     Grid.Column="0"
                     Grid.Row="0"
-                    Text="设置 Wallpaper Engine 路径" Margin="0,0,5,5"/>
+                    Text="{lex:Loc WallpaperPage_WallpaperEnginePath}" Margin="0,0,5,5"/>
                 <ui:TextBox 
                     x:Name="WePath"
                     Grid.Column="0"
@@ -157,17 +161,17 @@
                     Grid.Column="1"
                     Grid.Row="1"
                     Icon="Search16"
-                    Content="自动搜索" Height="31" Width="120" Margin="5,0,0,0"/>
+                    Content="{lex:Loc WallpaperPage_AutoSearch}" Height="31" Width="120" Margin="5,0,0,0"/>
                 <ui:Button 
                     Click="ManualButton_Click"
                     Grid.Column="1"
                     Grid.Row="1"
                     Icon="HandRight16"
-                    Content="手动选择" Height="31" Width="120" Margin="130,0,0,0"/>
+                    Content="{lex:Loc WallpaperPage_ManualSearch}" Height="31" Width="120" Margin="130,0,0,0"/>
                 <TextBlock 
                     Grid.Column="0"
                     Grid.Row="2"
-                    Text="浅色时" Margin="0,5,5,5"/>
+                    Text="{lex:Loc WallpaperPage_Light}" Margin="0,5,5,5"/>
                 <ui:TextBox 
                     x:Name="LightBox2"
                     Grid.Column="0"
@@ -177,11 +181,11 @@
                     Grid.Column="1"
                     Grid.Row="3"
                     x:Name="BroLight"
-                    Content="浏览" Height="31" Width="52" Margin="5,0,0,0"/>
+                    Content="{lex:Loc WallpaperPage_Browse}" Height="31" Width="52" Margin="5,0,0,0"/>
                 <TextBlock 
                     Grid.Column="0"
                     Grid.Row="4"
-                    Text="深色时" Margin="0,5,5,5"/>
+                    Text="{lex:Loc WallpaperPage_Dark}" Margin="0,5,5,5"/>
                 <ui:TextBox 
                     x:Name="DarkBox2"
                     Grid.Column="0"
@@ -191,12 +195,12 @@
                     x:Name="BroDark"
                     Grid.Column="1"
                     Grid.Row="5"
-                    Content="浏览" Height="30" Width="52" Margin="5,0,0,0"/>
+                    Content="{lex:Loc WallpaperPage_Browse}" Height="30" Width="52" Margin="5,0,0,0"/>
                 <ui:Button 
                     Click="Save2_Click"
                     Grid.Column="3"
                     Grid.Row="6"
-                    Content="保存"
+                    Content="{lex:Loc WallpaperPage_Save}"
                     Margin="112,0,0,0" 
                     Width="100" Height="31"/>
             </Grid>

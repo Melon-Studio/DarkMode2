@@ -45,6 +45,7 @@ public partial class MainWindow : INavigationWindow
 
     private readonly ITaskBarService _taskBarService;
 
+    private LanguageHandler _languageHandler;
     public MainWindowViewModel ViewModel
     {
         get;
@@ -197,6 +198,8 @@ public partial class MainWindow : INavigationWindow
     }
     public void SwitchService(Object myObject, EventArgs myEventArgs)
     {
+        _languageHandler = new LanguageHandler(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "i18n"));
+        _languageHandler.ChangeLanguage(RegistryInit.GetSavedLanguageCode());
         RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\DarkMode2", true);
         //判断是否在浅色时间段内
         string startLightTime = key.GetValue("startTime").ToString();
@@ -278,6 +281,9 @@ public partial class MainWindow : INavigationWindow
 
     private void Window_Loaded(object sender, RoutedEventArgs e)
     {
+        _languageHandler = new LanguageHandler(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "i18n"));
+        _languageHandler.ChangeLanguage(RegistryInit.GetSavedLanguageCode());
+
         //隐藏窗口
         this.Hide();
         //消息通知
@@ -287,9 +293,7 @@ public partial class MainWindow : INavigationWindow
             new ToastContentBuilder()
                 .AddArgument("action", "viewConversation")
                 .AddArgument("conversationId", 9813)
-                //.AddText("DarkMode 通知")
                 .AddText(LanguageHandler.GetLocalizedString("MainWindow_Tip7"))
-                //.AddText("DarkMode 运行中，配置请点击DarkMode图标")
                 .AddText(LanguageHandler.GetLocalizedString("MainWindow_Tip8"))
                 .Show();
         }

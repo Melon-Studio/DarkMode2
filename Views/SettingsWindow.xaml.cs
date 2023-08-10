@@ -91,6 +91,7 @@ public partial class SettingsWindow : INavigationWindow
             }
         }
         key.Close();
+
     }
     public Frame GetFrame()
         => RootFrame;

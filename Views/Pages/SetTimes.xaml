@@ -210,7 +210,7 @@
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="60" />
+                    <ColumnDefinition Width="100" />
                     <ColumnDefinition Width="3*" />
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />

@@ -265,27 +265,22 @@ public partial class SetTimes
     {
         RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\DarkMode2", true);
         string state = key.GetValue("PhotosensitiveMode").ToString();
-        if (state == "false" && SunRiseSet.IsChecked == true)
+        if (state == "false")
         {
             _lightSensor = LightSensor.GetDefault();
             if (_lightSensor != null)
             {
                 key.SetValue("PhotosensitiveMode", "true");
+                Autostart.IsChecked = true;
             }
             else
             {
+                key.SetValue("PhotosensitiveMode", "false");
                 OpenSnackbar(LanguageHandler.GetLocalizedString("SetTimesPage_Tip5"), LanguageHandler.GetLocalizedString("SetTimesPage_Tip6"));
                 Autostart.IsChecked = false;
             }
         }
-        if (SunRiseSet.IsChecked == false)
-        {
-            key.SetValue("PhotosensitiveMode", "false");
-        }
         key.Close();
-
-
-        
         
     }
     public static int GetBrightness()

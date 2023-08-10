@@ -57,7 +57,7 @@
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="107*" />
+                    <ColumnDefinition Width="180*" />
                     <ColumnDefinition Width="260*" />
                 </Grid.ColumnDefinitions>
 
@@ -76,7 +76,7 @@
                     Grid.Column="1"
                     Grid.Row="1"
                     Content="{lex:Loc MorePage_Save}"
-                    Margin="5,0,0,0" Height="31" Width="52"/>
+                    Margin="5,0,0,0" Height="31" Width="auto"/>
             </Grid>
 
         </ui:CardExpander>

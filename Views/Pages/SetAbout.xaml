@@ -201,10 +201,10 @@
                 <TextBlock
                     Grid.Column="0"
                     Grid.Row="0"
-                    TextWrapping="Wrap"
+                    TextWrapping="WrapWithOverflow"
                     Text="{lex:Loc AboutPage_PrivacyPolicyContent}"
                     FontSize="13"
-                    Margin="0,0,0,10"
+                    Margin="0,0,0,10" LineStackingStrategy="MaxHeight" FontStretch="Normal"
                     />
 
             </Grid>

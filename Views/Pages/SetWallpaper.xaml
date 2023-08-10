@@ -161,13 +161,13 @@
                     Grid.Column="1"
                     Grid.Row="1"
                     Icon="Search16"
-                    Content="{lex:Loc WallpaperPage_AutoSearch}" Height="31" Width="120" Margin="5,0,0,0"/>
+                    Content="{lex:Loc WallpaperPage_AutoSearch}" Height="31" Width="auto" Margin="5,0,0,0"/>
                 <ui:Button 
                     Click="ManualButton_Click"
                     Grid.Column="1"
                     Grid.Row="1"
                     Icon="HandRight16"
-                    Content="{lex:Loc WallpaperPage_ManualSearch}" Height="31" Width="120" Margin="130,0,0,0"/>
+                    Content="{lex:Loc WallpaperPage_ManualSearch}" Height="31" Width="auto" Margin="140,0,0,0"/>
                 <TextBlock 
                     Grid.Column="0"
                     Grid.Row="2"
@@ -181,7 +181,7 @@
                     Grid.Column="1"
                     Grid.Row="3"
                     x:Name="BroLight"
-                    Content="{lex:Loc WallpaperPage_Browse}" Height="31" Width="52" Margin="5,0,0,0"/>
+                    Content="{lex:Loc WallpaperPage_Browse}" Height="31" Width="auto" Margin="5,0,0,0"/>
                 <TextBlock 
                     Grid.Column="0"
                     Grid.Row="4"
@@ -195,7 +195,7 @@
                     x:Name="BroDark"
                     Grid.Column="1"
                     Grid.Row="5"
-                    Content="{lex:Loc WallpaperPage_Browse}" Height="30" Width="52" Margin="5,0,0,0"/>
+                    Content="{lex:Loc WallpaperPage_Browse}" Height="30" Width="auto" Margin="5,0,0,0"/>
                 <ui:Button 
                     Click="Save2_Click"
                     Grid.Column="3"

@@ -178,7 +178,18 @@
     <value>Privacy Policy</value>
   </data>
   <data name="AboutPage_PrivacyPolicyContent" xml:space="preserve">
-    <value>Thank you for using DarkMode. We take your privacy and data security seriously. To better protect your personal information, we have written the following Privacy Policy:&amp;#x000A; &amp;#x000A;     1. This software is committed to strictly complying with laws, regulations, and privacy protection principles and will not disclose user privacy data over the network.&amp;#x000A;     2. This software has administrator privileges but will not abuse this privilege to maliciously damage user data.&amp;#x000A;     3. Features like sunrise and sunset mode require internet access for location. Please make sure you have agreed and authorized this software to access your location information before using these features.&amp;#x000A;     4. This software also uses the internet to report version numbers and other information for data statistics (such as user numbers and channel distribution). We promise not to disclose users' personal information in any form.&amp;#x000A;     5. This software collects necessary user information, such as device information, network information, error logs, etc., to improve software performance and user experience. We promise not to use this information for illegal purposes or disclose it to third parties.&amp;#x000A;     6. Under specific circumstances, in order to protect users' rights and comply with laws and regulations, this software may disclose user information. For example, when requested by government agencies or judicial authorities, or to protect the interests of this software, other users, or public interests.&amp;#x000A;     7. Users have the right to contact the developer to delete their personal information at any time. If you have any questions, complaints, or concerns about the Privacy Policy, you can contact the developer through the contact information provided by us. We will do our best to solve problems and protect the security of your personal information.&amp;#x000A; &amp;#x000A;     Please read and understand the above Privacy Policy carefully and follow our commitment to user privacy. If you do not agree with any content of this Privacy Policy, you can choose to stop using this software. If you continue to use this software, it means you have understood and agreed to the above terms.</value>
+    <value>Thank you for using DarkMode. We take your privacy and data security seriously. 
+
+To better protect your personal information, we have written the following Privacy Policy:
+1. This software is committed to strictly complying with laws, regulations, and privacy protection principles and will not disclose user privacy data over the network.
+2. This software has administrator privileges but will not abuse this privilege to maliciously damage user data.
+3. Features like sunrise and sunset mode require internet access for location. Please make sure you have agreed and authorized this software to access your location information before using these features.
+4. This software also uses the internet to report version numbers and other information for data statistics (such as user numbers and channel distribution). We promise not to disclose users' personal information in any form.
+5. This software collects necessary user information, such as device information, network information, error logs, etc., to improve software performance and user experience. We promise not to use this information for illegal purposes or disclose it to third parties.
+6. Under specific circumstances, in order to protect users' rights and comply with laws and regulations, this software may disclose user information. For example, when requested by government agencies or judicial authorities, or to protect the interests of this software, other users, or public interests.
+7. Users have the right to contact the developer to delete their personal information at any time. If you have any questions, complaints, or concerns about the Privacy Policy, you can contact the developer through the contact information provided by us. We will do our best to solve problems and protect the security of your personal information.
+
+Please read and understand the above Privacy Policy carefully and follow our commitment to user privacy. If you do not agree with any content of this Privacy Policy, you can choose to stop using this software. If you continue to use this software, it means you have understood and agreed to the above terms.</value>
   </data>
   <data name="AboutPage_PrivacyPolicySubtitle" xml:space="preserve">
     <value>Explanations for some behaviors by DarkMode</value>
@@ -265,7 +276,7 @@
     <value>Save</value>
   </data>
   <data name="MorePage_Tips" xml:space="preserve">
-    <value>Experimental features will be launched in the custom group after successful testing, and may be deleted at any time.</value>
+    <value>Experimental function, can be removed at any time.</value>
   </data>
   <data name="Navbar_About" xml:space="preserve">
     <value>About</value>
@@ -439,22 +450,22 @@
     <value>Manually set the time for color mode change</value>
   </data>
   <data name="TimePage_DarkMode" xml:space="preserve">
-    <value>Dark Mode:</value>
+    <value>Dark:</value>
   </data>
   <data name="TimePage_Hour" xml:space="preserve">
-    <value>Hour</value>
+    <value>H</value>
   </data>
   <data name="TimePage_Latitude" xml:space="preserve">
     <value>Latitude:</value>
   </data>
   <data name="TimePage_LightMode" xml:space="preserve">
-    <value>Light Mode:</value>
+    <value>Light:</value>
   </data>
   <data name="TimePage_Longitude" xml:space="preserve">
     <value>Longitude:</value>
   </data>
   <data name="TimePage_Minute" xml:space="preserve">
-    <value>Minute</value>
+    <value>M</value>
   </data>
   <data name="TimePage_PhotosensitiveMode" xml:space="preserve">
     <value>Photosensitive Mode</value>

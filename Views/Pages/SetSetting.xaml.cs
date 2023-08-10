@@ -11,6 +11,7 @@ using System.IO;
 using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Threading;
 using Wpf.Ui.Appearance;
 using Wpf.Ui.Common;
 using Wpf.Ui.Mvvm.Contracts;
@@ -125,6 +126,7 @@ public partial class SetSetting
         string selectedLanguageCode = _settings.GetLanguageCodeByName(languageCombox.SelectedItem.ToString());
         RegistryInit.SaveLanguageCode(selectedLanguageCode);
         _languageHandler.ChangeLanguage(RegistryInit.GetSavedLanguageCode());
+        Refresh();
     }
 
     private void BingData()
@@ -362,6 +364,19 @@ public partial class SetSetting
     {
         //注册表重置
         RegistryInit.RegistryReset();
+    }
+
+    public void Refresh()
+    {
+        DispatcherFrame frame = new DispatcherFrame();
+        Dispatcher.CurrentDispatcher.BeginInvoke(DispatcherPriority.Background,
+            new DispatcherOperationCallback(delegate (object f)
+            {
+                ((DispatcherFrame)f).Continue = false;
+                return null;
+            }
+                ), frame);
+        Dispatcher.PushFrame(frame);
     }
 
     

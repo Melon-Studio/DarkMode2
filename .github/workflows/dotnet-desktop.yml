@@ -3,7 +3,7 @@ name: .NET Desktop Workflow
 on:
   push:
     branches:
-      - main
+      - release
 
 jobs:
   build-and-analyze:

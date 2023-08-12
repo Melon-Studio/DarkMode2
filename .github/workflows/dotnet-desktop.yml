@@ -28,13 +28,15 @@ jobs:
       uses: github/codeql-action/init@v1
 
     - name: Build CodeQL database
-      uses: github/codeql-action/build@v1
-
+      run: |
+        codeql database create -l csharp --source-root . YourDatabaseName
+        codeql database analyze YourDatabaseName
+        
     - name: Upload CodeQL results
       uses: actions/upload-artifact@v2
       with:
         name: codeql-results
-        path: .codeql
+        path: YourDatabaseName
 
   analyze-on-pr:
     needs: build-and-analyze

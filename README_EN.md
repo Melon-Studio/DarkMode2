@@ -61,11 +61,8 @@ Registry Editor in Windows search, open it, and enter
 2. How can I avoid frequent UAC prompts?
 
 If you encounter UAC prompts when starting up, it means you have enabled automatic sunrise-sunset time updates. This is because the software automatically updates sunrise-sunset time on startup, and it cannot avoid invoking administrator privileges. Alternatively, it might be triggered by UAC prompts when modifying system registry items during switching. If you want to prevent UAC prompts permanently, you can right-click on 
-DarkMode 2.exe -> select 
-Properties -> select 
-Run this program as an administrator.
 
----
+`DarkMode 2.exe` -> select `Properties` -> select `Run this program as an administrator`.
 
 ## 🧷Open Source License
 

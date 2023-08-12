@@ -30,9 +30,10 @@ More features are in development; feel free to submit issues to add functionalit
 
 ## 📀System Requirements
 
-**Operating System**: Windows 10 / 11
-**System Architecture**: x64 / arm64
-**Required Framework**: .NET Framework 4.7.2
+- **Operating System**: Windows 10 / 11
+- **System Architecture**: x64 / arm64
+- **Required Framework**: .NET Framework 4.7.2
+  
 If your system doesn't have the framework, [click here](https://dotnet.microsoft.com/en-us/download/dotnet-framework/thank-you/net472-web-installer) to install it.
 
 ---

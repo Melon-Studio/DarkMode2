@@ -1,4 +1,4 @@
-# ![Logo](./docs/ok.png)
+# ![Logo](./docs/dark.jpg)
 
 <p align="center"><i>Logo图标创意来源于Emoji表情合成器</i></p>
 

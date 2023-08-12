@@ -7,6 +7,7 @@ using System.Collections;
 using System.Configuration.Install;
 using System.Runtime.InteropServices;
 using System.ServiceProcess;
+using System.Threading.Tasks;
 using System.Timers;
 using System.Windows;
 using Windows.Devices.Sensors;
@@ -90,10 +91,12 @@ public partial class DeveloperModeWindow
 
     
 
-    private void Button_Click(object sender, RoutedEventArgs e)
+    private async void Button_Click(object sender, RoutedEventArgs e)
     {
         // TUDO:TEST
-        RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\DarkMode2", true);
+        DownloadWindow downloadWindow = new DownloadWindow("2.1.2.20230809-Release");
+        downloadWindow.ShowDialog();
+        
     }
     
     private void InstallService_Click(object sender, RoutedEventArgs e)

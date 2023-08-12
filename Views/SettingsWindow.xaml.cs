@@ -13,6 +13,7 @@ using DarkMode_2.Models;
 using log4net;
 using System.Windows.Data;
 using System.Globalization;
+using DarkMOde_2.Services.Contracts;
 
 namespace DarkMode_2.Views;
 
@@ -28,18 +29,21 @@ public partial class SettingsWindow : INavigationWindow
 
     private readonly ITaskBarService _taskBarService;
 
+    private readonly ITestWindowService _testWindowService;
+
 
     public SettingsViewModel ViewModel
     {
         get;
     }
-    public SettingsWindow(SettingsViewModel viewModel, IThemeService themeServices, INavigationService navigationService, IPageService pageService, IThemeService themeService, ITaskBarService taskBarService, ISnackbarService snackbarService, IDialogService dialogService)
+    public SettingsWindow(SettingsViewModel viewModel, IThemeService themeServices, ITestWindowService testWindowService, INavigationService navigationService, IPageService pageService, IThemeService themeService, ITaskBarService taskBarService, ISnackbarService snackbarService, IDialogService dialogService)
     {
         log.Info("DarkMode 正在运行");
         ViewModel = viewModel;
         DataContext = this;
         _themeService = themeServices;
         _taskBarService = taskBarService;
+        _testWindowService = testWindowService;
         InitializeComponent();
         SetPageService(pageService);
         navigationService.SetNavigationControl(RootNavigation);

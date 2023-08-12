@@ -66,6 +66,8 @@ namespace DarkMode_2.Models
                     key.SetValue("GameMode", "false");
                     //Wallpaper Engine安装路径
                     key.SetValue("WeInstallPath", "");
+                    //版本公告
+                    key.SetValue("AppVersion", VersionControl.Version());
                     key.Close();
                 }
             }
@@ -125,6 +127,8 @@ namespace DarkMode_2.Models
                 key.SetValue("GameMode", "false");
                 //Wallpaper Engine安装路径
                 key.SetValue("WeInstallPath", "");
+                //版本公告
+                key.SetValue("AppVersion", VersionControl.Version());
                 key.Close();
 
             }

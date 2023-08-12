@@ -130,4 +130,36 @@ public partial class SetWallpaper
     {
         _snackbarService.Show(title, connect, SymbolRegular.FoodCake24);
     }
+
+    private void DeleteButton1_Click(object sender, System.Windows.RoutedEventArgs e)
+    {
+        LightBox1.Text = null;
+        RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\DarkMode2", true);
+        key.SetValue("NativeLight", "");
+        key.Close();
+    }
+
+    private void DeleteButton2_Click(object sender, System.Windows.RoutedEventArgs e)
+    {
+        DarkBox1.Text = null;
+        RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\DarkMode2", true);
+        key.SetValue("NativeDark", "");
+        key.Close();
+    }
+
+    private void DeleteButton3_Click(object sender, System.Windows.RoutedEventArgs e)
+    {
+        LightBox2.Text = null;
+        RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\DarkMode2", true);
+        key.SetValue("WeLight", "");
+        key.Close();
+    }
+
+    private void DeleteButton4_Click(object sender, System.Windows.RoutedEventArgs e)
+    {
+        DarkBox2.Text = null;
+        RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\DarkMode2", true);
+        key.SetValue("WeDark", "");
+        key.Close();
+    }
 }

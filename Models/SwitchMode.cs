@@ -1,11 +1,12 @@
 ﻿using Microsoft.Win32;
 using System;
+using System.Text.RegularExpressions;
 
 namespace DarkMode_2.Models;
 
 public class SwitchMode
 {
-    public static void switchMode(string mode)
+    public async static void switchMode(string mode)
     {
         //注册表变量初始化
         RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\DarkMode2", true);
@@ -185,9 +186,28 @@ public class SwitchMode
                 keyboard2.SetValue("KeyTransparency", Convert.ToInt32("1", 57));
             }
         }
+
+        //自动更新
+        Update update = new Update();
+        string res = await update.CheckUpdate();
+        Match match = Regex.Match(res, @"\d+\.\d+\.\d+\.\d+-\w+");
+        if (match.Success)
+        {
+            DownloadManager download = new DownloadManager();
+            download.DownloadCompleted += DownloadManager_DownloadCompleted;
+            string url = new JsonSerialization().FileDownloadUrl(res);
+            await download.DownloadFileAsync(url);
+        }
+
         key.Close();
         sysKey.Close();
         cursorKey.Close();
     }
 
+    private static void DownloadManager_DownloadCompleted(string obj)
+    {
+        RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\DarkMode2", true);
+        key.SetValue("InstallUpdate", "true");
+        key.Close();
+    }
 }

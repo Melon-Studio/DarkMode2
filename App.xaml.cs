@@ -77,6 +77,9 @@ public partial class App
 
             services.AddTransient<Views.DeveloperModeWindow>();
             services.AddTransient<DeveloperModeViewModel>();
+
+            services.AddTransient<Views.DownloadWindow>();
+            services.AddTransient<DownloadWindowViewModel>();
         }).Build();
 
     private async void OnStartup(object sender, StartupEventArgs e)

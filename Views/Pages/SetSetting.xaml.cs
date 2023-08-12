@@ -167,19 +167,17 @@ public partial class SetSetting
     //自动更新
     private void AutoUpdate_onClick(object sender, RoutedEventArgs e)
     {
-        //RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\DarkMode2", true);
-        //string state = key.GetValue("AutoUpdate").ToString();
-        //if(state == "true")
-        //{
-        //    key.SetValue("AutoUpdate", "false");
-        //    key.Close();
-        //}else if(state == "false")
-        //{
-        //    key.SetValue("AutoUpdate", "true");
-        //    key.Close();
-        //}
-        OpenSnackbar(LanguageHandler.GetLocalizedString("SetSettingPage_Tip7"));
-        AutoUpdate.IsChecked = false;
+        RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\DarkMode2", true);
+        string state = key.GetValue("AutoUpdate").ToString();
+        if(state == "true")
+        {
+            key.SetValue("AutoUpdate", "false");
+            key.Close();
+        }else if(state == "false")
+        {
+            key.SetValue("AutoUpdate", "true");
+            key.Close();
+        }
 
     }
     //自动更新日出日落时间

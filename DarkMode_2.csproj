@@ -152,6 +152,7 @@
     <Compile Include="Models\Colors\Pa__one.cs" />
     <Compile Include="Models\DarkModeException.cs" />
     <Compile Include="Models\DetermineSystemColorMode.cs" />
+    <Compile Include="Models\DownloadManager.cs" />
     <Compile Include="Models\JsonSerialization.cs" />
     <Compile Include="Models\LanguageHandler.cs" />
     <Compile Include="Models\LanguageSettings.cs" />
@@ -179,6 +180,7 @@
     <Compile Include="Services\TestWindowService.cs" />
     <Compile Include="ViewModels\ColorsViewModel.cs" />
     <Compile Include="ViewModels\DeveloperModeViewModel.cs" />
+    <Compile Include="ViewModels\DownloadWindowViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="ViewModels\SetAboutViewModel.cs" />
     <Compile Include="ViewModels\SetWallpaperViewModel.cs" />
@@ -192,6 +194,9 @@
     </Compile>
     <Compile Include="Views\Diagnostics\DebuggingLayerView.xaml.cs">
       <DependentUpon>DebuggingLayerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DownloadWindow.xaml.cs">
+      <DependentUpon>DownloadWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Pages\Colors.xaml.cs">
       <DependentUpon>Colors.xaml</DependentUpon>
@@ -224,6 +229,10 @@
     <Page Include="Views\Diagnostics\DebuggingLayerView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\DownloadWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -305,6 +314,9 @@
   <ItemGroup>
     <PackageReference Include="log4net">
       <Version>2.0.15</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft-WindowsAPICodePack-Shell">
+      <Version>1.1.5</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Extensions.Hosting">
       <Version>7.0.1</Version>

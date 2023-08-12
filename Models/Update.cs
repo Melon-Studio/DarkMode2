@@ -1,12 +1,14 @@
-﻿using Microsoft.Win32;
+﻿using log4net;
+using Microsoft.Win32;
 using Newtonsoft.Json.Linq;
 using System;
 using System.IO;
-using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Net.NetworkInformation;
-using System.Web;
-using System.Web.UI;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace DarkMode_2.Models;
 
@@ -15,6 +17,12 @@ public class Update
     public static int state;
     public static int useChannel;
     public static string need;
+    private readonly HttpClient _httpClient = new HttpClient();
+    private static readonly ILog log = LogManager.GetLogger(typeof(Update));
+
+    private static string username = "6get-xiaofan";
+    private static string token = "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"; //此 Token 仅限访问公开库的基本信息
+    private static string credentials = Convert.ToBase64String(Encoding.ASCII.GetBytes($"{username}:{token}"));
     public int UpdateChannels()
     {
         RegistryKey appkey = Registry.CurrentUser.OpenSubKey(@"Software\DarkMode2", false);
@@ -43,54 +51,65 @@ public class Update
         }
         return useChannel;
     }
-    public string CheckUpdate()
+    public async Task<string> CheckUpdate()
     {
         int usestate = UpdateChannels();
-        string version =VersionControl.Version();
+        string version =VersionControl.Version() + "." + VersionControl.InternalVersion();
 
         if(usestate == 0) //github
         {
-            string result = Get("https://api.github.com/repos/Melon-Studio/DarkMode/releases/latest");
+            string result = await Get("https://api.github.com/repos/Melon-Studio/DarkMode2/releases/latest", "github");
             JsonSerialization jsonSerialization = new JsonSerialization();
 
             Version oldVersion = new Version(version);
             Version newVersion = new Version(jsonSerialization.ParseJson(result).ToString());
+            string tagName = jsonSerialization.ParseTagName(result);
 
-            if (oldVersion.CompareTo(newVersion) > 0)
-            {
-                //最新版本
-                need = LanguageHandler.GetLocalizedString("Update_Tip1");
-            }
-            else
-            {
-                //需要更新
-                need = LanguageHandler.GetLocalizedString("Update_Tip2") + jsonSerialization.ParseJson(result).ToString();
-            }
-        }else if(usestate == 1)//gitee
+            int comparisonResult = oldVersion.CompareTo(newVersion);
+
+            need = CheckVersion(comparisonResult, tagName);
+        }
+        else if(usestate == 1) //gitee
         {
-            string result = Get("https://gitee.com/api/v5/repos/melon_studio/darkmode/releases/latest");
+            string result = await Get("https://gitee.com/api/v5/repos/melon-studio/DarkMode2/releases/latest", "gitee");
             JsonSerialization jsonSerialization = new JsonSerialization();
 
             Version oldVersion = new Version(version);
             Version newVersion = new Version(jsonSerialization.ParseJson(result).ToString());
+            string tagName = jsonSerialization.ParseTagName(result);
 
-            if (oldVersion.CompareTo(newVersion) > 0)
-            {
-                //最新版本
-                need = LanguageHandler.GetLocalizedString("Update_Tip1");
-            }
-            else
-            {
-                //需要更新
-                need = LanguageHandler.GetLocalizedString("Update_Tip2") + jsonSerialization.ParseJson(result).ToString();
-            }
-        }else if(usestate == -1)//连接超时
+            int comparisonResult = oldVersion.CompareTo(newVersion);
+
+            need = CheckVersion(comparisonResult, tagName);
+        }
+        else if(usestate == -1)//连接超时
         {
             need = LanguageHandler.GetLocalizedString("Update_Tip3");
         }
         return need;
     }
-    public long PingIP(int IP)
+
+    private static string CheckVersion(int comparisonResult, string newVersion)
+    {
+        string need;
+        if (comparisonResult < 0)
+        {
+            // 需要更新
+            need = newVersion.ToString();
+        }
+        else if (comparisonResult == 0)
+        {
+            // 最新版本
+            need = LanguageHandler.GetLocalizedString("Update_Tip1");
+        }
+        else
+        {
+            // 旧版本比新版本新
+            need = "不要乱动注册表！难道你在开发吗? :D :D :D";
+        }
+        return need;
+    }
+    private long PingIP(int IP)
     {
         var githubIP = "192.30.255.113"; //GitHub
         var giteeIP = "212.64.63.215"; //Gitee
@@ -124,33 +143,80 @@ public class Update
         return bRet;
     }
 
-    public static string Get(string url)
+    public async Task<string> Get(string url, string channel)
     {
         string result = "";
-        try
+        if(channel == "github")
         {
-            HttpWebRequest req = (HttpWebRequest)WebRequest.Create(url);
-            req.UserAgent = "Code Sample Web Client";
-            HttpWebResponse resp = (HttpWebResponse)req.GetResponse();
-            Stream stream = resp.GetResponseStream();
-            //获取内容
-            using (StreamReader reader = new StreamReader(stream))
+            try
             {
-                result = reader.ReadToEnd();
+                _httpClient.DefaultRequestHeaders.Add("User-Agent", "Code Sample Web Client");
+                _httpClient.DefaultRequestHeaders.Add("Authorization", $"Basic {credentials}");
+
+                HttpResponseMessage response = await _httpClient.GetAsync(url);
+                response.EnsureSuccessStatusCode();
+
+                string responseContent = await response.Content.ReadAsStringAsync();
+                result = responseContent;
+            }
+            catch(Exception ex)
+            {
+                log.Error(ex);
             }
         }
-        catch
+        else
         {
-
+            try
+            {
+                HttpWebRequest req = (HttpWebRequest)WebRequest.Create(url);
+                HttpWebResponse resp = (HttpWebResponse)req.GetResponse();
+                Stream stream = resp.GetResponseStream();
+                //获取内容
+                using (StreamReader reader = new StreamReader(stream))
+                {
+                    result = reader.ReadToEnd();
+                }
+            }
+            catch (Exception ex)
+            {
+                log.Error(ex);
+            }
+            finally
+            {
+                HttpWebRequest req = (HttpWebRequest)WebRequest.Create(url);
+                HttpWebResponse resp = (HttpWebResponse)req.GetResponse();
+                Stream stream = resp.GetResponseStream();
+                stream.Close();
+            }
         }
-        finally
-        {
-            HttpWebRequest req = (HttpWebRequest)WebRequest.Create(url);
-            req.UserAgent = "Code Sample Web Client";
-            HttpWebResponse resp = (HttpWebResponse)req.GetResponse();
-            Stream stream = resp.GetResponseStream();
-            stream.Close();
-        }
+        
         return result;
+    }
+    public async Task<string> UpdateContent(string tagName)
+    {
+        string apiUrl = $"https://api.github.com/repos/Melon-Studio/DarkMode2/releases/tags/{tagName}";
+        try
+        {
+            _httpClient.DefaultRequestHeaders.Add("User-Agent", "Code Sample Web Client");
+            _httpClient.DefaultRequestHeaders.Add("Authorization", $"Basic {credentials}");
+
+            HttpResponseMessage response = await _httpClient.GetAsync(apiUrl);
+            response.EnsureSuccessStatusCode();
+
+            string responseContent = await response.Content.ReadAsStringAsync();
+            JObject releaseInfo = JObject.Parse(responseContent);
+            string releaseBody = releaseInfo["body"]?.ToString();
+
+            if (!string.IsNullOrEmpty(releaseBody))
+            {
+                return releaseBody;
+            }
+        }
+        catch(HttpRequestException ex)
+        {
+            log.Error(ex);
+            Console.WriteLine(ex.Message);
+        }
+        return LanguageHandler.GetLocalizedString("Update_Tip4");
     }
 }

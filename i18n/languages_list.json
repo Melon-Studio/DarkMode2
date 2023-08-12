@@ -6,7 +6,7 @@
   例如：Languages.zh-CN.resx, Languages.en-US.resx
   然后打开代码编辑器(Visual Studio Code)，将键值内的文字翻译为
   你想国际化的语言，翻译完成之后就到GitHub创建一个拉取请求，将你的
-  国际化文件pull到Forked仓库，等待审阅完毕后你将进入鸣谢列表。
+  国际化文件pull到Forked仓库，等待审阅完毕后你将进入贡献列表。
 
   Multi-Language Internationalization Instructions:
   Thank you for supporting software internationalization. 
@@ -16,15 +16,15 @@
   for the language you are familiar with. Rename it to the
   desired internationalized language's country code +
   standardized format. 
-  For example: languages.{country code}.resx,
-  such as Languages.zh-CN.resx, Languages.en-US.resx.
-  Then, open a code editor (Visual Studio Code) and tran-
-  slate the text within the key values to the language you
-  want to internationalize. After completing the translation,
-  proceed to create a pull request on GitHub. Pull your int-
-  ernationalization file into the Forked repository and wait 
-  for the review. Upon completion of the review, you will be 
-  added to the acknowledgment list.
+  For example: languages.{country code}.resx,such as Languag-
+  es.zh-CN.resx, Languages.en-US.resx.
+  Then, open a code editor (Visual Studio Code) and translate 
+  the text within the key values to the language you want to 
+  internationalize. 
+  After completing the translation, proceed to create a pull 
+  request on GitHub. Pull your internationalization file into
+  the Forked repository and wait for the review. Upon comple-
+  tion of the review, you will be added to the contribute list.
 */
 {
   "Languages": [

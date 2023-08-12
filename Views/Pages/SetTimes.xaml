@@ -14,7 +14,7 @@
       d:DataContext="{d:DesignInstance local:SetTimes,
                                      IsDesignTimeCreatable=False}"
       Title="SetTimes"
-      Scrollable="True">
+      Scrollable="True" Loaded="UiPage_Loaded">
 
     <VirtualizingStackPanel
         x:Name="RootPanel"

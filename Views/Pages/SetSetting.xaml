@@ -170,7 +170,7 @@
                 Icon="DeveloperBoard24"
                 Click="DeveloperMode_Click"
                 Tag="snackbar"
-                Visibility="Hidden">
+                Visibility="Visible">
             <StackPanel>
                 <TextBlock
                         FontSize="13"

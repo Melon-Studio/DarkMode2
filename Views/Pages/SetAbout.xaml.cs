@@ -1,6 +1,7 @@
 ﻿using DarkMode_2.Models;
 using System;
 using System.Runtime.InteropServices;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Wpf.Ui.Common;
 using Wpf.Ui.Mvvm.Contracts;
@@ -30,24 +31,28 @@ public partial class SetAbout
         System.Diagnostics.Process.Start("https://github.com/Melon-Studio/DarkMode2/discussions");
     }
     //检查更新
-    private void CheckUpdate_onClick(object sender, System.Windows.RoutedEventArgs e)
+    private async void CheckUpdate_onClick(object sender, System.Windows.RoutedEventArgs e)
     {
         Update update = new Update();
         ProgressRing.Visibility = System.Windows.Visibility.Visible;
         checkUpdateBtn.IsEnabled= false;
-        _ = Task.Run(() =>
-        {
-            string x = update.CheckUpdate();
-            Dispatcher.BeginInvoke(
-                new Action(() =>
-                {
-                    OpenSnackbar(x);
-                    ProgressRing.Visibility = System.Windows.Visibility.Hidden;
-                    checkUpdateBtn.IsEnabled = true;
-                })
-            );
-        });
         
+
+        string res = await update.CheckUpdate();
+        Match match = Regex.Match(res, @"\d+\.\d+\.\d+\.\d+-\w+");
+        if (match.Success)
+        {
+            DownloadWindow window = new DownloadWindow(match.Groups[1].Value);
+            window.ShowDialog();
+        }
+        else
+        {
+            OpenSnackbar(res);
+        }
+        
+        ProgressRing.Visibility = System.Windows.Visibility.Hidden;
+        checkUpdateBtn.IsEnabled = true;
+
     }
 
     private void VersionChannel_Click(object sender, System.Windows.RoutedEventArgs e)

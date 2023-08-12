@@ -11,17 +11,14 @@ using System.IO;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
-using System.Timers;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Threading;
 using Windows.Devices.Geolocation;
 using Windows.Devices.Sensors;
-using Windows.UI.Core;
 using Wpf.Ui.Controls.Interfaces;
 using Wpf.Ui.Mvvm.Contracts;
-using MessageBox = DarkMode_2.Models.MessageBox;
 using MessageBox2 = System.Windows.Forms.MessageBox;
 
 namespace DarkMode_2.Views;
@@ -91,6 +88,14 @@ public partial class MainWindow : INavigationWindow
         {
             RegistryInit.InsertRegistery("SwitchMouse", "false");
         }
+        if(appkey.GetValue("AppVersion") == null)
+        {
+            RegistryInit.InsertRegistery("SwitchMouse", VersionControl.Version());
+        }
+        if(appkey.GetValue("InstallUpdate") == null)
+        {
+            RegistryInit.InsertRegistery("InstallUpdate", "false");
+        }
         //设置初始化
         if (appkey.GetValue("TrayBar").ToString() == "false")
         {
@@ -109,7 +114,7 @@ public partial class MainWindow : INavigationWindow
         {
             AutoUpdataTime();
         }
-        //光感模式
+        //感光模式
         if(appkey.GetValue("PhotosensitiveMode").ToString() == "true")
         {
             _lightsensor = LightSensor.GetDefault();

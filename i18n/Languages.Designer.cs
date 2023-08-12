@@ -376,6 +376,60 @@ namespace DarkMode_2.i18n {
         }
         
         /// <summary>
+        ///   查找类似 取消 的本地化字符串。
+        /// </summary>
+        public static string DownloadWindow_Cancel {
+            get {
+                return ResourceManager.GetString("DownloadWindow_Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 下载 的本地化字符串。
+        /// </summary>
+        public static string DownloadWindow_Confirm {
+            get {
+                return ResourceManager.GetString("DownloadWindow_Confirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 安装 的本地化字符串。
+        /// </summary>
+        public static string DownloadWindow_Install {
+            get {
+                return ResourceManager.GetString("DownloadWindow_Install", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 下载进度： 的本地化字符串。
+        /// </summary>
+        public static string DownloadWindow_Progress {
+            get {
+                return ResourceManager.GetString("DownloadWindow_Progress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 下载速度： 的本地化字符串。
+        /// </summary>
+        public static string DownloadWindow_Speed {
+            get {
+                return ResourceManager.GetString("DownloadWindow_Speed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 发现新版本 的本地化字符串。
+        /// </summary>
+        public static string DownloadWindow_Title {
+            get {
+                return ResourceManager.GetString("DownloadWindow_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 抱歉，本程序仅支持Windows10/11的操作系统。\n你的操作系统版本是： 的本地化字符串。
         /// </summary>
         public static string MainWindow_Tip1 {
@@ -718,7 +772,7 @@ namespace DarkMode_2.i18n {
         }
         
         /// <summary>
-        ///   查找类似 \nDarkMode 使用 Windows 位置服务获取设备所在地的地理位置，并计算出日出日落时间。 的本地化字符串。
+        ///   查找类似 DarkMode 使用 Windows 位置服务获取设备所在地的地理位置，并计算出日出日落时间。 的本地化字符串。
         /// </summary>
         public static string SetTimesPage_Tip2 {
             get {
@@ -1168,6 +1222,24 @@ namespace DarkMode_2.i18n {
         }
         
         /// <summary>
+        ///   查找类似 获取公告失败，请自行前往GitHub首页查看。 的本地化字符串。
+        /// </summary>
+        public static string Update_Tip4 {
+            get {
+                return ResourceManager.GetString("Update_Tip4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 更新公告 的本地化字符串。
+        /// </summary>
+        public static string Version_Title {
+            get {
+                return ResourceManager.GetString("Version_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 自动搜索 的本地化字符串。
         /// </summary>
         public static string WallpaperPage_AutoSearch {
@@ -1191,6 +1263,15 @@ namespace DarkMode_2.i18n {
         public static string WallpaperPage_Dark {
             get {
                 return ResourceManager.GetString("WallpaperPage_Dark", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 移除 的本地化字符串。
+        /// </summary>
+        public static string WallpaperPage_Delete {
+            get {
+                return ResourceManager.GetString("WallpaperPage_Delete", resourceCulture);
             }
         }
         

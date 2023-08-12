@@ -230,6 +230,9 @@ Please read and understand the above Privacy Policy carefully and follow our com
   <data name="DIYPage_ScreenKeyboardSubtitle" xml:space="preserve">
     <value>Enabling this option will make the touch keyboard follow the system theme color</value>
   </data>
+  <data name="DownloadWindow_Title" xml:space="preserve">
+    <value>Discovering a new version</value>
+  </data>
   <data name="MainWindow_Tip1" xml:space="preserve">
     <value>Sorry, this program only supports Windows 10/11 operating systems.\nYour operating system version is:</value>
   </data>
@@ -345,7 +348,7 @@ Please read and understand the above Privacy Policy carefully and follow our com
     <value>Allow DarkMode to access your precise location</value>
   </data>
   <data name="SetTimesPage_Tip2" xml:space="preserve">
-    <value>\nDarkMode uses Windows location services to get your device's geographic location and calculate sunrise and sunset times.</value>
+    <value>DarkMode uses Windows location services to get your device's geographic location and calculate sunrise and sunset times.</value>
   </data>
   <data name="SetTimesPage_Tip3" xml:space="preserve">
     <value>Cannot complete the operation</value>
@@ -494,6 +497,12 @@ Please read and understand the above Privacy Policy carefully and follow our com
   <data name="Update_Tip3" xml:space="preserve">
     <value>Connection timed out, please check your network status</value>
   </data>
+  <data name="Update_Tip4" xml:space="preserve">
+    <value>Failed to obtain the announcement. Please go to the GitHub homepage to view it yourself.</value>
+  </data>
+  <data name="Version_Title" xml:space="preserve">
+    <value>Update Announcement</value>
+  </data>
   <data name="WallpaperPage_AutoSearch" xml:space="preserve">
     <value>Auto Search</value>
   </data>
@@ -502,6 +511,9 @@ Please read and understand the above Privacy Policy carefully and follow our com
   </data>
   <data name="WallpaperPage_Dark" xml:space="preserve">
     <value>Dark</value>
+  </data>
+  <data name="WallpaperPage_Delete" xml:space="preserve">
+    <value>Delete</value>
   </data>
   <data name="WallpaperPage_Light" xml:space="preserve">
     <value>Light</value>

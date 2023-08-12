@@ -8,7 +8,15 @@ public class JsonSerialization
     public string ParseJson(string json) //返回版本名称
     {
         JObject keyValuePairs = JObject.Parse(json);
-        string tag_name = Regex.Replace(keyValuePairs["tag_name"].ToString(), @"[A-Za-z]", "");
+        string tag_name = Regex.Match(keyValuePairs["tag_name"]?.ToString(), @"(.*?)(?=-)").Groups[1].Value; 
+
+        return tag_name;
+    }
+    public string ParseTagName(string json)
+    {
+        JObject keyValuePairs = JObject.Parse(json);
+        string tag_name = keyValuePairs["tag_name"]?.ToString();
+
         return tag_name;
     }
     public string FileDownloadUrl(string json) //返回版本下载地址

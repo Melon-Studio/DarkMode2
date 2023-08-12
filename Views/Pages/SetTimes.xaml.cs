@@ -27,6 +27,8 @@ public partial class SetTimes
 
     private readonly IDialogControl _dialogControl;
 
+    private int status = 0;
+
     private const int MonitorBrightness = 0x0000000A;
     private const int BrightnessMinimum = 0;
     private const int BrightnessMaximum = 100;
@@ -122,6 +124,7 @@ public partial class SetTimes
         
         if(state == "false" && SunRiseSet.IsChecked == true) 
         {
+            status = 1;
             OpenDialog(LanguageHandler.GetLocalizedString("SetTimesPage_Tip1"), LanguageHandler.GetLocalizedString("SetTimesPage_Tip2"));
         }
         if(SunRiseSet.IsChecked == false)
@@ -167,17 +170,20 @@ public partial class SetTimes
 
     private async void OpenDialog(string title, string connect)
     {
-        var result = await _dialogControl.ShowAndWaitAsync(title, connect);
+        await _dialogControl.ShowAndWaitAsync(title, connect);
     }
 
 
     private void DialogControlOnButtonLeftClick(object sender, RoutedEventArgs e)
     {
         var dialogControl = (IDialogControl)sender;
-        RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\DarkMode2", true);
-        key.SetValue("SunRiseSet", "true");
-        key.Close();
-        setSunRise();
+        if(status == 1)
+        {
+            RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\DarkMode2", true);
+            key.SetValue("SunRiseSet", "true");
+            key.Close();
+            setSunRise();
+        }
         dialogControl.Hide();
     }
 
@@ -185,7 +191,10 @@ public partial class SetTimes
     {
         var dialogControl = (IDialogControl)sender;
         dialogControl.Hide();
-        SunRiseSet.IsChecked= false;
+        if (status == 1)
+        {
+            SunRiseSet.IsChecked = false;
+        }
     }
 
     private void Button_Click(object sender, RoutedEventArgs e)
@@ -295,5 +304,19 @@ public partial class SetTimes
         {
             return -1;
         }
+    }
+
+    private async void UiPage_Loaded(object sender, RoutedEventArgs e)
+    {
+        Update update = new Update();
+        RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\DarkMode2", true);
+        if (VersionControl.Version() != key.GetValue("AppVersion").ToString())
+        {
+            status = 0;
+            string content = await update.UpdateContent(VersionControl.Version() + "." + VersionControl.InternalVersion() + "-" + VersionControl.Channel());
+            OpenDialog(LanguageHandler.GetLocalizedString("Version_Title"), content);
+            key.SetValue("AppVersion", VersionControl.Version());
+        }
+        key.Close();
     }
 }

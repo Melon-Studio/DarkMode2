@@ -72,12 +72,15 @@ Run this program as an administrator.
 This open-source project follows the international MIT open-source license. Please read the LICENSE file for details. You can use all the code of DarkMode2 in personal or commercial projects, but you must include a copy of the MIT open-source license in your referenced project.
 
 This project uses third-party open-source libraries:
+			
+| Name        | Author            | Copyright                                                         | License       |
+| ----------- | --------------- | ------------------------------------------------------------ | ---------- |
+| NHotKey.Wpf | Thomas Levesque | Copyright © 2020 Thomas Levesque Licensed under the Apache-2.0 License. | Apache-2.0 |
+| WPF-UI      | lepo.co         | Copyright © 2022 lepo.co Licensed under the MIT License.     | MIT        |
+| Log4net     | Apache          | Copyright © 2022 Apache Licensed under the Apache-2.0 License. | Apache-2.0 |
+| ...         | ...             | ...                                                          | ...        |
 
-Name	Author	Copyright	License
-NHotKey.Wpf	Thomas Levesque	Copyright © 2020 Thomas Levesque Licensed under the Apache-2.0 License.	Apache-2.0
-WPF-UI	lepo.co	Copyright © 2022 lepo.co Licensed under the MIT License.	MIT
-Log4net	Apache	Copyright © 2022 Apache Licensed under the Apache-2.0 License.	Apache-2.0
-...	...	...	...
+
 For more dependencies, please check [here](https://github.com/Melon-Studio/DarkMode2/network/dependencies).
 
 ---

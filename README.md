@@ -108,7 +108,7 @@ DarkMode2 特别感谢 [Microsoft Visual Studio](https://visualstudio.microsoft.
 1. Fork该仓库，并克隆你的Forked仓库到本地：
 
    ```
-   git clone https://github.com/Melon-Studio/DarkMode2.git
+   git clone https://github.com/YouUserName/DarkMode2.git
    ```
 
 2. 在本地进行修改。

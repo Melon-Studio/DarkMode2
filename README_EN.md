@@ -25,6 +25,7 @@ Join our QQ group for discussions: 695527760
 - **Ambient Light-based Switching**: Automatically switches the color mode based on changes in ambient light.
 - **System Native Wallpaper Switching**: Automatically adjusts the set system native wallpaper based on the color mode.
 - **Wallpaper Engine Wallpaper Switching**: Automatically adjusts the set Wallpaper Engine wallpaper based on the color mode.
+
 More features are in development; feel free to submit issues to add functionality suggestions to the lab.
 
 ---
@@ -109,9 +110,9 @@ Sponsorship Channel: https://afdian.net/a/DarkMode2
 
 If you're interested in contributing to DarkMode2, you can follow these steps:
 
-1. Clone the repository locally:
+1. Fork the warehouse and clone your Forked warehouse locally:
 ```
-git clone https://github.com/Melon-Studio/DarkMode2.git
+git clone https://github.com/YouUserName/DarkMode2.git
 ```
 2. Make your modifications locally.
 3. Commit your changes and create a Pull Request (PR).

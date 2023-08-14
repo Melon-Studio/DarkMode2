@@ -105,7 +105,7 @@ DarkMode2 特别感谢 [Microsoft Visual Studio](https://visualstudio.microsoft.
 
 如果您有兴趣为 DarkMode2 做出贡献，可以按照以下步骤进行：
 
-1. 将该仓库克隆到本地：
+1. Fork该仓库，并克隆你的Forked仓库到本地：
 
    ```
    git clone https://github.com/Melon-Studio/DarkMode2.git

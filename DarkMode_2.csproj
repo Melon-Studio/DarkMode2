@@ -153,11 +153,13 @@
     <Compile Include="Models\DarkModeException.cs" />
     <Compile Include="Models\DetermineSystemColorMode.cs" />
     <Compile Include="Models\DownloadManager.cs" />
+    <Compile Include="Models\Interface\IUpdate.cs" />
     <Compile Include="Models\JsonSerialization.cs" />
     <Compile Include="Models\LanguageHandler.cs" />
     <Compile Include="Models\LanguageSettings.cs" />
     <Compile Include="Models\LocationService.cs" />
     <Compile Include="Models\MessageBox.cs" />
+    <Compile Include="Models\NewVersion.cs" />
     <Compile Include="Models\RedRawWindow.cs" />
     <Compile Include="Models\RegistryInit.cs" />
     <Compile Include="Models\ReplaceWallpaper.cs" />

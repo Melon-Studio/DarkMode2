@@ -10,6 +10,7 @@ using System;
 using System.IO;
 using System.Net;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -125,6 +126,17 @@ public partial class MainWindow : INavigationWindow
         }
         appkey.Close(); 
         
+    }
+
+    // 自动检查更新
+    private async void AutoUpdate()
+    {
+        
+    }
+
+    private void DownloadManager_DownloadCompleted(string obj)
+    {
+        throw new NotImplementedException();
     }
 
     private void Timer_Tick(object sender, EventArgs e)

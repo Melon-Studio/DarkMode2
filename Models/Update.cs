@@ -17,6 +17,8 @@ public class Update
     public static int state;
     public static int useChannel;
     public static string need;
+    public static string githubUrl = "https://api.github.com/repos/Melon-Studio/DarkMode2/releases/latest";
+    public static string giteeUrl = "https://gitee.com/api/v5/repos/melon-studio/DarkMode2/releases/latest";
     private readonly HttpClient _httpClient = new HttpClient();
     private static readonly ILog log = LogManager.GetLogger(typeof(Update));
 
@@ -29,8 +31,8 @@ public class Update
         string channel = appkey.GetValue("UpdateChannels").ToString();
         if(channel == "Auto")
         {
-            long x = PingIP(0);
-            long y = PingIP(1);
+            long x = PingIP("github");
+            long y = PingIP("gitee");
 
             if(x > y)
             {
@@ -58,7 +60,7 @@ public class Update
 
         if(usestate == 0) //github
         {
-            string result = await Get("https://api.github.com/repos/Melon-Studio/DarkMode2/releases/latest", "github");
+            string result = await Get(githubUrl, "github");
             JsonSerialization jsonSerialization = new JsonSerialization();
 
             Version oldVersion = new Version(version);
@@ -71,7 +73,7 @@ public class Update
         }
         else if(usestate == 1) //gitee
         {
-            string result = await Get("https://gitee.com/api/v5/repos/melon-studio/DarkMode2/releases/latest", "gitee");
+            string result = await Get(giteeUrl, "gitee");
             JsonSerialization jsonSerialization = new JsonSerialization();
 
             Version oldVersion = new Version(version);
@@ -109,13 +111,13 @@ public class Update
         }
         return need;
     }
-    private long PingIP(int IP)
+    public long PingIP(string IP)
     {
         var githubIP = "192.30.255.113"; //GitHub
         var giteeIP = "212.64.63.215"; //Gitee
         long bRet = 99999;
 
-        if(IP == 0)
+        if(IP == "github")
         {
             try
             {
@@ -127,7 +129,7 @@ public class Update
             {
                 bRet = 99999;
             }
-        }else if(IP == 1)
+        }else if(IP == "gitee")
         {
             try
             {
@@ -219,4 +221,5 @@ public class Update
         }
         return LanguageHandler.GetLocalizedString("Update_Tip4");
     }
+
 }

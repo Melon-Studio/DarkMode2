@@ -13,7 +13,8 @@ namespace DarkMode_2.Models.Interface
             internal const string githubUrl = "https://api.github.com/repos/Melon-Studio/DarkMode2/releases/latest";
             internal const string giteeUrl = "https://gitee.com/api/v5/repos/melon-studio/DarkMode2/releases/latest";
             internal const string username = "6get-xiaofan";
-            internal const string token = "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"; //此 Token 仅限访问公开库的基本信息
+            internal const string token = "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"; //此 Token 仅限访问公开库的基本信息
+            internal const string giteeToken = "e995460832ca545707451332283aadc1";  //此 Token 仅限访问公开库的基本信息
             internal const string githubIP = "192.30.255.113";
             internal const string giteeIP = "212.64.63.215";
         }
@@ -40,24 +41,12 @@ namespace DarkMode_2.Models.Interface
         public Channel PingIp();
 
         // 版本对比: New V:TRUE | Old V:FALSE
-        public bool UpdateVersionCompared(Version OldV, Version NewV);
-
-        // Version类格式规范
-        public Version VersionStandardFormat();
+        public string UpdateVersionCompared(Version OldV, Version NewV);
 
         // 更新相关JSON解析
-        public string UpdateJsonInterpreter(string res, type type);
+        public Task<string> UpdateJsonInterpreter(string res, type type, Channel? channel);
 
-        // 获取最新版本Tag值
-        public Task<string> UpdateVersionTagName();
-
-        // 获取更新公告
-        public Task<string> UpdateContent(string tagName);
-
-        // 获取更新地址
-        public Task<string> UpdateUrl(string tagName);
-
-        // 获取更新日期
-        public Task<string> UpdateDate(string tagName);
+        // 获取对应渠道JSON
+        public Task<string> GetJson(Channel channel);
     }
 }

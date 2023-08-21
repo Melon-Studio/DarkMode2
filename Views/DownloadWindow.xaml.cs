@@ -1,7 +1,9 @@
 ﻿using DarkMode_2.Models;
+using DarkMode_2.Models.Interface;
 using System;
 using System.Diagnostics;
 using System.IO;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using Wpf.Ui.Controls.Interfaces;
@@ -17,6 +19,8 @@ namespace DarkMode_2.Views
         public INavigation RootNavigation { get; private set; }
 
         private string _version;
+
+        private string url;
         public DownloadWindow(string version)
         {
             _version = version;
@@ -41,8 +45,6 @@ namespace DarkMode_2.Views
 
                 progressBar.Visibility = Visibility.Visible;
                 speed.Visibility = Visibility.Visible;
-
-                string url = "https://gitee.com/melon-studio/DarkMode2/releases/download/2.1.2.20230809-Release/DarkMode_Release_2.1.2.20230809.zip";
                 await download.DownloadFileAsync(url);
             }
             else
@@ -87,12 +89,20 @@ namespace DarkMode_2.Views
             });
         }
 
-        private async void UiWindow_Loaded(object sender, System.Windows.RoutedEventArgs e)
+        private async void UiWindow_Loaded(object sender, RoutedEventArgs e)
         {
+            NewVersion newVersion = new NewVersion();
+            confirm.IsEnabled = false;
             version_name.Text = LanguageHandler.GetLocalizedString("DownloadWindow_Title") + _version;
-            string content = await new Update().UpdateContent(_version);
-            load_progress.Visibility = System.Windows.Visibility.Collapsed;
-            update_content.Visibility = System.Windows.Visibility.Visible;
+            IUpdate.Channel channel = newVersion.UpdateChannel();
+            string content = await newVersion.UpdateJsonInterpreter(null, IUpdate.type.Content, channel);
+
+
+            string res = await newVersion.GetJson(channel);
+            url = await newVersion.UpdateJsonInterpreter(res, IUpdate.type.DownloadUrl, channel);
+            confirm.IsEnabled = true;
+            load_progress.Visibility = Visibility.Collapsed;
+            update_content.Visibility = Visibility.Visible;
             update_content.Text = content;
         }
     }

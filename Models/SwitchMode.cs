@@ -188,16 +188,16 @@ public class SwitchMode
         }
 
         //自动更新
-        Update update = new Update();
-        string res = await update.CheckUpdate();
-        Match match = Regex.Match(res, @"\d+\.\d+\.\d+\.\d+-\w+");
-        if (match.Success)
-        {
-            DownloadManager download = new DownloadManager();
-            download.DownloadCompleted += DownloadManager_DownloadCompleted;
-            string url = new JsonSerialization().FileDownloadUrl(res);
-            await download.DownloadFileAsync(url);
-        }
+        //Update update = new Update();
+        //string res = await update.CheckUpdate();
+        //Match match = Regex.Match(res, @"\d+\.\d+\.\d+\.\d+-\w+");
+        //if (match.Success)
+        //{
+        //    DownloadManager download = new DownloadManager();
+        //    download.DownloadCompleted += DownloadManager_DownloadCompleted;
+        //    string url = new JsonSerialization().FileDownloadUrl(res);
+        //    await download.DownloadFileAsync(url);
+        //}
 
         key.Close();
         sysKey.Close();

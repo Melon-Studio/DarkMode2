@@ -33,25 +33,26 @@ public partial class SetAbout
     //检查更新
     private async void CheckUpdate_onClick(object sender, System.Windows.RoutedEventArgs e)
     {
-        Update update = new Update();
+        NewVersion update = new NewVersion();
         ProgressRing.Visibility = System.Windows.Visibility.Visible;
         checkUpdateBtn.IsEnabled= false;
         
 
         string res = await update.CheckUpdate();
-        Match match = Regex.Match(res, @"\d+\.\d+\.\d+\.\d+-\w+");
+        Match match = Regex.Match(res, @"\d+\.\d+\.\d+\.\d+");
         if (match.Success)
         {
             DownloadWindow window = new DownloadWindow(match.Groups[1].Value);
+            ProgressRing.Visibility = System.Windows.Visibility.Hidden;
+            checkUpdateBtn.IsEnabled = true;
             window.ShowDialog();
         }
         else
         {
             OpenSnackbar(res);
+            ProgressRing.Visibility = System.Windows.Visibility.Hidden;
+            checkUpdateBtn.IsEnabled = true;
         }
-        
-        ProgressRing.Visibility = System.Windows.Visibility.Hidden;
-        checkUpdateBtn.IsEnabled = true;
 
     }
 

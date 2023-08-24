@@ -33,9 +33,11 @@ DarkMode2 是一个开源软件，用于自动切换 Windows 10/11 系统的颜�
 
 - **操作系统**：Windows 10 / 11
 - **系统架构**：x64 / arm64
-- **必要框架**：.NET Framework 4.7.2
+- **必要框架**：.NET Framework 4.7.2（2.1.2及之前版本），.NET Framework 4.8（2.1.3及之后版本）
 
-如果系统没有框架，请[点此安装](https://dotnet.microsoft.com/en-us/download/dotnet-framework/thank-you/net472-web-installer)
+如果系统没有框架，请选择安装：
+[.NET Framework 4.7.2](https://dotnet.microsoft.com/en-us/download/dotnet-framework/thank-you/net472-web-installer)
+[.NET Framework 4.8](https://dotnet.microsoft.com/en-us/download/dotnet-framework/thank-you/net48-web-installer)
 
 ---
 
@@ -60,6 +62,9 @@ DarkMode2 是一个开源软件，用于自动切换 Windows 10/11 系统的颜�
    
    如果你在开机时遇到UAC弹窗，说明是你开启了自动更新日出日落时间，因为软件在启动时就会自动更新一次日出日落时间，无法避免调用管理员权限；或者是软件在执行切换时修改系统注册表项时触发的UAC弹窗。如果想一劳永逸不在让UAC弹窗显示，你可以右键`DarkMode 2.exe`->选择`属性`->选择`兼容性`->选择`以管理员身份运行此程序`。即可避免此问题
 
+3. 双击打开程序没有反应怎么办？
+
+   你可以检查你的系统UAC是否拒绝了软件的请求，并尝试关闭UAC启动软件。
 ---
 
 ## 🧷开源协议

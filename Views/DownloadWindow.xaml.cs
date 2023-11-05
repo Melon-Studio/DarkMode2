@@ -1,5 +1,6 @@
 ﻿using DarkMode_2.Models;
 using DarkMode_2.Models.Interface;
+using Microsoft.Toolkit.Uwp.Notifications;
 using System;
 using System.Diagnostics;
 using System.IO;
@@ -7,6 +8,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using Wpf.Ui.Controls.Interfaces;
+using MessageBox = DarkMode_2.Models.MessageBox;
 
 namespace DarkMode_2.Views
 {
@@ -21,10 +23,23 @@ namespace DarkMode_2.Views
         private string _version;
 
         private string url;
+
+        private string downloadPath;
         public DownloadWindow(string version)
         {
             _version = version;
             InitializeComponent();
+            this.downloadPath = DownloadManager.GetDownloadPath();
+            foreach (string d in Directory.GetFileSystemEntries(this.downloadPath))
+            {
+                if (File.Exists(d))
+                {
+                    FileInfo fi = new FileInfo(d);
+                    if (fi.Attributes.ToString().IndexOf("ReadOnly") != -1)
+                        fi.Attributes = FileAttributes.Normal;
+                    File.Delete(d);
+                }
+            }
         }
 
         bool status = false;
@@ -49,10 +64,23 @@ namespace DarkMode_2.Views
             }
             else
             {
-                string currentDirectory = AppDomain.CurrentDomain.BaseDirectory;
-                string targetExePath = Path.Combine(currentDirectory, "DarkModeUpdate.exe");
-                Process.Start(targetExePath);
-                Application.Current.Shutdown();
+                foreach (string d in Directory.GetFileSystemEntries(this.downloadPath))
+                {
+                    try
+                    {
+                        if (File.Exists(d))
+                        {
+                            Process.Start(d);
+                            ToastNotificationManagerCompat.Uninstall();
+                            Application.Current.Shutdown();
+                        }
+                    }catch (Exception ex)
+                    {
+                        MessageBox.OpenMessageBox(LanguageHandler.GetLocalizedString("DownloadWindow_Error_title"), LanguageHandler.GetLocalizedString("DownloadWindow_Error_content"));
+                        Console.WriteLine(ex.ToString());
+                    }
+                    
+                }
             }
             
         }
@@ -93,16 +121,18 @@ namespace DarkMode_2.Views
         {
             NewVersion newVersion = new NewVersion();
             confirm.IsEnabled = false;
-            version_name.Text = LanguageHandler.GetLocalizedString("DownloadWindow_Title") + _version;
             IUpdate.Channel channel = newVersion.UpdateChannel();
             string content = await newVersion.UpdateJsonInterpreter(null, IUpdate.type.Content, channel);
 
 
             string res = await newVersion.GetJson(channel);
+
+            _version = await newVersion.UpdateJsonInterpreter(res, IUpdate.type.TagName, null);
+            version_name.Text = LanguageHandler.GetLocalizedString("DownloadWindow_Title") + _version;
             url = await newVersion.UpdateJsonInterpreter(res, IUpdate.type.DownloadUrl, channel);
             confirm.IsEnabled = true;
             load_progress.Visibility = Visibility.Collapsed;
-            update_content.Visibility = Visibility.Visible;
+            update_scroll.Visibility = Visibility.Visible;
             update_content.Text = content;
         }
     }

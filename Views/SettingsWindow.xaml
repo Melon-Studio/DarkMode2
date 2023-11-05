@@ -106,7 +106,7 @@
             <Border
                 Grid.Column="1"
                 Background="{DynamicResource SettingsFillColorDefaultBrush}"
-                CornerRadius="8,0,0,0">
+                CornerRadius="8,0,0,0" Cursor="">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />

@@ -75,5 +75,11 @@ namespace DarkMode_2.Models
             }
             catch { }
         }
+
+        public static string GetDownloadPath()
+        {
+            string downloadFolderPath = Path.Combine(KnownFolders.Downloads.Path, DownloadFolderName);
+            return downloadFolderPath;
+        }
     }
 }

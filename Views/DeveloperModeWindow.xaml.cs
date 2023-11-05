@@ -91,7 +91,7 @@ public partial class DeveloperModeWindow
 
     
 
-    private async void Button_Click(object sender, RoutedEventArgs e)
+    private void Button_Click(object sender, RoutedEventArgs e)
     {
         // TUDO:TEST
         DownloadWindow downloadWindow = new DownloadWindow("2.1.2.20230809-Release");

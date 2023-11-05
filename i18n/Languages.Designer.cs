@@ -304,6 +304,24 @@ namespace DarkMode_2.i18n {
         }
         
         /// <summary>
+        ///   查找类似 您可以下载更新，如果想要禁止此功能，请转到设置禁用提示更新功能 的本地化字符串。
+        /// </summary>
+        public static string AutoUpdata_content {
+            get {
+                return ResourceManager.GetString("AutoUpdata_content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 DarkMode 有新版本了 的本地化字符串。
+        /// </summary>
+        public static string AutoUpdata_title {
+            get {
+                return ResourceManager.GetString("AutoUpdata_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 确定 的本地化字符串。
         /// </summary>
         public static string Dialog_LeftButtonText {
@@ -390,6 +408,24 @@ namespace DarkMode_2.i18n {
         public static string DownloadWindow_Confirm {
             get {
                 return ResourceManager.GetString("DownloadWindow_Confirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 无法找到安装包 的本地化字符串。
+        /// </summary>
+        public static string DownloadWindow_Error_content {
+            get {
+                return ResourceManager.GetString("DownloadWindow_Error_content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 错误 的本地化字符串。
+        /// </summary>
+        public static string DownloadWindow_Error_title {
+            get {
+                return ResourceManager.GetString("DownloadWindow_Error_title", resourceCulture);
             }
         }
         
@@ -844,7 +880,7 @@ namespace DarkMode_2.i18n {
         }
         
         /// <summary>
-        ///   查找类似 自动更新 的本地化字符串。
+        ///   查找类似 提示更新 的本地化字符串。
         /// </summary>
         public static string SettingsPage_AutoUpdate {
             get {
@@ -1191,6 +1227,15 @@ namespace DarkMode_2.i18n {
         public static string TimePage_SunriseSunsetModeSubtitle {
             get {
                 return ResourceManager.GetString("TimePage_SunriseSunsetModeSubtitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 错误 的本地化字符串。
+        /// </summary>
+        public static string ToastHelper_Error_title {
+            get {
+                return ResourceManager.GetString("ToastHelper_Error_title", resourceCulture);
             }
         }
         

@@ -1,4 +1,5 @@
 ﻿using DarkMode_2.Models;
+using DarkMode_2.Services.MessageQueue;
 using DarkMode_2.ViewModels;
 using DarkMOde_2.Services.Contracts;
 using log4net;
@@ -8,10 +9,7 @@ using NHotkey;
 using NHotkey.Wpf;
 using System;
 using System.IO;
-using System.Net;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -44,6 +42,8 @@ public partial class MainWindow : INavigationWindow
     private readonly ITaskBarService _taskBarService;
 
     private LanguageHandler _languageHandler;
+
+    private QueueService _queueService;
     public MainWindowViewModel ViewModel
     {
         get;
@@ -129,14 +129,21 @@ public partial class MainWindow : INavigationWindow
     }
 
     // 自动检查更新
-    private async void AutoUpdate()
+    private void AutoUpdate()
     {
-        
-    }
+        _queueService.AddMessage(async () =>
+        {
+            NewVersion update = new NewVersion();
 
-    private void DownloadManager_DownloadCompleted(string obj)
-    {
-        throw new NotImplementedException();
+            string res = await update.CheckUpdate();
+            Match match = Regex.Match(res, @"\d+\.\d+\.\d+\.\d+");
+            if (match.Success)
+            {
+                ToastHelper.ShowToast("AutoUpdata_title", "AutoUpdata_content");
+                DownloadWindow window = new DownloadWindow(match.Groups[1].Value);
+                window.ShowDialog();
+            }
+        });
     }
 
     private void Timer_Tick(object sender, EventArgs e)
@@ -150,9 +157,9 @@ public partial class MainWindow : INavigationWindow
     }
 
     //自动更新日出日落时间
-    private async void AutoUpdataTime()
+    private void AutoUpdataTime()
     {
-        await Task.Run(async () => 
+        _queueService.AddMessage(async () => 
         {
             try
             {
@@ -184,35 +191,6 @@ public partial class MainWindow : INavigationWindow
         });
     }
 
-    public static string SendPostRequest(string url, string data)
-    {
-        // 创建一个请求对象
-        HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
-        request.Method = "POST";
-        request.ContentType = "application/x-www-form-urlencoded";
-        request.Timeout = 3000;
-
-        // 将要发送的数据转换为字节数组
-        byte[] byteData = Encoding.UTF8.GetBytes(data);
-
-        // 设置请求的内容长度
-        request.ContentLength = byteData.Length;
-
-        // 获取请求的输出流对象，可以向这个流对象写入请求的数据
-        Stream outputStream = request.GetRequestStream();
-        outputStream.Write(byteData, 0, byteData.Length);
-        outputStream.Close();
-
-        // 发送请求并获取响应
-        HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-        Stream responseStream = response.GetResponseStream();
-        StreamReader reader = new StreamReader(responseStream, Encoding.UTF8);
-        string result = reader.ReadToEnd();
-        reader.Close();
-        responseStream.Close();
-
-        return result;
-    }
     public void SwitchService(Object myObject, EventArgs myEventArgs)
     {
         _languageHandler = new LanguageHandler(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "i18n"));
@@ -298,21 +276,27 @@ public partial class MainWindow : INavigationWindow
 
     private void Window_Loaded(object sender, RoutedEventArgs e)
     {
+        RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\DarkMode2", false);
+
         _languageHandler = new LanguageHandler(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "i18n"));
         _languageHandler.ChangeLanguage(RegistryInit.GetSavedLanguageCode());
 
+        //消息队列
+        this._queueService = new QueueService();
+
         //隐藏窗口
         this.Hide();
+        //自动更新
+        if (key.GetValue("AutoUpdate").ToString() == "true")
+        {
+            AutoUpdate();
+        }
+            
         //消息通知
-        RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\DarkMode2", false);
+        
         if (key.GetValue("Notification").ToString() == "true")
         {
-            new ToastContentBuilder()
-                .AddArgument("action", "viewConversation")
-                .AddArgument("conversationId", 9813)
-                .AddText(LanguageHandler.GetLocalizedString("MainWindow_Tip7"))
-                .AddText(LanguageHandler.GetLocalizedString("MainWindow_Tip8"))
-                .Show();
+            ToastHelper.ShowToast("MainWindow_Tip7", "MainWindow_Tip8");
         }
         key.Close();
     }
@@ -341,6 +325,7 @@ public partial class MainWindow : INavigationWindow
         RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\DarkMode2", true);
         key.SetValue("ProgramExit", "true");
         key.Close();
+        ToastNotificationManagerCompat.Uninstall();
         Application.Current.Shutdown();
     }
 }

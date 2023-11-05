@@ -125,7 +125,8 @@ namespace DarkMode_2.Models
                 case IUpdate.type.DownloadUrl: //下载地址
 
                     keyValuePairs = JObject.Parse(res);
-                    result = keyValuePairs["assets"]["browser_download_url"].ToString();
+                    Console.WriteLine(keyValuePairs);
+                    result = keyValuePairs["assets"][0]["browser_download_url"].ToString();
                     break;
 
                 case IUpdate.type.Date: //发布日期

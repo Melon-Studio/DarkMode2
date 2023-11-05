@@ -81,7 +81,7 @@ public partial class SetTimes
     private void BingData()
     {
         Dictionary<int, string> keyValuePairs = new Dictionary<int, string>();
-        for (int i = 0; i <= 24; i++)
+        for (int i = 0; i <= 23; i++)
         {
             keyValuePairs.Add(i, i.ToString("D2"));
         }
@@ -92,7 +92,7 @@ public partial class SetTimes
         endTimeHours.SelectedIndex = 0;
 
         Dictionary<int, string> keyValuePairs1 = new Dictionary<int, string>();
-        for (int i = 0; i <= 60; i++)
+        for (int i = 0; i <= 59; i++)
         {
             keyValuePairs1.Add(i, i.ToString("D2"));
         }
@@ -288,6 +288,10 @@ public partial class SetTimes
                 OpenSnackbar(LanguageHandler.GetLocalizedString("SetTimesPage_Tip5"), LanguageHandler.GetLocalizedString("SetTimesPage_Tip6"));
                 Autostart.IsChecked = false;
             }
+        }else
+        {
+            key.SetValue("PhotosensitiveMode", "false");
+            Autostart.IsChecked = false;
         }
         key.Close();
         
@@ -306,17 +310,17 @@ public partial class SetTimes
         }
     }
 
-    private async void UiPage_Loaded(object sender, RoutedEventArgs e)
+    private void UiPage_Loaded(object sender, RoutedEventArgs e)
     {
-        Update update = new Update();
-        RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\DarkMode2", true);
-        if (VersionControl.Version() != key.GetValue("AppVersion").ToString())
-        {
-            status = 0;
-            string content = await update.UpdateContent(VersionControl.Version() + "." + VersionControl.InternalVersion() + "-" + VersionControl.Channel());
-            OpenDialog(LanguageHandler.GetLocalizedString("Version_Title"), content);
-            key.SetValue("AppVersion", VersionControl.Version());
-        }
-        key.Close();
+        //Update update = new Update();
+        //RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\DarkMode2", true);
+        //if (VersionControl.Version() != key.GetValue("AppVersion").ToString())
+        //{
+        //    status = 0;
+        //    string content = await update.UpdateContent(VersionControl.Version() + "." + VersionControl.InternalVersion() + "-" + VersionControl.Channel());
+        //    OpenDialog(LanguageHandler.GetLocalizedString("Version_Title"), content);
+        //    key.SetValue("AppVersion", VersionControl.Version());
+        //}
+        //key.Close();
     }
 }

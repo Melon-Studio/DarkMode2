@@ -31,6 +31,7 @@ public partial class SetSetting
     private readonly IThemeService _themeService;
 
     private readonly ISnackbarService _snackbarService;
+
     private string ExceptionContent;
 
     private LanguageSettings _settings;

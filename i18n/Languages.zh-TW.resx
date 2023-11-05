@@ -1,96 +1,76 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
-    Microsoft ResX Schema 
-    
-    Version 2.0
-    
-    The primary goals of this format is to allow a simple XML format 
-    that is mostly human readable. The generation and parsing of the 
-    various data types are done through the TypeConverter classes 
-    associated with the data types.
-    
-    Example:
-    
-    ... ado.net/XML headers & schema ...
-    <resheader name="resmimetype">text/microsoft-resx</resheader>
-    <resheader name="version">2.0</resheader>
-    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
-    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
-    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
-    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
-    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
-        <value>[base64 mime encoded serialized .NET Framework object]</value>
-    </data>
-    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
-        <comment>This is a comment</comment>
-    </data>
-                
-    There are any number of "resheader" rows that contain simple 
-    name/value pairs.
-    
-    Each data row contains a name, and value. The row also contains a 
-    type or mimetype. Type corresponds to a .NET class that support 
-    text/value conversion through the TypeConverter architecture. 
-    Classes that don't support this are serialized and stored with the 
-    mimetype set.
-    
-    The mimetype is used for serialized objects, and tells the 
-    ResXResourceReader how to depersist the object. This is currently not 
-    extensible. For a given mimetype the value must be set accordingly:
-    
-    Note - application/x-microsoft.net.object.binary.base64 is the format 
-    that the ResXResourceWriter will generate, however the reader can 
-    read any of the formats listed below.
-    
-    mimetype: application/x-microsoft.net.object.binary.base64
-    value   : The object must be serialized with 
-            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
-            : and then encoded with base64 encoding.
-    
-    mimetype: application/x-microsoft.net.object.soap.base64
-    value   : The object must be serialized with 
-            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
-            : and then encoded with base64 encoding.
+		Microsoft ResX Schema
 
-    mimetype: application/x-microsoft.net.object.bytearray.base64
-    value   : The object must be serialized into a byte array 
-            : using a System.ComponentModel.TypeConverter
-            : and then encoded with base64 encoding.
-    -->
+		Version 1.3
+
+		The primary goals of this format is to allow a simple XML format 
+		that is mostly human readable. The generation and parsing of the 
+		various data types are done through the TypeConverter classes 
+		associated with the data types.
+
+		Example:
+
+		... ado.net/XML headers & schema ...
+		<resheader name="resmimetype">text/microsoft-resx</resheader>
+		<resheader name="version">1.3</resheader>
+		<resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+		<resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+		<data name="Name1">this is my long string</data>
+		<data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+		<data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+			[base64 mime encoded serialized .NET Framework object]
+		</data>
+		<data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+			[base64 mime encoded string representing a byte array form of the .NET Framework object]
+		</data>
+
+		There are any number of "resheader" rows that contain simple 
+		name/value pairs.
+
+		Each data row contains a name, and value. The row also contains a 
+		type or mimetype. Type corresponds to a .NET class that support 
+		text/value conversion through the TypeConverter architecture. 
+		Classes that don't support this are serialized and stored with the 
+		mimetype set.
+
+		The mimetype is used for serialized objects, and tells the 
+		ResXResourceReader how to depersist the object. This is currently not 
+		extensible. For a given mimetype the value must be set accordingly:
+
+		Note - application/x-microsoft.net.object.binary.base64 is the format 
+		that the ResXResourceWriter will generate, however the reader can 
+		read any of the formats listed below.
+
+		mimetype: application/x-microsoft.net.object.binary.base64
+		value   : The object must be serialized with 
+			: System.Serialization.Formatters.Binary.BinaryFormatter
+			: and then encoded with base64 encoding.
+
+		mimetype: application/x-microsoft.net.object.soap.base64
+		value   : The object must be serialized with 
+			: System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+			: and then encoded with base64 encoding.
+
+		mimetype: application/x-microsoft.net.object.bytearray.base64
+		value   : The object must be serialized into a byte array 
+			: using a System.ComponentModel.TypeConverter
+			: and then encoded with base64 encoding.
+	-->
   <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
-          <xsd:element name="metadata">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" />
-              </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string" />
-              <xsd:attribute name="type" type="xsd:string" />
-              <xsd:attribute name="mimetype" type="xsd:string" />
-              <xsd:attribute ref="xml:space" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="assembly">
-            <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string" />
-              <xsd:attribute name="name" type="xsd:string" />
-            </xsd:complexType>
-          </xsd:element>
           <xsd:element name="data">
             <xsd:complexType>
               <xsd:sequence>
                 <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
                 <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
               <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
               <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
@@ -109,79 +89,79 @@
     <value>text/microsoft-resx</value>
   </resheader>
   <resheader name="version">
-    <value>2.0</value>
+    <value>1.3</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="App_Title" xml:space="preserve">
-    <value>DarkMode 设置中心</value>
+    <value>DarkMode 設定中心</value>
   </data>
   <data name="Dialog_LeftButtonText" xml:space="preserve">
-    <value>确定</value>
+    <value>確定</value>
   </data>
   <data name="Dialog_RightButtonText" xml:space="preserve">
     <value>取消</value>
   </data>
   <data name="Navbar_About" xml:space="preserve">
-    <value>关于</value>
+    <value>關於</value>
   </data>
   <data name="Navbar_custom" xml:space="preserve">
-    <value>自定义</value>
+    <value>自定義</value>
   </data>
   <data name="Navbar_Laboratory" xml:space="preserve">
-    <value>实验室</value>
+    <value>實驗室</value>
   </data>
   <data name="Navbar_Settings" xml:space="preserve">
-    <value>设置</value>
+    <value>設定</value>
   </data>
   <data name="Navbar_Time" xml:space="preserve">
-    <value>时间</value>
+    <value>時間</value>
   </data>
   <data name="Navbar_Wallpaper" xml:space="preserve">
-    <value>壁纸</value>
+    <value>桌布</value>
   </data>
   <data name="NotifyMenu_Exit" xml:space="preserve">
     <value>退出</value>
   </data>
   <data name="NotifyMenu_Settings" xml:space="preserve">
-    <value>设置</value>
+    <value>設定</value>
   </data>
   <data name="TimePage_CustomTime" xml:space="preserve">
-    <value>自定义时间</value>
+    <value>自定義時間</value>
   </data>
   <data name="TimePage_CustomTimeSubtitle" xml:space="preserve">
-    <value>手动设置颜色模式开始的时间</value>
+    <value>手動設定顏色模式開始的時間</value>
   </data>
   <data name="TimePage_LightMode" xml:space="preserve">
-    <value>浅色模式：</value>
+    <value>淺色模式：</value>
   </data>
   <data name="TimePage_DarkMode" xml:space="preserve">
     <value>深色模式：</value>
   </data>
   <data name="TimePage_Hour" xml:space="preserve">
-    <value>时</value>
+    <value>時</value>
   </data>
   <data name="TimePage_Minute" xml:space="preserve">
     <value>分</value>
   </data>
   <data name="TimePage_Save" xml:space="preserve">
-    <value>保存</value>
+    <value>儲存</value>
   </data>
   <data name="TimePage_SunriseSunsetMode" xml:space="preserve">
     <value>日出日落模式</value>
   </data>
   <data name="TimePage_SunriseSunsetModeSubtitle" xml:space="preserve">
-    <value>使用 Windows 位置服务，获取设备所在位置的日出日落时间</value>
+    <value>使用 Windows 位置服務，獲取裝置所在位置的日出日落時間</value>
   </data>
   <data name="TimePage_Longitude" xml:space="preserve">
-    <value>经度：</value>
+    <value>經度：</value>
   </data>
   <data name="TimePage_Latitude" xml:space="preserve">
-    <value>纬度：</value>
+    <value>緯度：</value>
   </data>
   <data name="TimePage_Position" xml:space="preserve">
     <value>位置：</value>
@@ -190,70 +170,70 @@
     <value>感光模式</value>
   </data>
   <data name="TimePage_PhotosensitiveModeSubtitle" xml:space="preserve">
-    <value>通过感光元件自动调整颜色模式</value>
+    <value>透過感光元件自動調整顏色模式</value>
   </data>
   <data name="WallpaperPage_NativeWallpaper" xml:space="preserve">
-    <value>原生壁纸</value>
+    <value>原生桌布</value>
   </data>
   <data name="WallpaperPage_NativeWallpaperSubtitle" xml:space="preserve">
-    <value>设置后自动切换主题色时，原生壁纸也会随之切换</value>
+    <value>設定後自動切換主題色時，原生桌布也會隨之切換</value>
   </data>
   <data name="WallpaperPage_Light" xml:space="preserve">
-    <value>浅色时</value>
+    <value>淺色時</value>
   </data>
   <data name="WallpaperPage_Dark" xml:space="preserve">
-    <value>深色时</value>
+    <value>深色時</value>
   </data>
   <data name="WallpaperPage_Browse" xml:space="preserve">
-    <value>浏览</value>
+    <value>瀏覽</value>
   </data>
   <data name="WallpaperPage_Save" xml:space="preserve">
-    <value>保存</value>
+    <value>儲存</value>
   </data>
   <data name="WallpaperPage_AutoSearch" xml:space="preserve">
-    <value>自动搜索</value>
+    <value>自動搜尋</value>
   </data>
   <data name="WallpaperPage_ManualSearch" xml:space="preserve">
-    <value>手动选择</value>
+    <value>手動選擇</value>
   </data>
   <data name="DIYPage_ScreenKeyboard" xml:space="preserve">
-    <value>触摸键盘主题色</value>
+    <value>觸控鍵盤主題色</value>
   </data>
   <data name="DIYPage_ScreenKeyboardSubtitle" xml:space="preserve">
-    <value>开启后触摸键盘将跟随系统主题色</value>
+    <value>開啟後觸控鍵盤將跟隨系統主題色</value>
   </data>
   <data name="DIYPage_Scosor" xml:space="preserve">
-    <value>系统光标</value>
+    <value>系統游標</value>
   </data>
   <data name="DIYPage_ScosorSubtitle" xml:space="preserve">
-    <value>设置后自动切换主题时，系统光标也会切换</value>
+    <value>設定後自動切換主題時，系統游標也會切換</value>
   </data>
   <data name="DIYPage_Light" xml:space="preserve">
-    <value>浅色时</value>
+    <value>淺色時</value>
   </data>
   <data name="DIYPage_Dark" xml:space="preserve">
-    <value>深色时</value>
+    <value>深色時</value>
   </data>
   <data name="MorePage_Tips" xml:space="preserve">
-    <value>实验性功能将在测试成功后在自定义组中上线，随时存在删除的可能性。</value>
+    <value>實驗性功能將在測試成功後在自定義組中上線，隨時存在刪除的可能性。</value>
   </data>
   <data name="MorePage_GameMode" xml:space="preserve">
-    <value>游戏模式(实验性功能)</value>
+    <value>遊戲模式(實驗性功能)</value>
   </data>
   <data name="MorePage_GameModeSubtitle" xml:space="preserve">
-    <value>开启后软件检测到玩游戏时将不会切换主题</value>
+    <value>開啟後軟體檢測到玩遊戲時將不會切換主題</value>
   </data>
   <data name="MorePage_GameModeTip" xml:space="preserve">
-    <value>设置 GPU 占用率阈值，到达多少时开启</value>
+    <value>設定 GPU 佔用率閾值，到達多少時開啟</value>
   </data>
   <data name="AboutPage_DarkModeInfo" xml:space="preserve">
-    <value>DarkMode 信息</value>
+    <value>DarkMode 資訊</value>
   </data>
   <data name="AboutPage_DarkModeInfoSubtitle" xml:space="preserve">
-    <value>包含版本信息等内容</value>
+    <value>包含版本資訊等內容</value>
   </data>
   <data name="AboutPage_CheckUpdate" xml:space="preserve">
-    <value>检查更新</value>
+    <value>檢查更新</value>
   </data>
   <data name="AboutPage_Channel" xml:space="preserve">
     <value>渠道</value>
@@ -262,78 +242,78 @@
     <value>版本</value>
   </data>
   <data name="AboutPage_Developer" xml:space="preserve">
-    <value>开发者</value>
+    <value>開發者</value>
   </data>
   <data name="AboutPage_Copyright" xml:space="preserve">
-    <value>版权</value>
+    <value>版權</value>
   </data>
   <data name="AboutPage_ChangeChannel" xml:space="preserve">
     <value>DarkMode 更改渠道</value>
   </data>
   <data name="AboutPage_ChangeChannelSubtitle" xml:space="preserve">
-    <value>获取 DarkMode 其他渠道版本</value>
+    <value>獲取 DarkMode 其他渠道版本</value>
   </data>
   <data name="AboutPage_HelpCenter" xml:space="preserve">
-    <value>帮助中心</value>
+    <value>幫助中心</value>
   </data>
   <data name="AboutPage_HelpCenterSubtitle" xml:space="preserve">
-    <value>点击进入 DarkMode 讨论区获取帮助</value>
+    <value>點選進入 DarkMode 討論區獲取幫助</value>
   </data>
   <data name="AboutPage_PrivacyPolicy" xml:space="preserve">
-    <value>隐私政策</value>
+    <value>隱私政策</value>
   </data>
   <data name="AboutPage_PrivacyPolicySubtitle" xml:space="preserve">
-    <value>DarkMode 对于一些行为的说明</value>
+    <value>DarkMode 對於一些行為的說明</value>
   </data>
   <data name="AboutPage_PrivacyPolicyContent" xml:space="preserve">
-    <value>非常感谢您使用DarkMode。我们非常重视用户隐私和信息安全问题。
+    <value>非常感謝您使用DarkMode。我們非常重視使用者隱私和資訊保安問題。
 
-为了更好地保护您的个人信息，我们编写了下面的隐私政策：
-1. 本软件承诺严格遵守法律法规和用户隐私保护原则，不会通过网络泄露用户隐私数据。
-2. 本软件拥有管理员权限，但不会滥用此权限恶意破坏用户数据。
-3. 本软件的日出日落模式等相关功能需要联网进行定位。使用这些功能前请确保您已同意并授权本软件获得您的定位信息。
-4. 本软件联网还用来向开发者汇报版本号等信息用于数据统计（如用户数量、各渠道占比等）。我们承诺不会以任何形式泄露用户的个人信息。
-5. 本软件会收集必要的用户信息，例如设备信息、网络信息、错误日志等，以便改善软件性能和用户体验。我们承诺不会将这些信息用于非法用途或泄露给第三方。
-6. 在特定情况下，为了保护用户权益和遵守法律法规，本软件有可能会披露用户的信息。例如，当政府机关或司法机构正式要求时，或者为了保护本软件、其他用户或社会公共利益时。
-7. 用户有权随时联系开发者删除其个人信息。如果您对隐私政策有任何疑问、申诉或投诉，可以通过我们提供的联系方式与开发者取得联系。我们将竭尽所能为您解决问题，保护您的个人信息安全
+為了更好地保護您的個人資訊，我們編寫了下面的隱私政策：
+1. 本軟體承諾嚴格遵守法律法規和使用者隱私保護原則，不會透過網路洩露使用者隱私資料。
+2. 本軟體擁有管理員許可權，但不會濫用此許可權惡意破壞使用者資料。
+3. 本軟體的日出日落模式等相關功能需要聯網進行定位。使用這些功能前請確保您已同意並授權本軟體獲得您的定位資訊。
+4. 本軟體聯網還用來向開發者彙報版本號等資訊用於資料統計（如使用者數量、各渠道佔比等）。我們承諾不會以任何形式洩露使用者的個人資訊。
+5. 本軟體會收集必要的使用者資訊，例如裝置資訊、網路資訊、錯誤日誌等，以便改善軟體效能和使用者體驗。我們承諾不會將這些資訊用於非法用途或洩露給第三方。
+6. 在特定情況下，為了保護使用者權益和遵守法律法規，本軟體有可能會披露使用者的資訊。例如，當政府機關或司法機構正式要求時，或者為了保護本軟體、其他使用者或社會公共利益時。
+7. 使用者有權隨時聯絡開發者刪除其個人資訊。如果您對隱私政策有任何疑問、申訴或投訴，可以透過我們提供的聯絡方式與開發者取得聯絡。我們將竭盡所能為您解決問題，保護您的個人資訊保安
 
-请您仔细阅读并理解上述隐私政策，遵循我们对用户隐私的承诺。如果您不同意本隐私政策的任何内容，您可以选择停止使用本软件。如果您继续使用本软件，则视为您已经理解并同意上述条款。</value>
+請您仔細閱讀並理解上述隱私政策，遵循我們對使用者隱私的承諾。如果您不同意本隱私政策的任何內容，您可以選擇停止使用本軟體。如果您繼續使用本軟體，則視為您已經理解並同意上述條款。</value>
   </data>
   <data name="AboutPage_Contributor" xml:space="preserve">
-    <value>贡献者</value>
+    <value>貢獻者</value>
   </data>
   <data name="AboutPage_ContributorSubtitle" xml:space="preserve">
-    <value>参与了 DarkMode 代码贡献的 GitHub 用户</value>
+    <value>參與了 DarkMode 程式碼貢獻的 GitHub 使用者</value>
   </data>
   <data name="AboutPage_Thank" xml:space="preserve">
-    <value>鸣谢</value>
+    <value>鳴謝</value>
   </data>
   <data name="AboutPage_ThankSubtitle" xml:space="preserve">
-    <value>为 DarkMode 发展作出贡献，值得展示的用户或团体</value>
+    <value>為 DarkMode 發展作出貢獻，值得展示的使用者或團體</value>
   </data>
   <data name="AboutPage_OpenSourceLicense" xml:space="preserve">
-    <value>开放源代码许可</value>
+    <value>開放原始碼許可</value>
   </data>
   <data name="AboutPage_OpenSourceLicenseSubtitle" xml:space="preserve">
-    <value>DarkMode 使用的第三方开源库</value>
+    <value>DarkMode 使用的第三方開源庫</value>
   </data>
   <data name="AboutPage_Gitee" xml:space="preserve">
-    <value>前往 DarkMode 的 Gitee 首页</value>
+    <value>前往 DarkMode 的 Gitee 首頁</value>
   </data>
   <data name="SettingsPage_Reset" xml:space="preserve">
-    <value>重置用户配置</value>
+    <value>重置使用者配置</value>
   </data>
   <data name="SettingsPage_DeveloperModeSubtitle" xml:space="preserve">
-    <value>开发者模式，非开发人员请勿进入</value>
+    <value>開發者模式，非開發人員請勿進入</value>
   </data>
   <data name="MainWindow_Tip1" xml:space="preserve">
-    <value>抱歉，本程序仅支持Windows10/11的操作系统。\n你的操作系统版本是：</value>
+    <value>抱歉，本程式僅支援Windows10/11的作業系統。\n你的作業系統版本是：</value>
   </data>
   <data name="SetTimesPage_Tip6" xml:space="preserve">
-    <value>你的设备不存在感光元件，无法使用此功能。</value>
+    <value>你的裝置不存在感光元件，無法使用此功能。</value>
   </data>
   <data name="SetWallpaperPage_Tip8" xml:space="preserve">
-    <value>exe文件|wallpaper64.exe;</value>
+    <value>exe檔案|wallpaper64.exe;</value>
   </data>
   <data name="SetAboutPage_Tip2" xml:space="preserve">
     <value>提示</value>
@@ -342,148 +322,148 @@
     <value>提示</value>
   </data>
   <data name="MessageBox_Tip3" xml:space="preserve">
-    <value>复制</value>
+    <value>複製</value>
   </data>
   <data name="Update_Tip3" xml:space="preserve">
-    <value>连接超时，请检查网络状态</value>
+    <value>連線超時，請檢查網路狀態</value>
   </data>
   <data name="AboutPage_Github" xml:space="preserve">
-    <value>前往 DarkMode 的 GitHub 首页</value>
+    <value>前往 DarkMode 的 GitHub 首頁</value>
   </data>
   <data name="SettingPage_DeveloperMode" xml:space="preserve">
-    <value>开发者模式</value>
+    <value>開發者模式</value>
   </data>
   <data name="AboutPage_Name" xml:space="preserve">
-    <value>名称</value>
+    <value>名稱</value>
   </data>
   <data name="AboutPage_Author" xml:space="preserve">
     <value>作者</value>
   </data>
   <data name="AboutPage_License" xml:space="preserve">
-    <value>许可</value>
+    <value>許可</value>
   </data>
   <data name="SettingsPage_RunStartUp" xml:space="preserve">
-    <value>开机自启</value>
+    <value>開機自啟</value>
   </data>
   <data name="SettingsPage_RunStartUpSubtitle" xml:space="preserve">
-    <value>开启后软件将在下次启动电脑时自动运行</value>
+    <value>開啟後軟體將在下次啟動電腦時自動執行</value>
   </data>
   <data name="SettingsPage_AutoUpdate" xml:space="preserve">
     <value>提示更新</value>
   </data>
   <data name="SettingsPage_AutoUpdateSubtitle" xml:space="preserve">
-    <value>开启后软件将自动检测更新</value>
+    <value>開啟後軟體將自動檢測更新</value>
   </data>
   <data name="SettingsPage_AutoSunRiseTime" xml:space="preserve">
-    <value>自动更新日出日落时间</value>
+    <value>自動更新日出日落時間</value>
   </data>
   <data name="SettingsPage_AutoSunRiseTimeSubtitle" xml:space="preserve">
-    <value>开启后软件将每次启动软件时自动更新一次日出日落时间</value>
+    <value>開啟後軟體將每次啟動軟體時自動更新一次日出日落時間</value>
   </data>
   <data name="SettingsPage_Notification" xml:space="preserve">
-    <value>消息通知</value>
+    <value>訊息通知</value>
   </data>
   <data name="SettingsPage_NotificationSubtitle" xml:space="preserve">
-    <value>开启后软件启动时将发送一条通知</value>
+    <value>開啟後軟體啟動時將傳送一條通知</value>
   </data>
   <data name="SettingsPage_TrayBarIcon" xml:space="preserve">
-    <value>托盘栏图标</value>
+    <value>托盤欄圖示</value>
   </data>
   <data name="SettingsPage_TrayBarIconSubtitle" xml:space="preserve">
-    <value>开启后软件启动时在托盘栏区域创建软件图标(建议开启)</value>
+    <value>開啟後軟體啟動時在托盤欄區域建立軟體圖示(建議開啟)</value>
   </data>
   <data name="SettingsPage_UpdateChannel" xml:space="preserve">
     <value>更新渠道</value>
   </data>
   <data name="SettingsPage_UpdateChannelSubtitle" xml:space="preserve">
-    <value>设置检查更新或自动更新的渠道</value>
+    <value>設定檢查更新或自動更新的渠道</value>
   </data>
   <data name="SettingsPage_Color" xml:space="preserve">
-    <value>主题色</value>
+    <value>主題色</value>
   </data>
   <data name="SettingsPage_ColorSubtitle" xml:space="preserve">
-    <value>切换软件的主题色</value>
+    <value>切換軟體的主題色</value>
   </data>
   <data name="SettingsPage_Language" xml:space="preserve">
-    <value>语言</value>
+    <value>語言</value>
   </data>
   <data name="SettingsPage_LanguageSubtitle" xml:space="preserve">
-    <value>切换软件显示的语言</value>
+    <value>切換軟體顯示的語言</value>
   </data>
   <data name="SettingsPage_DeveloperMode" xml:space="preserve">
-    <value>开发者模式</value>
+    <value>開發者模式</value>
   </data>
   <data name="MainWindow_Tip2" xml:space="preserve">
-    <value>无法提供服务</value>
+    <value>無法提供服務</value>
   </data>
   <data name="MainWindow_Tip3" xml:space="preserve">
-    <value>Ctrl+Alt+D 快捷键被占用，将无法通过快捷键打开设置，请勿在设置中关闭托盘栏图标，如果意外关闭，请进入 DarkMode 的 GitHub 仓库的 Discussions 页面查看帮助。</value>
+    <value>Ctrl+Alt+D 快捷鍵被佔用，將無法透過快捷鍵開啟設定，請勿在設定中關閉托盤欄圖示，如果意外關閉，請進入 DarkMode 的 GitHub 倉庫的 Discussions 頁面檢視幫助。</value>
   </data>
   <data name="MainWindow_Tip4" xml:space="preserve">
-    <value>DarkMode：快捷键被占用</value>
+    <value>DarkMode：快捷鍵被佔用</value>
   </data>
   <data name="MainWindow_Tip5" xml:space="preserve">
-    <value>无法完成的操作</value>
+    <value>無法完成的操作</value>
   </data>
   <data name="MainWindow_Tip6" xml:space="preserve">
-    <value>获取设备定位异常，自动更新日出日落时间功能无法使用。</value>
+    <value>獲取裝置定位異常，自動更新日出日落時間功能無法使用。</value>
   </data>
   <data name="MainWindow_Tip7" xml:space="preserve">
     <value>DarkMode 通知</value>
   </data>
   <data name="MainWindow_Tip8" xml:space="preserve">
-    <value>DarkMode 运行中，配置请点击 DarkMode 图标</value>
+    <value>DarkMode 執行中，配置請點選 DarkMode 圖示</value>
   </data>
   <data name="SetTimesPage_Tip1" xml:space="preserve">
-    <value>是否允许 DarkMode 访问你的精确位置</value>
+    <value>是否允許 DarkMode 訪問你的精確位置</value>
   </data>
   <data name="SetTimesPage_Tip2" xml:space="preserve">
-    <value>DarkMode 使用 Windows 位置服务获取设备所在地的地理位置，并计算出日出日落时间。</value>
+    <value>DarkMode 使用 Windows 位置服務獲取裝置所在地的地理位置，並計算出日出日落時間。</value>
   </data>
   <data name="SetTimesPage_Tip3" xml:space="preserve">
-    <value>无法完成的操作</value>
+    <value>無法完成的操作</value>
   </data>
   <data name="SetTimesPage_Tip4" xml:space="preserve">
-    <value>获取设备定位异常，请检查系统定位服务是否开启，或者检查系统代理功能。</value>
+    <value>獲取裝置定位異常，請檢查系統定位服務是否開啟，或者檢查系統代理功能。</value>
   </data>
   <data name="SetTimesPage_Tip5" xml:space="preserve">
     <value>提示</value>
   </data>
   <data name="SetWallpaperPage_Tip1" xml:space="preserve">
-    <value>请选择壁纸图片</value>
+    <value>請選擇桌布圖片</value>
   </data>
   <data name="SetWallpaperPage_Tip2" xml:space="preserve">
-    <value>图片文件|*.jpg;*.jpeg;*.bmp;*.dib;*.png;*.jfif;*.jpe;*.gif;*.tif;*.tiff;*.wdp;*.heic;*.heif;*.heics;*.heifs;*.hif;*.avci;*.avcs;*.avif;*.avifs</value>
+    <value>圖片檔案|*.jpg;*.jpeg;*.bmp;*.dib;*.png;*.jfif;*.jpe;*.gif;*.tif;*.tiff;*.wdp;*.heic;*.heif;*.heics;*.heifs;*.hif;*.avci;*.avcs;*.avif;*.avifs</value>
   </data>
   <data name="SetWallpaperPage_Tip3" xml:space="preserve">
-    <value>请选择 JSON 文件</value>
+    <value>請選擇 JSON 檔案</value>
   </data>
   <data name="SetWallpaperPage_Tip4" xml:space="preserve">
-    <value>json 文件|*.json;</value>
+    <value>json 檔案|*.json;</value>
   </data>
   <data name="SetWallpaperPage_Tip5" xml:space="preserve">
     <value>提示</value>
   </data>
   <data name="SetWallpaperPage_Tip6" xml:space="preserve">
-    <value>自动搜索路径失败，请手动选择。</value>
+    <value>自動搜尋路徑失敗，請手動選擇。</value>
   </data>
   <data name="SetWallpaperPage_Tip7" xml:space="preserve">
-    <value>请选择 wallpaper64.exe 文件</value>
+    <value>請選擇 wallpaper64.exe 檔案</value>
   </data>
   <data name="SetAboutPage_Tip1" xml:space="preserve">
-    <value>该功能暂未开放</value>
+    <value>該功能暫未開放</value>
   </data>
   <data name="SetSettingPage_Tip1" xml:space="preserve">
-    <value>跟随系统</value>
+    <value>跟隨系統</value>
   </data>
   <data name="SetSettingPage_Tip2" xml:space="preserve">
-    <value>浅色</value>
+    <value>淺色</value>
   </data>
   <data name="SetSettingPage_Tip3" xml:space="preserve">
     <value>深色</value>
   </data>
   <data name="SetSettingPage_Tip4" xml:space="preserve">
-    <value>自动</value>
+    <value>自動</value>
   </data>
   <data name="SetSettingPage_Tip5" xml:space="preserve">
     <value>GitHub 渠道</value>
@@ -492,61 +472,61 @@
     <value>Gitee 渠道</value>
   </data>
   <data name="SetSettingPage_Tip7" xml:space="preserve">
-    <value>该功能暂不可用</value>
+    <value>該功能暫不可用</value>
   </data>
   <data name="SetSettingPage_Tip8" xml:space="preserve">
-    <value>错误发生</value>
+    <value>錯誤發生</value>
   </data>
   <data name="SetSettingPage_Tip9" xml:space="preserve">
-    <value>下次启动时生效，关闭托盘栏图标后可以使用 Ctrl+Alt+D 来快速打开设置中心</value>
+    <value>下次啟動時生效，關閉托盤欄圖示後可以使用 Ctrl+Alt+D 來快速開啟設定中心</value>
   </data>
   <data name="SetSettingPage_Tip10" xml:space="preserve">
-    <value>下次启动时生效</value>
+    <value>下次啟動時生效</value>
   </data>
   <data name="MessageBox_Tip1" xml:space="preserve">
-    <value>关闭</value>
+    <value>關閉</value>
   </data>
   <data name="MessageBox_Tip2" xml:space="preserve">
-    <value>确定</value>
+    <value>確定</value>
   </data>
   <data name="Update_Tip1" xml:space="preserve">
-    <value>当前版本为最新版本</value>
+    <value>當前版本為最新版本</value>
   </data>
   <data name="Update_Tip2" xml:space="preserve">
-    <value>发现新版本</value>
+    <value>發現新版本</value>
   </data>
   <data name="MorePage_Save" xml:space="preserve">
-    <value>保存</value>
+    <value>儲存</value>
   </data>
   <data name="WallpaperPage_WallpaperEngine" xml:space="preserve">
-    <value>Wallpaper Engine 壁纸</value>
+    <value>Wallpaper Engine 桌布</value>
   </data>
   <data name="WallpaperPage_WallpaperEnginePath" xml:space="preserve">
-    <value>设置 Wallpaper Engine 路径</value>
+    <value>設定 Wallpaper Engine 路徑</value>
   </data>
   <data name="WallpaperPage_WallpaperEngineSubtitle" xml:space="preserve">
-    <value>设置后自动切换主题色时，Wallpaper Engine 壁纸也会随之切换</value>
+    <value>設定後自動切換主題色時，Wallpaper Engine 桌布也會隨之切換</value>
   </data>
   <data name="DownloadWindow_Cancel" xml:space="preserve">
     <value>取消</value>
   </data>
   <data name="DownloadWindow_Confirm" xml:space="preserve">
-    <value>下载</value>
+    <value>下載</value>
   </data>
   <data name="DownloadWindow_Install" xml:space="preserve">
-    <value>安装</value>
+    <value>安裝</value>
   </data>
   <data name="DownloadWindow_Progress" xml:space="preserve">
-    <value>下载进度：</value>
+    <value>下載進度：</value>
   </data>
   <data name="DownloadWindow_Speed" xml:space="preserve">
-    <value>下载速度：</value>
+    <value>下載速度：</value>
   </data>
   <data name="DownloadWindow_Title" xml:space="preserve">
-    <value>发现新版本</value>
+    <value>發現新版本</value>
   </data>
   <data name="Update_Tip4" xml:space="preserve">
-    <value>获取公告失败，请自行前往GitHub首页查看。</value>
+    <value>獲取公告失敗，請自行前往GitHub首頁檢視。</value>
   </data>
   <data name="Version_Title" xml:space="preserve">
     <value>更新公告</value>
@@ -555,18 +535,18 @@
     <value>移除</value>
   </data>
   <data name="AutoUpdata_content" xml:space="preserve">
-    <value>您可以下载更新，如果想要禁止此功能，请转到设置禁用提示更新功能</value>
+    <value>您可以下載更新，如果想要禁止此功能，請轉到設定禁用提示更新功能</value>
   </data>
   <data name="AutoUpdata_title" xml:space="preserve">
     <value>DarkMode 有新版本了</value>
   </data>
   <data name="DownloadWindow_Error_content" xml:space="preserve">
-    <value>无法找到安装包</value>
+    <value>無法找到安裝包</value>
   </data>
   <data name="DownloadWindow_Error_title" xml:space="preserve">
-    <value>错误</value>
+    <value>錯誤</value>
   </data>
   <data name="ToastHelper_Error_title" xml:space="preserve">
-    <value>错误</value>
+    <value>錯誤</value>
   </data>
 </root>

@@ -82,6 +82,7 @@ public partial class App
             services.AddTransient<DownloadWindowViewModel>();
         }).Build();
 
+
     private async void OnStartup(object sender, StartupEventArgs e)
     {
         XmlConfigurator.Configure();

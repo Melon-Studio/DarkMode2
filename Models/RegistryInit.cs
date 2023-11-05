@@ -60,8 +60,6 @@ namespace DarkMode_2.Models
                     key.SetValue("MouseMode", "Light");
                     key.SetValue("LightMouse", "Light");
                     key.SetValue("DarkMouse", "Light");
-                    //触摸键盘主题
-                    key.SetValue("KeyboardMode", "false");
                     //游戏模式
                     key.SetValue("GameMode", "false");
                     //Wallpaper Engine安装路径
@@ -121,8 +119,6 @@ namespace DarkMode_2.Models
                 key.SetValue("MouseMode", "Light");
                 key.SetValue("LightMouse", "Light");
                 key.SetValue("DarkMouse", "Light");
-                //触摸键盘主题
-                key.SetValue("KeyboardMode", "false");
                 //游戏模式
                 key.SetValue("GameMode", "false");
                 //Wallpaper Engine安装路径
@@ -149,8 +145,6 @@ namespace DarkMode_2.Models
             {
                 log.Error("注册表操作失败(InsertRegistery)：" + ex);
             }
-            
-
         }
 
         public static string GetSavedLanguageCode()

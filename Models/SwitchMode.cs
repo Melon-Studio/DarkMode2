@@ -6,7 +6,7 @@ namespace DarkMode_2.Models;
 
 public class SwitchMode
 {
-    public async static void switchMode(string mode)
+    public static void switchMode(string mode)
     {
         //注册表变量初始化
         RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\DarkMode2", true);
@@ -86,21 +86,6 @@ public class SwitchMode
                 }
             }
             
-            //触摸键盘
-            if(key.GetValue("KeyboardMode").ToString() == "true")
-            {
-                keyboard1.SetValue("ThemeOverride", "Light");
-                keyboard2.SetValue("ThemeOverride", "Light");
-                keyboard1.SetValue("KeyboardBackgroundSolidColor", "243,243,243");
-                keyboard2.SetValue("KeyboardBackgroundSolidColor", "243,243,243");
-                keyboard1.SetValue("KeyLabelColor", "0,0,0");
-                keyboard2.SetValue("KeyLabelColor", "0,0,0");
-                keyboard1.SetValue("SuggestionTextColor", "0,0,0");
-                keyboard2.SetValue("SuggestionTextColor", "0,0,0");
-                keyboard1.SetValue("KeyTransparency", Convert.ToInt32("1", 0));
-                keyboard2.SetValue("KeyTransparency", Convert.ToInt32("1", 0));
-            }
-            
         }
         else if (mode == "dark" && DetermineSystemColorMode.GetSysState() == "light") //深色
         {
@@ -169,21 +154,6 @@ public class SwitchMode
                     cursorKey.SetValue("Scheme Source", Convert.ToInt32("1", 2));
                     RedRawWindow.RefreshSystemScheme();
                 }
-            }
-            
-            //触摸键盘
-            if (key.GetValue("KeyboardMode").ToString() == "true")
-            {
-                keyboard1.SetValue("ThemeOverride", "Dark");
-                keyboard2.SetValue("ThemeOverride", "Dark");
-                keyboard1.SetValue("KeyboardBackgroundSolidColor", "28,28,28");
-                keyboard2.SetValue("KeyboardBackgroundSolidColor", "28,28,28");
-                keyboard1.SetValue("KeyLabelColor", "255,255,255");
-                keyboard2.SetValue("KeyLabelColor", "255,255,255");
-                keyboard1.SetValue("SuggestionTextColor", "255,255,255");
-                keyboard2.SetValue("SuggestionTextColor", "255,255,255");
-                keyboard1.SetValue("KeyTransparency", Convert.ToInt32("1", 57));
-                keyboard2.SetValue("KeyTransparency", Convert.ToInt32("1", 57));
             }
         }
 

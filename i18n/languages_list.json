@@ -33,6 +33,10 @@
       "code": "zh-CN"
     },
     {
+      "name": "繁體中文",
+      "code": "zh-TW"
+    },
+    {
       "name": "English",
       "code": "en-US"
     }

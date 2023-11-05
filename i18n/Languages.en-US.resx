@@ -206,6 +206,12 @@ Please read and understand the above Privacy Policy carefully and follow our com
   <data name="App_Title" xml:space="preserve">
     <value>DarkMode Settings</value>
   </data>
+  <data name="AutoUpdata_content" xml:space="preserve">
+    <value>You can download the update, if you want to disable this function, please go to the settings to disable the prompt update function</value>
+  </data>
+  <data name="AutoUpdata_title" xml:space="preserve">
+    <value>DarkMode have a new version!</value>
+  </data>
   <data name="Dialog_LeftButtonText" xml:space="preserve">
     <value>OK</value>
   </data>
@@ -229,6 +235,12 @@ Please read and understand the above Privacy Policy carefully and follow our com
   </data>
   <data name="DIYPage_ScreenKeyboardSubtitle" xml:space="preserve">
     <value>Enabling this option will make the touch keyboard follow the system theme color</value>
+  </data>
+  <data name="DownloadWindow_Error_content" xml:space="preserve">
+    <value>Unable to find installation package.</value>
+  </data>
+  <data name="DownloadWindow_Error_title" xml:space="preserve">
+    <value>Error</value>
   </data>
   <data name="DownloadWindow_Title" xml:space="preserve">
     <value>Discovering a new version</value>
@@ -372,7 +384,7 @@ Please read and understand the above Privacy Policy carefully and follow our com
     <value>When enabled, the software will automatically update sunrise and sunset times each time it starts</value>
   </data>
   <data name="SettingsPage_AutoUpdate" xml:space="preserve">
-    <value>Auto Update</value>
+    <value>Prompt Update</value>
   </data>
   <data name="SettingsPage_AutoUpdateSubtitle" xml:space="preserve">
     <value>When enabled, the software will automatically check for updates</value>
@@ -488,6 +500,9 @@ Please read and understand the above Privacy Policy carefully and follow our com
   <data name="TimePage_SunriseSunsetModeSubtitle" xml:space="preserve">
     <value>Get sunrise and sunset times using Windows location services</value>
   </data>
+  <data name="ToastHelper_Error_title" xml:space="preserve">
+    <value>Error</value>
+  </data>
   <data name="Update_Tip1" xml:space="preserve">
     <value>Current version is up to date</value>
   </data>
@@ -538,5 +553,20 @@ Please read and understand the above Privacy Policy carefully and follow our com
   </data>
   <data name="WallpaperPage_WallpaperEngineSubtitle" xml:space="preserve">
     <value>Wallpaper Engine will also change when the theme is switched automatically</value>
+  </data>
+  <data name="DownloadWindow_Install" xml:space="preserve">
+    <value>Install</value>
+  </data>
+  <data name="DownloadWindow_Confirm" xml:space="preserve">
+    <value>Download</value>
+  </data>
+  <data name="DownloadWindow_Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="DownloadWindow_Speed" xml:space="preserve">
+    <value>Speed:</value>
+  </data>
+  <data name="DownloadWindow_Progress" xml:space="preserve">
+    <value>Progress:</value>
   </data>
 </root>

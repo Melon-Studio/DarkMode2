@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -20,7 +20,7 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <RuntimeIdentifiers>win-x64;win-arm64;win</RuntimeIdentifiers>
     <TargetFrameworkProfile />
-    <PublishUrl>publish\</PublishUrl>
+    <PublishUrl>D:\Desktop\public\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -30,8 +30,9 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
+    <TargetCulture>zh-CN</TargetCulture>
     <ApplicationRevision>1</ApplicationRevision>
-    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <ApplicationVersion>2.1.3.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
@@ -64,10 +65,10 @@
     <StartupObject />
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>87096E6F81E5257E95B6EA90EEAB5C64BEE34F59</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>A2DED38FEA9DE4C15FD140AE858B4EC31CBB2EE6</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>DarkMode_2_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>Melon Studio.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <GenerateManifests>false</GenerateManifests>
@@ -76,11 +77,9 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <TargetZone>LocalIntranet</TargetZone>
+    <TargetZone>Custom</TargetZone>
   </PropertyGroup>
-  <PropertyGroup>
-    <ApplicationManifest>app.manifest</ApplicationManifest>
-  </PropertyGroup>
+  <PropertyGroup />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM64'">
     <DebugSymbols>true</DebugSymbols>
     <OutputPath>bin\ARM64\Debug\</OutputPath>
@@ -118,6 +117,49 @@
     <LangVersion>preview</LangVersion>
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'All|AnyCPU'">
+    <OutputPath>bin\All\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <LangVersion>preview</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'All|ARM64'">
+    <OutputPath>bin\Out\ARM64\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>none</DebugType>
+    <PlatformTarget>ARM64</PlatformTarget>
+    <LangVersion>preview</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+    <GenerateSatelliteAssembliesForCore>true</GenerateSatelliteAssembliesForCore>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'All|x64'">
+    <OutputPath>bin\Out\x64\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>none</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <LangVersion>preview</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+    <GenerateSatelliteAssembliesForCore>false</GenerateSatelliteAssembliesForCore>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>Melon Studio.pfx</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestTimestampUrl>http://timestamp.digicert.com</ManifestTimestampUrl>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
@@ -148,6 +190,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="i18n\Languages.zh-TW.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Languages.zh-TW.resx</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
     <Compile Include="Models\AppConfig.cs" />
     <Compile Include="Models\AutoStartManager.cs" />
     <Compile Include="Models\Colors\Pa__one.cs" />
@@ -168,6 +216,7 @@
     <Compile Include="Models\SwitchMode.cs" />
     <Compile Include="Models\SystemHotKey.cs" />
     <Compile Include="Models\TimeConverter.cs" />
+    <Compile Include="Models\ToastHelper.cs" />
     <Compile Include="Models\Update.cs" />
     <Compile Include="Models\VersionControl.cs" />
     <Compile Include="Models\WallpaperChanger.cs" />
@@ -179,6 +228,7 @@
     </Compile>
     <Compile Include="Services\ApplicationHostService.cs" />
     <Compile Include="Services\Contracts\ITestWindowService.cs" />
+    <Compile Include="Services\MessageQueue\QueueService.cs" />
     <Compile Include="Services\PageService.cs" />
     <Compile Include="Services\TestWindowService.cs" />
     <Compile Include="ViewModels\ColorsViewModel.cs" />
@@ -286,29 +336,26 @@
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Settings.settings</DependentUpon>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-    </Compile>
     <EmbeddedResource Include="i18n\Languages.resx">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Languages.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="i18n\Languages.en-US.resx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <None Include="app.manifest" />
-    <None Include="DarkMode_2_TemporaryKey.pfx" />
+    <EmbeddedResource Include="i18n\Languages.zh-CN.resx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="i18n\Languages.zh-TW.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Languages.zh-TW.Designer.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
     <None Include="i18n\languages_list.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Melon Studio.pfx" />
     <None Include="Properties\app.manifest" />
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
     <Resource Include="Resources\Fonts\icons.ttf" />
   </ItemGroup>
   <ItemGroup>
@@ -345,11 +392,19 @@
     <PackageReference Include="WPFLocalizeExtension">
       <Version>3.10.0</Version>
     </PackageReference>
+    <PackageReference Include="XAMLMarkupExtensions">
+      <Version>2.1.3</Version>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
       <Visible>False</Visible>
       <ProductName>Microsoft .NET Framework 4.7.2 %28x86 和 x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.8">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.8 %28x86 和 x64%29</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
@@ -366,7 +421,6 @@
     <Resource Include="Resources\we%28dark%29.png" />
     <Resource Include="Resources\we%28light%29.png" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Resource Include="Resources\logo-new.ico" />
     <Resource Include="Resources\MouseDark.png" />

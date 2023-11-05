@@ -5,22 +5,46 @@ VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DarkMode_2", "DarkMode_2.csproj", "{4632FA56-60E4-4F55-958F-8283C97D2042}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DarkModeUpdate", "..\DarkModeUpdate\DarkModeUpdate.csproj", "{607E06C0-935C-4097-B35F-D37EC1DF245D}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		All|Any CPU = All|Any CPU
+		All|ARM64 = All|ARM64
+		All|x64 = All|x64
+		All|x86 = All|x86
 		Debug|Any CPU = Debug|Any CPU
+		Debug|ARM64 = Debug|ARM64
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
 		Release|Any CPU = Release|Any CPU
+		Release|ARM64 = Release|ARM64
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4632FA56-60E4-4F55-958F-8283C97D2042}.All|Any CPU.ActiveCfg = All|x64
+		{4632FA56-60E4-4F55-958F-8283C97D2042}.All|Any CPU.Build.0 = All|x64
+		{4632FA56-60E4-4F55-958F-8283C97D2042}.All|ARM64.ActiveCfg = All|ARM64
+		{4632FA56-60E4-4F55-958F-8283C97D2042}.All|ARM64.Build.0 = All|ARM64
+		{4632FA56-60E4-4F55-958F-8283C97D2042}.All|x64.ActiveCfg = All|x64
+		{4632FA56-60E4-4F55-958F-8283C97D2042}.All|x64.Build.0 = All|x64
+		{4632FA56-60E4-4F55-958F-8283C97D2042}.All|x86.ActiveCfg = All|Any CPU
+		{4632FA56-60E4-4F55-958F-8283C97D2042}.All|x86.Build.0 = All|Any CPU
 		{4632FA56-60E4-4F55-958F-8283C97D2042}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4632FA56-60E4-4F55-958F-8283C97D2042}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4632FA56-60E4-4F55-958F-8283C97D2042}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4632FA56-60E4-4F55-958F-8283C97D2042}.Release|Any CPU.Build.0 = Release|Any CPU
-		{607E06C0-935C-4097-B35F-D37EC1DF245D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{607E06C0-935C-4097-B35F-D37EC1DF245D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{607E06C0-935C-4097-B35F-D37EC1DF245D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{607E06C0-935C-4097-B35F-D37EC1DF245D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4632FA56-60E4-4F55-958F-8283C97D2042}.Debug|ARM64.ActiveCfg = Debug|ARM64
+		{4632FA56-60E4-4F55-958F-8283C97D2042}.Debug|ARM64.Build.0 = Debug|ARM64
+		{4632FA56-60E4-4F55-958F-8283C97D2042}.Debug|x64.ActiveCfg = Debug|x64
+		{4632FA56-60E4-4F55-958F-8283C97D2042}.Debug|x64.Build.0 = Debug|x64
+		{4632FA56-60E4-4F55-958F-8283C97D2042}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{4632FA56-60E4-4F55-958F-8283C97D2042}.Debug|x86.Build.0 = Debug|Any CPU
+		{4632FA56-60E4-4F55-958F-8283C97D2042}.Release|Any CPU.ActiveCfg = Release|x64
+		{4632FA56-60E4-4F55-958F-8283C97D2042}.Release|Any CPU.Build.0 = Release|x64
+		{4632FA56-60E4-4F55-958F-8283C97D2042}.Release|ARM64.ActiveCfg = Release|ARM64
+		{4632FA56-60E4-4F55-958F-8283C97D2042}.Release|ARM64.Build.0 = Release|ARM64
+		{4632FA56-60E4-4F55-958F-8283C97D2042}.Release|x64.ActiveCfg = Release|x64
+		{4632FA56-60E4-4F55-958F-8283C97D2042}.Release|x64.Build.0 = Release|x64
+		{4632FA56-60E4-4F55-958F-8283C97D2042}.Release|x86.ActiveCfg = Release|Any CPU
+		{4632FA56-60E4-4F55-958F-8283C97D2042}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

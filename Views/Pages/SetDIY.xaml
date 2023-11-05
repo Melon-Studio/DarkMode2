@@ -20,21 +20,6 @@
         IsVirtualizing="True"
         VirtualizationMode="Recycling">
 
-        <ui:CardControl Margin="0,8,0,0" Icon="Keyboard24">
-            <ui:CardControl.Header>
-                <StackPanel Grid.Column="0" VerticalAlignment="Center">
-                    <TextBlock
-                        FontSize="13"
-                        FontWeight="Medium"
-                        Text="{lex:Loc DIYPage_ScreenKeyboard}" />
-                    <TextBlock
-                        FontSize="12"
-                        Foreground="{DynamicResource TextFillColorSecondaryBrush}"
-                        Text="{lex:Loc DIYPage_ScreenKeyboardSubtitle}" />
-                </StackPanel>
-            </ui:CardControl.Header>
-            <ui:ToggleSwitch Focusable ="false" IsEnabled="False"/>
-        </ui:CardControl>
 
         <ui:CardExpander
             Margin="0,8,0,0"

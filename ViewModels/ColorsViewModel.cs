@@ -93,7 +93,6 @@ public class ColorsViewModel : ObservableObject, INavigationAware
 
     private int _columns = 8;
 
-    private ICommand _copyColorCommand;
 
     public IEnumerable<Pa__one> PaletteBrushes
     {

@@ -1,6 +1,6 @@
 # ![Logo](./docs/dark.jpg)
 
-<p align="center"><i>Logo icon created by Emoji Emoticon Composer</i></p>
+<p align="center"><i>The idea of Logo comes from Emoji fusion device</i></p>
 
 ![Tag](https://img.shields.io/github/tag/Melon-Studio/DarkMode2.svg) 
 [![img](https://camo.githubusercontent.com/4c5e9973d91f9ac30425d8cdef2fb574b50f64e21cdad202be047f3848021b0a/68747470733a2f2f696d672e736869656c64732e696f2f6769746875622f666f726b732f4d656c6f6e2d53747564696f2f4461726b4d6f6465323f7374796c653d666c61742d737175617265)](https://github.com/Melon-Studio/DarkMode2/blob/master) 
@@ -13,8 +13,6 @@
 [简体中文](./README.md) | English
 
 DarkMode2 is an open-source software designed to automatically switch the color mode of Windows 10/11 systems. It offers several key features, including scheduled switching, sunrise-sunset switching, ambient light-based switching, and switching based on system native wallpapers and Wallpaper Engine wallpapers. The software aims to address the lack of automatic color mode switching in the Windows operating system. Additionally, it provides various extra functionalities. Automatically switching to dark mode at night helps reduce eye fatigue and prevents excessive light from entering the eyes. While this software cannot completely solve eye fatigue, it can alleviate the eye strain caused by using light mode at night.
-
-Join our QQ group for discussions: 695527760
 
 ---
 

@@ -12,6 +12,8 @@
 
 [简体中文](./README.md) | English
 
+**The project has been discontinued for maintenance by the author since 2024/01/17, and the recovery time is to be determined.**
+
 DarkMode2 is an open-source software designed to automatically switch the color mode of Windows 10/11 systems. It offers several key features, including scheduled switching, sunrise-sunset switching, ambient light-based switching, and switching based on system native wallpapers and Wallpaper Engine wallpapers. The software aims to address the lack of automatic color mode switching in the Windows operating system. Additionally, it provides various extra functionalities. Automatically switching to dark mode at night helps reduce eye fatigue and prevents excessive light from entering the eyes. While this software cannot completely solve eye fatigue, it can alleviate the eye strain caused by using light mode at night.
 
 ---
